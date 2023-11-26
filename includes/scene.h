@@ -1,0 +1,26 @@
+#ifndef SCENE_H
+# define SCENE_H
+
+# include "main.h"
+# include "render.h"
+
+struct	s_camera {
+	t_vec3	vp;
+	t_vec3	dir;
+	short	fov;
+};
+
+struct	s_ambient {
+	float	lgt_ratio;
+	t_color	color;
+};
+
+typedef struct	s_scene {
+	bool			is_valid;
+	struct s_camera		camera;
+	struct s_ambient	ambient;
+}		t_scene;
+
+t_scene	*get_scene(char *file);
+
+#endif

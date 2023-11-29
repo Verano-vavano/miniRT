@@ -6,13 +6,13 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/11/26 05:22:02 by hdupire          ###   ########.fr        #
+#    Updated: 2023/11/28 15:40:21 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=./miniRT
 
-SRCS=main.c scene.c
+SRCS=main.c scene.c scene_read_utils.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})
 DEST=${SRCS_DIR:.c=.o}
 NO_OF_FILES:=$(words $(SRCS))
@@ -87,15 +87,15 @@ endef
 MLX_PATH=./mlx/
 MLX=$(addsuffix libmlx.a, ${MLX_PATH})
 
-INCLUDES=-I ./includes/ -I ./${MLX_PATH}
+LIBFT_PATH=./libft/
+LIBFT=$(addsuffix libft.a, ${LIBFT_PATH})
 
-#LIBFT_PATH=./libft/
-#LIBFT=$(addsuffix libft.a, ${LIBFT_PATH})
+INCLUDES=-I ./includes/ -I ${MLX_PATH} -I ${LIBFT_PATH}
 
 RM=rm -f
 
 GCC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -g
 LINKERS=-L ${MLX_PATH} -lmlx -lX11 -lXext
 
 # UNAME_S = Darwin for Mac
@@ -125,14 +125,17 @@ ${NAME}: ${LIBFT} ${DEST}
 	@printf "${RESET}"
 	@printf ${SHOW_CURSOR}
 
-# DONT FORGET TO CLEAN THE LIBFT
-clean:
+clean_libft:
+	@make -s clean -C ${LIBFT_PATH}
+
+clean: clean_libft
 	@echo "${GREEN}Cleaning MiniRT..."
 	@${RM} ${DEST}
 	@printf "${RESET}"
 	@echo "~~~~"
 
 fclean: clean
+	@${RM} ${LIBFT}
 	@${RM} ${NAME}
 
 re: fclean all

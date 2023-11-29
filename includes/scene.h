@@ -4,6 +4,8 @@
 # include "main.h"
 # include "render.h"
 
+# include <fcntl.h>
+
 struct	s_camera {
 	t_vec3	vp;
 	t_vec3	dir;
@@ -22,5 +24,7 @@ typedef struct	s_scene {
 }		t_scene;
 
 t_scene	*get_scene(char *file);
+
+char	*get_line_arg(char *line, int *adv);
 
 #endif

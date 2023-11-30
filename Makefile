@@ -6,13 +6,13 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/11/28 15:40:21 by hdupire          ###   ########.fr        #
+#    Updated: 2023/11/30 00:18:48 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=./miniRT
 
-SRCS=main.c scene.c scene_read_utils.c
+SRCS=main.c scene.c scene_read_utils.c parser_mandatory.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})
 DEST=${SRCS_DIR:.c=.o}
 NO_OF_FILES:=$(words $(SRCS))

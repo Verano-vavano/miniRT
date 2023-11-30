@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   parser_mandatory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/11/30 00:12:03 by hdupire          ###   ########.fr       */
+/*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
+/*   Updated: 2023/11/30 01:14:25 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
-char	*get_line_arg(char *line, int *adv)
+bool	add_ambiant(t_scene *scene, char *line)
 {
-	int	len;
-
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
-	{
-		line++;
-		if (adv)
-			(*adv)++;
-	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+	float	lgt_ration;
+	t_color	color;
 }

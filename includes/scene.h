@@ -19,6 +19,8 @@ struct	s_ambient {
 
 typedef struct	s_scene {
 	bool			is_valid;
+	bool			has_camera;
+	bool			has_ambiant;
 	struct s_camera		camera;
 	struct s_ambient	ambient;
 }		t_scene;
@@ -26,5 +28,7 @@ typedef struct	s_scene {
 t_scene	*get_scene(char *file);
 
 char	*get_line_arg(char *line, int *adv);
+
+bool	add_ambiant(t_scene *scene, char *line);
 
 #endif

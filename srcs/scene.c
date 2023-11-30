@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2023/11/28 15:39:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/11/30 00:18:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,26 @@
 //
 // Trouver solutions pour différentes formes (pas urgent, d'abord sp)
 
-static void	understand_scene_line(t_scene *scene, char *line)
+// Returns true if no error has been encountered and the line was understood
+// Else returns false
+static bool	understand_scene_line(t_scene *scene, char *line)
 {
-	char	*understander;
-	int	advancement;
+	char	*item;
 
-	(void) scene;
 	printf("LINE = %s", line);
 	advancement = 0;
-	understander = get_line_arg(line, &advancement);
+	item = get_line_arg(line, NULL);
+	if (ft_strcmp(item, "A") == 0)
+		return (add_ambiant(scene));
+	/*
 	while (understander)
 	{
 		printf("-%s\n", understander);
 		free(understander);
 		line += advancement;
 		understander = get_line_arg(line, &advancement);
-	}
+	}*/
+	return (false);
 }
 
 static void	read_scene_file(t_scene *scene, int file_fd)

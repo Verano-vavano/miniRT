@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   get_int_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:35:24 by hdupire          ###   ########.fr       */
+/*   Created: 2023/12/02 11:22:02 by hdupire           #+#    #+#             */
+/*   Updated: 2023/12/02 11:26:03 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
 #include "libft.h"
 
-char	*get_line_arg(char *line, int *adv)
+int	get_int_size(int n)
 {
-	int	len;
+	int	size;
+	bool	neg;
 
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
+	if (n == 0)
+		return (1);
+	neg = (n < 0);
+	size = 0;
+	while (n)
 	{
-		line++;
-		if (adv)
-			(*adv)++;
+		size++;
+		n /= 10;
 	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+	return (size + neg);
 }

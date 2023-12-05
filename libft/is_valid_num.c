@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   is_valid_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:35:24 by hdupire          ###   ########.fr       */
+/*   Created: 2023/08/13 14:22:28 by hdupire           #+#    #+#             */
+/*   Updated: 2023/12/03 15:42:16 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
 #include "libft.h"
 
-char	*get_line_arg(char *line, int *adv)
+bool	is_valid_num(char *s)
 {
-	int	len;
+	int	i;
 
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
-	{
-		line++;
-		if (adv)
-			(*adv)++;
-	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+	i = 0;
+	while (s[i] && (s[i] == '+' || s[i] == '-'))
+		i++;
+	while (s[i] && (s[i] >= '0' && s[i] <= '9'))
+		i++;
+	return (s[i] == '\0');
 }

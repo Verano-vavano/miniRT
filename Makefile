@@ -6,13 +6,18 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/11/30 00:18:48 by hdupire          ###   ########.fr        #
+#    Updated: 2023/12/05 21:34:09 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=./miniRT
 
-SRCS=main.c scene.c scene_read_utils.c parser_mandatory.c
+SRCS=main.c\
+     scene.c scene_read_utils.c parser_mandatory.c parser_forms.c parser_errors.c parser_checker.c parser_checker_forms.c\
+     latof.c latof_errors.c\
+     colors.c vec3.c vec3_errors.c\
+     free_scene.c\
+     render.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})
 DEST=${SRCS_DIR:.c=.o}
 NO_OF_FILES:=$(words $(SRCS))
@@ -96,7 +101,7 @@ RM=rm -f
 
 GCC=gcc
 CFLAGS=-Wall -Wextra -Werror -g
-LINKERS=-L ${MLX_PATH} -lmlx -lX11 -lXext
+LINKERS=-L ${MLX_PATH} -lmlx -lX11 -lXext -lm
 
 # UNAME_S = Darwin for Mac
 UNAME_S:=$(shell uname -s)

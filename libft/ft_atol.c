@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:35:24 by hdupire          ###   ########.fr       */
+/*   Created: 2023/09/08 17:44:42 by hdupire           #+#    #+#             */
+/*   Updated: 2023/09/08 17:45:12 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
-#include "libft.h"
-
-char	*get_line_arg(char *line, int *adv)
+long	ft_atol(const char *str)
 {
-	int	len;
+	int				neg;
+	long			num;
+	unsigned long	i;
 
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
+	i = 0;
+	neg = 1;
+	num = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		line++;
-		if (adv)
-			(*adv)++;
+		if (str[i] == '-')
+			neg = -1;
+		i++;
 	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = (num * 10) + str[i] - '0';
+		i++;
+	}
+	return (num * neg);
 }

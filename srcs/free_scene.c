@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   free_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:35:24 by hdupire          ###   ########.fr       */
+/*   Created: 2023/12/05 10:35:34 by hdupire           #+#    #+#             */
+/*   Updated: 2023/12/05 15:27:49 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "libft.h"
 
-char	*get_line_arg(char *line, int *adv)
+static void	free_spheres(struct s_sphere *spheres)
 {
-	int	len;
+	struct s_sphere	*next;
 
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
+	while (spheres)
 	{
-		line++;
-		if (adv)
-			(*adv)++;
+		next = spheres->next_sphere;
+		free(spheres);
+		spheres = next;
 	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+	return ;
+}
+
+void	free_scene(t_scene *scene)
+{
+	free_spheres(scene->spheres);
+	free(scene);
+	return ;
 }

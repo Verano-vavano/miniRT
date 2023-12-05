@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   latof_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:35:24 by hdupire          ###   ########.fr       */
+/*   Created: 2023/11/30 23:06:20 by hdupire           #+#    #+#             */
+/*   Updated: 2023/11/30 23:10:13 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
-#include "libft.h"
+#include "errors.h"
 
-char	*get_line_arg(char *line, int *adv)
+bool	float_convert_error(char c)
 {
-	int	len;
+	write(2, &c, 1);
+	write(2, ": Invalid char in float conversion\n", 35);
+	return (false);
+}
 
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
-	{
-		line++;
-		if (adv)
-			(*adv)++;
-	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+bool	float_too_many_digits(char c)
+{
+	write(2, &c, 1);
+	write(2, ": Too many digits in float conversion\n", 38);
+	return (false);
 }

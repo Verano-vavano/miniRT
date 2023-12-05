@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:13:50 by hdupire           #+#    #+#             */
-/*   Updated: 2023/11/27 18:54:58 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/02 17:43:40 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,12 @@ size_t		ft_strlen(const char *s);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 char		*ft_strndup(const char *s, size_t len);
+char		**ft_split(char const *s, char c);
+void		free_char_etoile_etoile(char **truc);
+bool		is_valid_num(char *s);
+int		ft_atoi(const char *str);
+long		ft_atol(const char *str);
+int		get_int_size(int n);
+bool		is_intable(char *s);
 
 #endif

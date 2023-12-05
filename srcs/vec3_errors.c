@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_read_utils.c                                 :+:      :+:    :+:   */
+/*   colors_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:52:37 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:35:24 by hdupire          ###   ########.fr       */
+/*   Created: 2023/12/01 23:00:21 by hdupire           #+#    #+#             */
+/*   Updated: 2023/12/03 15:52:15 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "errors.h"
 #include "scene.h"
-#include "libft.h"
 
-char	*get_line_arg(char *line, int *adv)
+void	vec3_number_error(char *arg, char **xyz)
 {
-	int	len;
+	write(2, "[VEC3] Invalid number of arguments. 3 required : ", 49);
+	write(2, arg, ft_strlen(arg));
+	write(2, "\n", 1);
+	free_char_etoile_etoile(xyz);
+}
 
-	if (adv)
-		*adv = 0;
-	while (*line == ' ')
-	{
-		line++;
-		if (adv)
-			(*adv)++;
-	}
-	if (*line == '\n')
-		return (NULL);
-	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '\n')
-		len++;
-	if (adv)
-		(*adv) += len;
-	return (ft_strndup(line, len));
+void	vec3_arg_error(char *arg, char **xyz)
+{
+	write(2, "[VEC3] Invalid argument : ", 26);
+	write(2, arg, ft_strlen(arg));
+	write(2, "\n", 1);
+	free_char_etoile_etoile(xyz);
 }

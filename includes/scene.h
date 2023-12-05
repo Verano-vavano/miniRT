@@ -2,7 +2,7 @@
 # define SCENE_H
 
 # include "main.h"
-# include "render.h"
+# include "vectors.h"
 
 # include <fcntl.h>
 
@@ -17,18 +17,59 @@ struct	s_ambient {
 	t_color	color;
 };
 
+struct	s_light {
+	t_vec3	pos;
+	float	lgt_ratio;
+	t_color	color;
+};
+
+struct	s_sphere {
+	t_vec3		pos;
+	float		diameter;
+	t_color		color;
+	struct s_sphere	*next_sphere;
+};
+
 typedef struct	s_scene {
 	bool			is_valid;
 	bool			has_camera;
-	bool			has_ambiant;
+	bool			has_ambient;
 	struct s_camera		camera;
 	struct s_ambient	ambient;
+	struct s_light		light;
+	struct s_sphere		*spheres;
+	struct s_sphere		*last_sphere;
 }		t_scene;
 
+# include "render.h"
+
+// SCENE
 t_scene	*get_scene(char *file);
 
+// SCENES UTILS
 char	*get_line_arg(char *line, int *adv);
 
-bool	add_ambiant(t_scene *scene, char *line);
+void	free_scene(t_scene *scene);
+
+// PARSER
+bool	adder(t_scene *scene, char *line, bool *verif, char name);
+
+// PARSER FORMS
+bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num);
+
+// CHECKER
+bool	check_ambient(t_scene *scene);
+bool	check_camera(t_scene *scene);
+bool	check_light(t_scene *scene);
+bool	check_last_sphere(t_scene *scene);
+
+// ATOF
+float	little_atof(char *arg);
+
+// COLORS
+t_color	get_color(char *arg);
+
+// VEC3
+t_vec3	get_coord_vec3(char *arg, bool smallest);
 
 #endif

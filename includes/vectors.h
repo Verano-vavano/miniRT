@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <math.h>
+#include <stdint.h>
 
 typedef struct	s_vec2 {
 	double	x;
@@ -17,9 +18,9 @@ typedef struct	s_vec3 {
 }		t_vec3;
 
 typedef struct	s_color {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
 	bool		valid;
 }		t_color;
 

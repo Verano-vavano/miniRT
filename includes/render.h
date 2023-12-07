@@ -17,7 +17,7 @@ typedef struct s_window {
 void	render(t_scene *scene);
 
 // ray_casting
-int	cast_ray(t_window *win, t_vec2 *coord);
+t_color	cast_ray(t_window *win, t_vec2 *coord);
 
 // events
 int	quit_game(t_window *window);

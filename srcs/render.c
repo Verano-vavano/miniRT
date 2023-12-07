@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/07 11:18:51 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/07 23:28:34 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	render_scene(t_window *window)
 {
 	t_vec2	coord;
-	int	color;
+	t_color	color;
 
 	coord.y = 0;
 	while (coord.y <= window->height)
@@ -26,7 +26,8 @@ static void	render_scene(t_window *window)
 		{
 			color = cast_ray(window, &coord);
 			mlx_pixel_put(window->mlx_ptr, window->window,
-				coord.x, coord.y, color);
+				coord.x, coord.y,
+				(color.r << 16) | (color.g << 8) | color.b);
 			coord.x++;
 		}
 		coord.y++;

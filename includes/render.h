@@ -2,7 +2,24 @@
 # define RENDER_H
 
 # include "scene.h"
+# include "math.h"
+# include "mlx.h"
 
-void	render_scene(t_scene *scene);
+typedef struct s_window {
+	void	*mlx_ptr;
+	void	*window;
+	int	width;
+	int	height;
+	double	aspect_ratio;
+	t_scene	*scene;
+}	t_window;
+
+void	render(t_scene *scene);
+
+// ray_casting
+int	cast_ray(t_window *win, t_vec2 *coord);
+
+// events
+int	quit_game(t_window *window);
 
 #endif

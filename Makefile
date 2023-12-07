@@ -6,7 +6,7 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/12/05 21:34:09 by hdupire          ###   ########.fr        #
+#    Updated: 2023/12/07 11:37:16 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS=main.c\
      latof.c latof_errors.c\
      colors.c vec3.c vec3_errors.c\
      free_scene.c\
-     render.c
+     render.c events.c\
+     ray_casting.c vec3_math.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})
 DEST=${SRCS_DIR:.c=.o}
 NO_OF_FILES:=$(words $(SRCS))

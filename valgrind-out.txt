@@ -1,151 +1,751 @@
-==59833== Memcheck, a memory error detector
-==59833== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==59833== Using Valgrind-3.21.0-d97fed7c3e-20230428 and LibVEX; rerun with -h for copyright info
-==59833== Command: ./miniRT scenes/basic.rt
-==59833== Parent PID: 3020
-==59833== 
---59833-- 
---59833-- Valgrind options:
---59833--    --leak-check=full
---59833--    --show-leak-kinds=all
---59833--    --track-origins=yes
---59833--    --verbose
---59833--    --log-file=valgrind-out.txt
---59833-- Contents of /proc/version:
---59833--   Linux version 6.5.5-200.fc38.x86_64 (mockbuild@d4d01d62c9c942e59de1ef4aa94df5a2) (gcc (GCC) 13.2.1 20230728 (Red Hat 13.2.1-1), GNU ld version 2.39-9.fc38) #1 SMP PREEMPT_DYNAMIC Sun Sep 24 15:52:44 UTC 2023
---59833-- 
---59833-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3
---59833-- Page sizes: currently 4096, max supported 4096
---59833-- Valgrind library directory: /usr/libexec/valgrind
---59833-- Reading syms from /home/hugodupire/Bureau/Projets_42/miniRT/miniRT
---59833-- Reading syms from /usr/lib64/ld-linux-x86-64.so.2
---59833-- Warning: cross-CU LIMITATION: some inlined fn names
---59833-- might be shown as UnknownInlinedFun
---59833-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
-==59833== Downloading debug info for /usr/libexec/valgrind/memcheck-amd64-linux...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/ddc85abc993117c5dc02ae4e8af56c937ec02144/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/libexec/valgrind/memcheck-amd64-linux
-==59833== Downloading debug info for /home/hugodupire/.cache/debuginfod_client/ddc85abc993117c5dc02ae4e8af56c937ec02144/debuginfo...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/782731e50ab9f14d33c27ff3cdbfea6d15ec4748/debuginfo ..
---59833--   .. build-id is valid
-==59833== Successfully downloaded debug file for /home/hugodupire/.cache/debuginfod_client/ddc85abc993117c5dc02ae4e8af56c937ec02144/debuginfo
---59833--    object doesn't have a dynamic symbol table
---59833-- Scheduler: using generic scheduler lock implementation.
---59833-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==59833== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-59833-by-hugodupire-on-VavanoFedora
-==59833== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-59833-by-hugodupire-on-VavanoFedora
-==59833== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-59833-by-hugodupire-on-VavanoFedora
-==59833== 
-==59833== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==59833== don't want to do, unless you know exactly what you're doing,
-==59833== or are doing some strange experiment):
-==59833==   /usr/libexec/valgrind/../../bin/vgdb --pid=59833 ...command...
-==59833== 
-==59833== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==59833==   /path/to/gdb ./miniRT
-==59833== and then give GDB the following command
-==59833==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=59833
-==59833== --pid is optional if only one valgrind process is running
-==59833== 
---59833-- REDIR: 0x4024730 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c3bf2 (vgPlain_amd64_linux_REDIR_FOR_strlen)
---59833-- REDIR: 0x4022ee0 (ld-linux-x86-64.so.2:index) redirected to 0x580c3c0c (vgPlain_amd64_linux_REDIR_FOR_index)
---59833-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---59833-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
-==59833== WARNING: new redirection conflicts with existing -- ignoring it
---59833--     old: 0x04024730 (strlen              ) R-> (0000.0) 0x580c3bf2 vgPlain_amd64_linux_REDIR_FOR_strlen
---59833--     new: 0x04024730 (strlen              ) R-> (2007.0) 0x04847d60 strlen
---59833-- REDIR: 0x4023110 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4848e80 (strcmp)
---59833-- REDIR: 0x4022330 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484c6f0 (mempcpy)
---59833-- Reading syms from /usr/lib64/libX11.so.6.4.0
-==59833== Downloading debug info for /usr/lib64/libX11.so.6.4.0...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/422e61facd71dd46e7b66c91f492b85ffe3d086a/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/lib64/libX11.so.6.4.0
---59833-- Reading syms from /usr/lib64/libXext.so.6.4.0
-==59833== Downloading debug info for /usr/lib64/libXext.so.6.4.0...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/237b53be70f2865bbafdde7846a9f5ebecb6a900/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/lib64/libXext.so.6.4.0
---59833-- Reading syms from /usr/lib64/libm.so.6
-==59833== Downloading debug info for /usr/lib64/libm.so.6...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/c0abeeb903840a4f5a9afcc4fe183323f69f928a/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/lib64/libm.so.6
---59833-- Reading syms from /usr/lib64/libc.so.6
-==59833== Downloading debug info for /usr/lib64/libc.so.6...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/3ebe8d97a0ed3e1f13476a02665c5a9442adcd78/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/lib64/libc.so.6
-==59833== Downloading debug info for /home/hugodupire/.cache/debuginfod_client/3ebe8d97a0ed3e1f13476a02665c5a9442adcd78/debuginfo...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/84233aea308fb7abe62baad9b2654ef92d65902f/debuginfo ..
---59833--   .. build-id is valid
-==59833== Successfully downloaded debug file for /home/hugodupire/.cache/debuginfod_client/3ebe8d97a0ed3e1f13476a02665c5a9442adcd78/debuginfo
-==59833== WARNING: new redirection conflicts with existing -- ignoring it
---59833--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
---59833--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x048470ce aligned_alloc
-==59833== WARNING: new redirection conflicts with existing -- ignoring it
---59833--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
---59833--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x04847058 aligned_alloc
---59833-- Reading syms from /usr/lib64/libxcb.so.1.1.0
-==59833== Downloading debug info for /usr/lib64/libxcb.so.1.1.0...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/b6728b1b72f62a8e3a7bca9b4a26038f255cf22e/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/lib64/libxcb.so.1.1.0
---59833-- Reading syms from /usr/lib64/libXau.so.6.0.0
-==59833== Downloading debug info for /usr/lib64/libXau.so.6.0.0...
---59833--   Considering /home/hugodupire/.cache/debuginfod_client/002191d239c78633edbb8a25f330afa5ebbdddf9/debuginfo ..
---59833--   .. CRC is valid
-==59833== Successfully downloaded debug file for /usr/lib64/libXau.so.6.0.0
---59833-- REDIR: 0x40248d0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x48486b0 (strncmp)
---59833-- REDIR: 0x4b45c00 (libc.so.6:strnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45c90 (libc.so.6:strpbrk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43e60 (libc.so.6:strcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b58f50 (libc.so.6:wcsnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b42f60 (libc.so.6:memset) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b57700 (libc.so.6:wcslen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b424f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b574b0 (libc.so.6:wcschr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43d50 (libc.so.6:index) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45cc0 (libc.so.6:rindex) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b57540 (libc.so.6:wcscmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43180 (libc.so.6:stpncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b57b90 (libc.so.6:wmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45ab0 (libc.so.6:strncmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b431e0 (libc.so.6:strcasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b44fd0 (libc.so.6:strcspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b575d0 (libc.so.6:wcscpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43ce0 (libc.so.6:strcat) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b459b0 (libc.so.6:strncasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b42400 (libc.so.6:bcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b42ed0 (libc.so.6:memrchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43dd0 (libc.so.6:strchrnul) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b44f60 (libc.so.6:strcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43280 (libc.so.6:strcasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45880 (libc.so.6:strlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45b50 (libc.so.6:strncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b57c10 (libc.so.6:wmemcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43110 (libc.so.6:stpcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b42c90 (libc.so.6:memmove) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b42380 (libc.so.6:memchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45e90 (libc.so.6:strspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b42db0 (libc.so.6:mempcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b45910 (libc.so.6:strncasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b43050 (libc.so.6:rawmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4bc24f0 (libc.so.6:__memcpy_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4bc2610 (libc.so.6:__memmove_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
-==59833== WARNING: new redirection conflicts with existing -- ignoring it
---59833--     old: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2030.0) 0x0484c7f0 __memcpy_chk
---59833--     new: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2024.0) 0x0484c160 __memmove_chk
---59833-- REDIR: 0x4b466d0 (libc.so.6:strstr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---59833-- REDIR: 0x4b563c0 (libc.so.6:__strrchr_sse2) redirected to 0x48477a0 (__strrchr_sse2)
---59833-- REDIR: 0x4b3ebd0 (libc.so.6:malloc) redirected to 0x48417b9 (malloc)
---59833-- REDIR: 0x4b3f190 (libc.so.6:free) redirected to 0x484423a (free)
-==59833== 
-==59833== HEAP SUMMARY:
-==59833==     in use at exit: 0 bytes in 0 blocks
-==59833==   total heap usage: 180 allocs, 180 frees, 2,588 bytes allocated
-==59833== 
-==59833== All heap blocks were freed -- no leaks are possible
-==59833== 
-==59833== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==71932== Memcheck, a memory error detector
+==71932== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71932== Using Valgrind-3.21.0-d97fed7c3e-20230428 and LibVEX; rerun with -h for copyright info
+==71932== Command: ./miniRT scenes/basic.rt
+==71932== Parent PID: 3020
+==71932== 
+--71932-- 
+--71932-- Valgrind options:
+--71932--    --leak-check=full
+--71932--    --show-leak-kinds=all
+--71932--    --track-origins=yes
+--71932--    --verbose
+--71932--    --log-file=valgrind-out.txt
+--71932-- Contents of /proc/version:
+--71932--   Linux version 6.5.5-200.fc38.x86_64 (mockbuild@d4d01d62c9c942e59de1ef4aa94df5a2) (gcc (GCC) 13.2.1 20230728 (Red Hat 13.2.1-1), GNU ld version 2.39-9.fc38) #1 SMP PREEMPT_DYNAMIC Sun Sep 24 15:52:44 UTC 2023
+--71932-- 
+--71932-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3
+--71932-- Page sizes: currently 4096, max supported 4096
+--71932-- Valgrind library directory: /usr/libexec/valgrind
+--71932-- Reading syms from /home/hugodupire/Bureau/Projets_42/miniRT/miniRT
+--71932-- Reading syms from /usr/lib64/ld-linux-x86-64.so.2
+--71932-- Warning: cross-CU LIMITATION: some inlined fn names
+--71932-- might be shown as UnknownInlinedFun
+--71932-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+==71932== Downloading debug info for /usr/libexec/valgrind/memcheck-amd64-linux...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/ddc85abc993117c5dc02ae4e8af56c937ec02144/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/libexec/valgrind/memcheck-amd64-linux
+==71932== Downloading debug info for /home/hugodupire/.cache/debuginfod_client/ddc85abc993117c5dc02ae4e8af56c937ec02144/debuginfo...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/782731e50ab9f14d33c27ff3cdbfea6d15ec4748/debuginfo ..
+--71932--   .. build-id is valid
+==71932== Successfully downloaded debug file for /home/hugodupire/.cache/debuginfod_client/ddc85abc993117c5dc02ae4e8af56c937ec02144/debuginfo
+--71932--    object doesn't have a dynamic symbol table
+--71932-- Scheduler: using generic scheduler lock implementation.
+--71932-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==71932== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-71932-by-hugodupire-on-VavanoFedora
+==71932== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-71932-by-hugodupire-on-VavanoFedora
+==71932== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-71932-by-hugodupire-on-VavanoFedora
+==71932== 
+==71932== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==71932== don't want to do, unless you know exactly what you're doing,
+==71932== or are doing some strange experiment):
+==71932==   /usr/libexec/valgrind/../../bin/vgdb --pid=71932 ...command...
+==71932== 
+==71932== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==71932==   /path/to/gdb ./miniRT
+==71932== and then give GDB the following command
+==71932==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=71932
+==71932== --pid is optional if only one valgrind process is running
+==71932== 
+--71932-- REDIR: 0x4024730 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c3bf2 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--71932-- REDIR: 0x4022ee0 (ld-linux-x86-64.so.2:index) redirected to 0x580c3c0c (vgPlain_amd64_linux_REDIR_FOR_index)
+--71932-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--71932-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==71932== WARNING: new redirection conflicts with existing -- ignoring it
+--71932--     old: 0x04024730 (strlen              ) R-> (0000.0) 0x580c3bf2 vgPlain_amd64_linux_REDIR_FOR_strlen
+--71932--     new: 0x04024730 (strlen              ) R-> (2007.0) 0x04847d60 strlen
+--71932-- REDIR: 0x4023110 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4848e80 (strcmp)
+--71932-- REDIR: 0x4022330 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484c6f0 (mempcpy)
+--71932-- Reading syms from /usr/lib64/libX11.so.6.4.0
+==71932== Downloading debug info for /usr/lib64/libX11.so.6.4.0...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/422e61facd71dd46e7b66c91f492b85ffe3d086a/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/lib64/libX11.so.6.4.0
+--71932-- Reading syms from /usr/lib64/libXext.so.6.4.0
+==71932== Downloading debug info for /usr/lib64/libXext.so.6.4.0...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/237b53be70f2865bbafdde7846a9f5ebecb6a900/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/lib64/libXext.so.6.4.0
+--71932-- Reading syms from /usr/lib64/libm.so.6
+==71932== Downloading debug info for /usr/lib64/libm.so.6...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/c0abeeb903840a4f5a9afcc4fe183323f69f928a/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/lib64/libm.so.6
+--71932-- Reading syms from /usr/lib64/libc.so.6
+==71932== Downloading debug info for /usr/lib64/libc.so.6...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/3ebe8d97a0ed3e1f13476a02665c5a9442adcd78/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/lib64/libc.so.6
+==71932== Downloading debug info for /home/hugodupire/.cache/debuginfod_client/3ebe8d97a0ed3e1f13476a02665c5a9442adcd78/debuginfo...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/84233aea308fb7abe62baad9b2654ef92d65902f/debuginfo ..
+--71932--   .. build-id is valid
+==71932== Successfully downloaded debug file for /home/hugodupire/.cache/debuginfod_client/3ebe8d97a0ed3e1f13476a02665c5a9442adcd78/debuginfo
+==71932== WARNING: new redirection conflicts with existing -- ignoring it
+--71932--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
+--71932--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x048470ce aligned_alloc
+==71932== WARNING: new redirection conflicts with existing -- ignoring it
+--71932--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
+--71932--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x04847058 aligned_alloc
+--71932-- Reading syms from /usr/lib64/libxcb.so.1.1.0
+==71932== Downloading debug info for /usr/lib64/libxcb.so.1.1.0...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/b6728b1b72f62a8e3a7bca9b4a26038f255cf22e/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/lib64/libxcb.so.1.1.0
+--71932-- Reading syms from /usr/lib64/libXau.so.6.0.0
+==71932== Downloading debug info for /usr/lib64/libXau.so.6.0.0...
+--71932--   Considering /home/hugodupire/.cache/debuginfod_client/002191d239c78633edbb8a25f330afa5ebbdddf9/debuginfo ..
+--71932--   .. CRC is valid
+==71932== Successfully downloaded debug file for /usr/lib64/libXau.so.6.0.0
+--71932-- REDIR: 0x40248d0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x48486b0 (strncmp)
+--71932-- REDIR: 0x4b45c00 (libc.so.6:strnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45c90 (libc.so.6:strpbrk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43e60 (libc.so.6:strcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b58f50 (libc.so.6:wcsnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b42f60 (libc.so.6:memset) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b57700 (libc.so.6:wcslen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b424f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b574b0 (libc.so.6:wcschr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43d50 (libc.so.6:index) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45cc0 (libc.so.6:rindex) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b57540 (libc.so.6:wcscmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43180 (libc.so.6:stpncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b57b90 (libc.so.6:wmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45ab0 (libc.so.6:strncmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b431e0 (libc.so.6:strcasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b44fd0 (libc.so.6:strcspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b575d0 (libc.so.6:wcscpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43ce0 (libc.so.6:strcat) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b459b0 (libc.so.6:strncasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b42400 (libc.so.6:bcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b42ed0 (libc.so.6:memrchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43dd0 (libc.so.6:strchrnul) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b44f60 (libc.so.6:strcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43280 (libc.so.6:strcasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45880 (libc.so.6:strlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45b50 (libc.so.6:strncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b57c10 (libc.so.6:wmemcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43110 (libc.so.6:stpcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b42c90 (libc.so.6:memmove) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b42380 (libc.so.6:memchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45e90 (libc.so.6:strspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b42db0 (libc.so.6:mempcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b45910 (libc.so.6:strncasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b43050 (libc.so.6:rawmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4bc24f0 (libc.so.6:__memcpy_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4bc2610 (libc.so.6:__memmove_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+==71932== WARNING: new redirection conflicts with existing -- ignoring it
+--71932--     old: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2030.0) 0x0484c7f0 __memcpy_chk
+--71932--     new: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2024.0) 0x0484c160 __memmove_chk
+--71932-- REDIR: 0x4b466d0 (libc.so.6:strstr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--71932-- REDIR: 0x4b563c0 (libc.so.6:__strrchr_sse2) redirected to 0x48477a0 (__strrchr_sse2)
+--71932-- REDIR: 0x4b3ebd0 (libc.so.6:malloc) redirected to 0x48417b9 (malloc)
+--71932-- REDIR: 0x4b3f190 (libc.so.6:free) redirected to 0x484423a (free)
+--71932-- REDIR: 0x4b504d0 (libc.so.6:__strlen_sse2) redirected to 0x4847ca0 (__strlen_sse2)
+--71932-- REDIR: 0x4c1ddb0 (libc.so.6:__strncmp_sse42) redirected to 0x48485f0 (__strncmp_sse42)
+--71932-- REDIR: 0x4b3faa0 (libc.so.6:calloc) redirected to 0x48467a2 (calloc)
+--71932-- REDIR: 0x4b49430 (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4848fb0 (memcpy@GLIBC_2.2.5)
+--71932-- REDIR: 0x4b49420 (libc.so.6:__memcpy_chk_sse2_unaligned) redirected to 0x484c7f0 (__memcpy_chk)
+--71932-- REDIR: 0x4b4e4a0 (libc.so.6:__strchrnul_sse2) redirected to 0x484c1d0 (strchrnul)
+--71932-- REDIR: 0x4bc2a00 (libc.so.6:__strcpy_chk) redirected to 0x484c250 (__strcpy_chk)
+--71932-- REDIR: 0x4b4e270 (libc.so.6:__strchr_sse2) redirected to 0x48478c0 (__strchr_sse2)
+--71932-- REDIR: 0x4b48ea0 (libc.so.6:__memcmp_sse2) redirected to 0x484ad80 (__memcmp_sse2)
+--71932-- REDIR: 0x4b49d00 (libc.so.6:__memset_sse2_unaligned) redirected to 0x484b670 (memset)
+--71932-- REDIR: 0x4b3f3f0 (libc.so.6:realloc) redirected to 0x48469bc (realloc)
+--71932-- REDIR: 0x4b55190 (libc.so.6:__strncpy_sse2_unaligned) redirected to 0x4848360 (__strncpy_sse2_unaligned)
+--71932-- REDIR: 0x4c1b440 (libc.so.6:__strcmp_sse42) redirected to 0x4848e40 (__strcmp_sse42)
+==71932== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==71932==    at 0x4BA8FC4: writev (writev.c:26)
+==71932==    by 0x4C8E20A: UnknownInlinedFun (xcb_conn.c:277)
+==71932==    by 0x4C8E20A: _xcb_conn_wait.part.0 (xcb_conn.c:522)
+==71932==    by 0x4C8E38E: UnknownInlinedFun (xcb_out.c:463)
+==71932==    by 0x4C8E38E: _xcb_out_send (xcb_out.c:464)
+==71932==    by 0x4C8F3FE: UnknownInlinedFun (xcb_out.c:412)
+==71932==    by 0x4C8F3FE: xcb_writev (xcb_out.c:405)
+==71932==    by 0x48AE2B8: _XSend (xcb_io.c:587)
+==71932==    by 0x48B3348: _XReadEvents (xcb_io.c:461)
+==71932==    by 0x48B372B: XWindowEvent (WinEvent.c:79)
+==71932==    by 0x4043AA: mlx_int_wait_first_expose (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x40410B: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932==  Address 0x4cc30dc is 28 bytes inside a block of size 16,384 alloc'd
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D65D: XOpenDisplay (OpenDis.c:241)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932==  Uninitialised value was created by a stack allocation
+==71932==    at 0x404300: mlx_int_anti_resize_win (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932== 
+==71932== 
+==71932== Process terminating with default action of signal 2 (SIGINT)
+==71932==    at 0x4BB673B: __recvmsg_syscall (recvmsg.c:27)
+==71932==    by 0x4BB673B: recvmsg (recvmsg.c:41)
+==71932==    by 0x4C8D689: _xcb_in_read (xcb_in.c:1000)
+==71932==    by 0x4C8E777: poll_for_next_event.part.0 (xcb_in.c:713)
+==71932==    by 0x48ADCD5: poll_for_event (xcb_io.c:263)
+==71932==    by 0x48ADE60: poll_for_response (xcb_io.c:310)
+==71932==    by 0x48B1C59: _XEventsQueued (xcb_io.c:441)
+==71932==    by 0x488CAF5: XFlush (Flush.c:39)
+==71932==    by 0x404197: mlx_pixel_put (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402A61: render_scene (render.c:21)
+==71932==    by 0x402B4D: render (render.c:42)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== HEAP SUMMARY:
+==71932==     in use at exit: 66,954 bytes in 87 blocks
+==71932==   total heap usage: 389 allocs, 302 frees, 77,222 bytes allocated
+==71932== 
+==71932== Searching for pointers to 87 not-freed blocks
+==71932== Checked 189,184 bytes
+==71932== 
+==71932== 3 bytes in 1 blocks are still reachable in loss record 1 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4B4501E: strdup (strdup.c:42)
+==71932==    by 0x489D30A: XOpenDisplay (OpenDis.c:119)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 8 bytes in 1 blocks are still reachable in loss record 2 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4B4501E: strdup (strdup.c:42)
+==71932==    by 0x489A2FE: XInitExtension (InitExt.c:65)
+==71932==    by 0x49B3A1F: XextAddDisplay (extutil.c:107)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 8 bytes in 1 blocks are still reachable in loss record 3 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x49B1BA6: UnknownInlinedFun (Xge.c:195)
+==71932==    by 0x49B1BA6: _xgeCheckExtInit (Xge.c:152)
+==71932==    by 0x49B3BD6: UnknownInlinedFun (Xge.c:313)
+==71932==    by 0x49B3BD6: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 10 bytes in 1 blocks are still reachable in loss record 4 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4B4501E: strdup (strdup.c:42)
+==71932==    by 0x489A2FE: XInitExtension (InitExt.c:65)
+==71932==    by 0x490F263: XkbUseExtension (XKBUse.c:740)
+==71932==    by 0x489DE9A: XOpenDisplay (OpenDis.c:564)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 16 bytes in 1 blocks are still reachable in loss record 5 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4C90ADD: UnknownInlinedFun (xcb_list.c:53)
+==71932==    by 0x4C90ADD: UnknownInlinedFun (xcb_in.c:892)
+==71932==    by 0x4C90ADD: xcb_connect_to_fd (xcb_conn.c:356)
+==71932==    by 0x4C91651: xcb_connect_to_display_with_auth_info (xcb_util.c:532)
+==71932==    by 0x48AC5C9: _XConnectXCB (xcb_disp.c:78)
+==71932==    by 0x489D32D: XOpenDisplay (OpenDis.c:129)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 16 bytes in 1 blocks are still reachable in loss record 6 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48947DB: _XInitDisplayLock (locking.c:539)
+==71932==    by 0x489D600: XOpenDisplay (OpenDis.c:210)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 21 bytes in 1 blocks are still reachable in loss record 7 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x489D801: XOpenDisplay (OpenDis.c:321)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 24 bytes in 1 blocks are still reachable in loss record 8 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x49B3201: XextCreateExtension (extutil.c:66)
+==71932==    by 0x49B36A4: _xgeFindDisplay (Xge.c:102)
+==71932==    by 0x49B3BBF: UnknownInlinedFun (Xge.c:309)
+==71932==    by 0x49B3BBF: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 24 bytes in 1 blocks are still reachable in loss record 9 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4B4501E: strdup (strdup.c:42)
+==71932==    by 0x489A2FE: XInitExtension (InitExt.c:65)
+==71932==    by 0x49B3A1F: XextAddDisplay (extutil.c:107)
+==71932==    by 0x49B36E2: _xgeFindDisplay (Xge.c:107)
+==71932==    by 0x49B3BBF: UnknownInlinedFun (Xge.c:309)
+==71932==    by 0x49B3BBF: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 24 bytes in 1 blocks are still reachable in loss record 10 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x49B3BF0: UnknownInlinedFun (Xge.c:318)
+==71932==    by 0x49B3BF0: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 29 bytes in 1 blocks are still reachable in loss record 11 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x489623C: _XUpdateAtomCache (IntAtom.c:151)
+==71932==    by 0x4899216: XInternAtom (IntAtom.c:184)
+==71932==    by 0x403F78: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 32 bytes in 1 blocks are still reachable in loss record 12 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x402C19: ft_calloc (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402A9F: render (render.c:30)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 32 bytes in 1 blocks are still reachable in loss record 13 of 55
+==71932==    at 0x4846A40: realloc (vg_replace_malloc.c:1649)
+==71932==    by 0x4C94CA2: UnknownInlinedFun (xcb_ext.c:52)
+==71932==    by 0x4C94CA2: get_lazyreply (xcb_ext.c:74)
+==71932==    by 0x4C94D9A: xcb_get_extension_data (xcb_ext.c:95)
+==71932==    by 0x4C94E5E: UnknownInlinedFun (xcb_out.c:143)
+==71932==    by 0x4C94E5E: xcb_prefetch_maximum_request_length (xcb_out.c:135)
+==71932==    by 0x4C94ED5: UnknownInlinedFun (xcb_out.c:162)
+==71932==    by 0x4C94ED5: xcb_get_maximum_request_length (xcb_out.c:158)
+==71932==    by 0x489DB9A: XOpenDisplay (OpenDis.c:502)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 32 bytes in 1 blocks are still reachable in loss record 14 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4C8D9B7: UnknownInlinedFun (xcb_in.c:259)
+==71932==    by 0x4C8D9B7: _xcb_in_read (xcb_in.c:1030)
+==71932==    by 0x4C8E1D5: _xcb_conn_wait.part.0 (xcb_conn.c:515)
+==71932==    by 0x4C8E61F: UnknownInlinedFun (xcb_conn.c:445)
+==71932==    by 0x4C8E61F: wait_for_reply (xcb_in.c:516)
+==71932==    by 0x4C8F4ED: xcb_wait_for_reply (xcb_in.c:546)
+==71932==    by 0x4C94DEA: xcb_get_extension_data (xcb_ext.c:99)
+==71932==    by 0x4C94E5E: UnknownInlinedFun (xcb_out.c:143)
+==71932==    by 0x4C94E5E: xcb_prefetch_maximum_request_length (xcb_out.c:135)
+==71932==    by 0x4C94ED5: UnknownInlinedFun (xcb_out.c:162)
+==71932==    by 0x4C94ED5: xcb_get_maximum_request_length (xcb_out.c:158)
+==71932==    by 0x489DB9A: XOpenDisplay (OpenDis.c:502)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 32 bytes in 1 blocks are still reachable in loss record 15 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x49B39F2: XextAddDisplay (extutil.c:103)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 32 bytes in 1 blocks are still reachable in loss record 16 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x49B39F2: XextAddDisplay (extutil.c:103)
+==71932==    by 0x49B36E2: _xgeFindDisplay (Xge.c:107)
+==71932==    by 0x49B3BBF: UnknownInlinedFun (Xge.c:309)
+==71932==    by 0x49B3BBF: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 33 bytes in 1 blocks are still reachable in loss record 17 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x489623C: _XUpdateAtomCache (IntAtom.c:151)
+==71932==    by 0x4899216: XInternAtom (IntAtom.c:184)
+==71932==    by 0x403F65: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 40 bytes in 1 blocks are still reachable in loss record 18 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48971A9: XInitThreads (locking.c:614)
+==71932==    by 0x4004F76: call_init (dl-init.c:90)
+==71932==    by 0x4004F76: call_init (dl-init.c:27)
+==71932==    by 0x400506C: _dl_init (dl-init.c:137)
+==71932==    by 0x401B4AF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+==71932==    by 0x1: ???
+==71932==    by 0x1FFF0002B6: ???
+==71932==    by 0x1FFF0002BF: ???
+==71932== 
+==71932== 40 bytes in 1 blocks are still reachable in loss record 19 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48971C6: XInitThreads (locking.c:616)
+==71932==    by 0x4004F76: call_init (dl-init.c:90)
+==71932==    by 0x4004F76: call_init (dl-init.c:27)
+==71932==    by 0x400506C: _dl_init (dl-init.c:137)
+==71932==    by 0x401B4AF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+==71932==    by 0x1: ???
+==71932==    by 0x1FFF0002B6: ???
+==71932==    by 0x1FFF0002BF: ???
+==71932== 
+==71932== 40 bytes in 1 blocks are still reachable in loss record 20 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48971E3: XInitThreads (locking.c:621)
+==71932==    by 0x4004F76: call_init (dl-init.c:90)
+==71932==    by 0x4004F76: call_init (dl-init.c:27)
+==71932==    by 0x400506C: _dl_init (dl-init.c:137)
+==71932==    by 0x401B4AF: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+==71932==    by 0x1: ???
+==71932==    by 0x1FFF0002B6: ???
+==71932==    by 0x1FFF0002BF: ???
+==71932== 
+==71932== 40 bytes in 1 blocks are still reachable in loss record 21 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4894825: _XInitDisplayLock (locking.c:548)
+==71932==    by 0x489D600: XOpenDisplay (OpenDis.c:210)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 40 bytes in 1 blocks are still reachable in loss record 22 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AC8F9: _XPollfdCacheInit (XlibInt.c:142)
+==71932==    by 0x489D610: XOpenDisplay (OpenDis.c:215)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 48 bytes in 1 blocks are still reachable in loss record 23 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x402C19: ft_calloc (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x401C50: set_new_arg_sphere (parser_forms.c:23)
+==71932==    by 0x401BB6: adder (parser_mandatory.c:90)
+==71932==    by 0x401669: understand_scene_line (scene.c:32)
+==71932==    by 0x4016B4: read_scene_file (scene.c:46)
+==71932==    by 0x40177A: get_scene (scene.c:74)
+==71932==    by 0x4014EB: main (main.c:44)
+==71932== 
+==71932== 48 bytes in 1 blocks are still reachable in loss record 24 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AC550: _XConnectXCB (xcb_disp.c:86)
+==71932==    by 0x489D32D: XOpenDisplay (OpenDis.c:129)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 48 bytes in 1 blocks are still reachable in loss record 25 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AC565: _XConnectXCB (xcb_disp.c:87)
+==71932==    by 0x489D32D: XOpenDisplay (OpenDis.c:129)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 48 bytes in 1 blocks are still reachable in loss record 26 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4894814: _XInitDisplayLock (locking.c:547)
+==71932==    by 0x489D600: XOpenDisplay (OpenDis.c:210)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 48 bytes in 1 blocks are still reachable in loss record 27 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x4894835: _XInitDisplayLock (locking.c:549)
+==71932==    by 0x489D600: XOpenDisplay (OpenDis.c:210)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 72 bytes in 1 blocks are still reachable in loss record 28 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D6BC: XOpenDisplay (OpenDis.c:253)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 112 bytes in 1 blocks are still reachable in loss record 29 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x48AC455: _XConnectXCB (xcb_disp.c:65)
+==71932==    by 0x489D32D: XOpenDisplay (OpenDis.c:129)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 112 bytes in 1 blocks are still reachable in loss record 30 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D981: XOpenDisplay (OpenDis.c:417)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 126 bytes in 1 blocks are still reachable in loss record 31 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x489DF09: XOpenDisplay (OpenDis.c:547)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 128 bytes in 1 blocks are still reachable in loss record 32 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D8AF: XOpenDisplay (OpenDis.c:375)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 128 bytes in 1 blocks are still reachable in loss record 33 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489A2EE: XInitExtension (InitExt.c:64)
+==71932==    by 0x490F263: XkbUseExtension (XKBUse.c:740)
+==71932==    by 0x489DE9A: XOpenDisplay (OpenDis.c:564)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 128 bytes in 1 blocks are still reachable in loss record 34 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489A2EE: XInitExtension (InitExt.c:64)
+==71932==    by 0x49B3A1F: XextAddDisplay (extutil.c:107)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 128 bytes in 1 blocks are still reachable in loss record 35 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489A2EE: XInitExtension (InitExt.c:64)
+==71932==    by 0x49B3A1F: XextAddDisplay (extutil.c:107)
+==71932==    by 0x49B36E2: _xgeFindDisplay (Xge.c:107)
+==71932==    by 0x49B3BBF: UnknownInlinedFun (Xge.c:309)
+==71932==    by 0x49B3BBF: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 136 bytes in 1 blocks are still reachable in loss record 36 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x403ECA: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 144 bytes in 1 blocks are still reachable in loss record 37 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x402C19: ft_calloc (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x401714: get_scene (scene.c:63)
+==71932==    by 0x4014EB: main (main.c:44)
+==71932== 
+==71932== 152 bytes in 1 blocks are still reachable in loss record 38 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x490F44E: XkbUseExtension (XKBUse.c:649)
+==71932==    by 0x489DE9A: XOpenDisplay (OpenDis.c:564)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 160 bytes in 1 blocks are still reachable in loss record 39 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x488BBA8: XCreateGC (CrGC.c:75)
+==71932==    by 0x489DC1C: XOpenDisplay (OpenDis.c:514)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 160 bytes in 1 blocks are still reachable in loss record 40 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x488BBA8: XCreateGC (CrGC.c:75)
+==71932==    by 0x4040CF: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 168 bytes in 1 blocks are still reachable in loss record 41 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489DD5B: XOpenDisplay (OpenDis.c:347)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 192 bytes in 1 blocks are still reachable in loss record 42 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48947F6: _XInitDisplayLock (locking.c:542)
+==71932==    by 0x489D600: XOpenDisplay (OpenDis.c:210)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 208 bytes in 1 blocks are still reachable in loss record 43 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x49B1B59: _xgeCheckExtInit (Xge.c:146)
+==71932==    by 0x49B3BD6: UnknownInlinedFun (Xge.c:313)
+==71932==    by 0x49B3BD6: XextAddDisplay (extutil.c:123)
+==71932==    by 0x49B8E34: XShmQueryVersion (XShm.c:176)
+==71932==    by 0x403D4D: mlx_int_deal_shm (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x403F86: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 208 bytes in 1 blocks are still reachable in loss record 44 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AE71D: _XEnq (XlibInt.c:749)
+==71932==    by 0x48B1BAE: handle_response (xcb_io.c:417)
+==71932==    by 0x48B33B0: UnknownInlinedFun (xcb_io.c:510)
+==71932==    by 0x48B33B0: _XReadEvents (xcb_io.c:454)
+==71932==    by 0x48B372B: XWindowEvent (WinEvent.c:79)
+==71932==    by 0x4043AA: mlx_int_wait_first_expose (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x40410B: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 512 bytes in 1 blocks are still reachable in loss record 45 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x48990AA: _XInternAtom (IntAtom.c:76)
+==71932==    by 0x489914E: XInternAtom (IntAtom.c:176)
+==71932==    by 0x403F65: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 624 bytes in 3 blocks are still reachable in loss record 46 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AE71D: _XEnq (XlibInt.c:749)
+==71932==    by 0x48B1BAE: handle_response (xcb_io.c:417)
+==71932==    by 0x48B33B0: UnknownInlinedFun (xcb_io.c:510)
+==71932==    by 0x48B33B0: _XReadEvents (xcb_io.c:454)
+==71932==    by 0x48B3707: XWindowEvent (WinEvent.c:79)
+==71932==    by 0x4043AA: mlx_int_wait_first_expose (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x40410B: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 936 bytes in 1 blocks are still reachable in loss record 47 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x404038: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 1,248 bytes in 6 blocks are still reachable in loss record 48 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AE71D: _XEnq (XlibInt.c:749)
+==71932==    by 0x48B1BAE: handle_response (xcb_io.c:417)
+==71932==    by 0x48B33F9: UnknownInlinedFun (xcb_io.c:528)
+==71932==    by 0x48B33F9: _XReadEvents (xcb_io.c:454)
+==71932==    by 0x48B3707: XWindowEvent (WinEvent.c:79)
+==71932==    by 0x4043AA: mlx_int_wait_first_expose (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x40410B: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 1,664 bytes in 8 blocks are still reachable in loss record 49 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AE71D: _XEnq (XlibInt.c:749)
+==71932==    by 0x48B1BAE: handle_response (xcb_io.c:417)
+==71932==    by 0x48B33F9: UnknownInlinedFun (xcb_io.c:528)
+==71932==    by 0x48B33F9: _XReadEvents (xcb_io.c:454)
+==71932==    by 0x48B372B: XWindowEvent (WinEvent.c:79)
+==71932==    by 0x4043AA: mlx_int_wait_first_expose (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x40410B: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 3,744 bytes in 18 blocks are still reachable in loss record 50 of 55
+==71932==    at 0x484182F: malloc (vg_replace_malloc.c:431)
+==71932==    by 0x48AE71D: _XEnq (XlibInt.c:749)
+==71932==    by 0x48B1BAE: handle_response (xcb_io.c:417)
+==71932==    by 0x48B1C51: _XEventsQueued (xcb_io.c:442)
+==71932==    by 0x488CAF5: XFlush (Flush.c:39)
+==71932==    by 0x404197: mlx_pixel_put (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402A61: render_scene (render.c:21)
+==71932==    by 0x402B4D: render (render.c:42)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 3,956 bytes in 1 blocks are still reachable in loss record 51 of 55
+==71932==    at 0x4846A40: realloc (vg_replace_malloc.c:1649)
+==71932==    by 0x4C90CD6: UnknownInlinedFun (xcb_conn.c:181)
+==71932==    by 0x4C90CD6: xcb_connect_to_fd (xcb_conn.c:359)
+==71932==    by 0x4C91651: xcb_connect_to_display_with_auth_info (xcb_util.c:532)
+==71932==    by 0x48AC5C9: _XConnectXCB (xcb_disp.c:78)
+==71932==    by 0x489D32D: XOpenDisplay (OpenDis.c:129)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 4,720 bytes in 1 blocks are still reachable in loss record 52 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D2F6: XOpenDisplay (OpenDis.c:115)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 8,736 bytes in 2 blocks are still reachable in loss record 53 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489DA10: XOpenDisplay (OpenDis.c:439)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 16,384 bytes in 1 blocks are still reachable in loss record 54 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D65D: XOpenDisplay (OpenDis.c:241)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== 21,152 bytes in 1 blocks are still reachable in loss record 55 of 55
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x4C90A06: xcb_connect_to_fd (xcb_conn.c:345)
+==71932==    by 0x4C91651: xcb_connect_to_display_with_auth_info (xcb_util.c:532)
+==71932==    by 0x48AC5C9: _XConnectXCB (xcb_disp.c:78)
+==71932==    by 0x489D32D: XOpenDisplay (OpenDis.c:129)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932== 
+==71932== LEAK SUMMARY:
+==71932==    definitely lost: 0 bytes in 0 blocks
+==71932==    indirectly lost: 0 bytes in 0 blocks
+==71932==      possibly lost: 0 bytes in 0 blocks
+==71932==    still reachable: 66,954 bytes in 87 blocks
+==71932==         suppressed: 0 bytes in 0 blocks
+==71932== 
+==71932== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==71932== 
+==71932== 1 errors in context 1 of 1:
+==71932== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==71932==    at 0x4BA8FC4: writev (writev.c:26)
+==71932==    by 0x4C8E20A: UnknownInlinedFun (xcb_conn.c:277)
+==71932==    by 0x4C8E20A: _xcb_conn_wait.part.0 (xcb_conn.c:522)
+==71932==    by 0x4C8E38E: UnknownInlinedFun (xcb_out.c:463)
+==71932==    by 0x4C8E38E: _xcb_out_send (xcb_out.c:464)
+==71932==    by 0x4C8F3FE: UnknownInlinedFun (xcb_out.c:412)
+==71932==    by 0x4C8F3FE: xcb_writev (xcb_out.c:405)
+==71932==    by 0x48AE2B8: _XSend (xcb_io.c:587)
+==71932==    by 0x48B3348: _XReadEvents (xcb_io.c:461)
+==71932==    by 0x48B372B: XWindowEvent (WinEvent.c:79)
+==71932==    by 0x4043AA: mlx_int_wait_first_expose (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x40410B: mlx_new_window (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402B13: render (render.c:39)
+==71932==    by 0x401548: main (main.c:57)
+==71932==  Address 0x4cc30dc is 28 bytes inside a block of size 16,384 alloc'd
+==71932==    at 0x484682C: calloc (vg_replace_malloc.c:1554)
+==71932==    by 0x489D65D: XOpenDisplay (OpenDis.c:241)
+==71932==    by 0x403EE0: mlx_init (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932==    by 0x402AB8: render (render.c:33)
+==71932==    by 0x401548: main (main.c:57)
+==71932==  Uninitialised value was created by a stack allocation
+==71932==    at 0x404300: mlx_int_anti_resize_win (in /home/hugodupire/Bureau/Projets_42/miniRT/miniRT)
+==71932== 
+==71932== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

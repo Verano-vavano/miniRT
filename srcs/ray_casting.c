@@ -6,12 +6,22 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/07 23:43:27 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/07 23:55:15 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "libft.h"
+
+static t_color	apply_ambient(struct s_ambient a, t_color c)
+{
+	t_color	ret;
+
+	ret.r = c.r * a.lgt_ratio * (a.color.r / 255.0f);
+	ret.g = c.g * a.lgt_ratio * (a.color.g / 255.0f);
+	ret.b = c.b * a.lgt_ratio * (a.color.b / 255.0f);
+	return (ret);
+}
 
 /* RAY_CASTING
  * Must return the color of the pixel pointed to by coord
@@ -36,14 +46,12 @@ t_color	cast_ray(t_window *win, t_vec2 *coord)
 	c = vec3_dot(origin, origin) - pow(win->scene->last_sphere->diameter / 2, 2);
 	discr = pow(b, 2) - (4 * a * c);
 	if (discr < 0)
-		return (ret);
+		return (apply_ambient(win->scene->ambient, ret));
 	x_hit = fmin((-b + sqrt(discr)) / (2 * a), (-b - sqrt(discr)) / (2 * a));
 	t_vec3	hit = vec3_normalize(vec3_add(origin, vec3_mult_float(direction, x_hit)));
-	ret.r = 0;
-	ret.g = 0;
-	ret.b = 0;
+
 	ret.r = (uint8_t) ((hit.x + 1.0f) * 0.5f * 255.0f);
 	ret.g = (uint8_t) ((hit.y + 1.0f) * 0.5f * 255.0f);
 	ret.b = (uint8_t) ((hit.z + 1.0f) * 0.5f * 255.0f);
-	return (ret);
+	return (apply_ambient(win->scene->ambient, ret));
 }

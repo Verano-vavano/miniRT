@@ -6,7 +6,7 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/12/07 11:37:16 by hdupire          ###   ########.fr        #
+#    Updated: 2023/12/09 00:04:57 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS=main.c\
      colors.c vec3.c vec3_errors.c\
      free_scene.c\
      render.c events.c\
-     ray_casting.c vec3_math.c
+     ray_casting.c mlx_plus.c vec3_math.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})
 DEST=${SRCS_DIR:.c=.o}
 NO_OF_FILES:=$(words $(SRCS))
@@ -91,21 +91,33 @@ define max_count
 endef
 
 MLX_PATH=./mlx/
+MLX_MAKEFILE=${MLX_PATH}
 MLX=$(addsuffix libmlx.a, ${MLX_PATH})
 
 LIBFT_PATH=./libft/
 LIBFT=$(addsuffix libft.a, ${LIBFT_PATH})
 
-INCLUDES=-I ./includes/ -I ${MLX_PATH} -I ${LIBFT_PATH}
-
 RM=rm -f
 
 GCC=gcc
 CFLAGS=-Wall -Wextra -Werror -g
-LINKERS=-L ${MLX_PATH} -lmlx -lX11 -lXext -lm
+
+ADDITIONAL_DEFINES='-D OS=unknown'
 
 # UNAME_S = Darwin for Mac
 UNAME_S:=$(shell uname -s)
+ifeq (${UNAME_S},Darwin)
+	MLX_MAKEFILE="${MLX_PATH}/mlx_macos/"
+	ADDITIONAL_FRAMEWORKS=-framework OpenGL -framework Appkit
+	ADDITIONAL_DEFINES='-D OS="Darwin"'
+	LINKERS=-L ${MLX_PATH} -lmlx -lm
+else
+	MLX_MAKEFILE+="/mlx_linux"
+	ADDITIONAL_DEFINES='-D OS="Linux"'
+	LINKERS=-L ${MLX_PATH} -lmlx -lX11 -lXext -lm
+endif
+
+INCLUDES=-I ./includes/ -I ${MLX_MAKEFILE} -I ${LIBFT_PATH}
 
 COUNT=0
 
@@ -114,7 +126,7 @@ all: ${NAME}
 bonus: ${NAME}
 
 .c.o:
-	@${GCC} ${CFLAGS} ${INCLUDES} -c $< -o ${<:.c=.o}
+	@${GCC} ${CFLAGS} ${INCLUDES} ${ADDITIONAL_DEFINES} -c $< -o ${<:.c=.o}
 	$(call move_progress_bar, COUNT)
 
 ${LIBFT}:
@@ -122,10 +134,16 @@ ${LIBFT}:
 	@make -s -C ${LIBFT_PATH}
 	@printf "${RESET}"
 
-${NAME}: ${LIBFT} ${DEST}
+${MLX}:
+	@echo "${CYAN}Compiling MLX..."
+	@make -s -C ${MLX_MAKEFILE}
+	@mv ${MLX_MAKEFILE}/libmlx.a ${MLX}
+	@printf "${RESET}"
+
+${NAME}: ${LIBFT} ${MLX} ${DEST}
 	@$(call max_count)
 	@$(call move_progress_bar, COUNT)
-	@${GCC} ${CFLAGS} ${DEST} -o ${NAME} ${INCLUDES} -L${LIBFT_PATH} -lft ${LINKERS} ${LIBFT}
+	@${GCC} ${CFLAGS} ${DEST} -o ${NAME} ${ADDITIONAL_DEFINES} ${ADDITIONAL_FRAMEWORKS} ${INCLUDES} -L${LIBFT_PATH} -lft ${LINKERS} ${LIBFT}
 	@printf "${GREEN}${BOLD}"
 	@echo "MINIRT COMPILED"
 	@printf "${RESET}"
@@ -134,7 +152,11 @@ ${NAME}: ${LIBFT} ${DEST}
 clean_libft:
 	@make -s clean -C ${LIBFT_PATH}
 
-clean: clean_libft
+clean_mlx:
+	@make -s clean -C ${MLX_MAKEFILE}
+	@rm ${MLX}
+
+clean: clean_libft clean_mlx
 	@echo "${GREEN}Cleaning MiniRT..."
 	@${RM} ${DEST}
 	@printf "${RESET}"

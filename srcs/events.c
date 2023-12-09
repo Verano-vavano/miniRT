@@ -6,12 +6,9 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/08 23:24:45 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/09 01:25:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-void	mlx_loop_end(void *ptr) { (void) ptr; }
-void	mlx_destroy_display(void *ptr) { (void) ptr; }
 
 #include "render.h"
 #include "libft.h"

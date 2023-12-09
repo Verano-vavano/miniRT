@@ -6,7 +6,7 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/12/09 00:04:57 by hdupire          ###   ########.fr        #
+#    Updated: 2023/12/09 01:24:06 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,7 @@ ifeq (${UNAME_S},Darwin)
 	ADDITIONAL_DEFINES='-D OS="Darwin"'
 	LINKERS=-L ${MLX_PATH} -lmlx -lm
 else
-	MLX_MAKEFILE+="/mlx_linux"
+	MLX_MAKEFILE="${MLX_PATH}/mlx_linux/"
 	ADDITIONAL_DEFINES='-D OS="Linux"'
 	LINKERS=-L ${MLX_PATH} -lmlx -lX11 -lXext -lm
 endif

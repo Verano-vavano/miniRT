@@ -5,9 +5,18 @@
 # include "math.h"
 # include "mlx.h"
 
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 typedef struct s_window {
 	void	*mlx_ptr;
 	void	*window;
+	t_data	img;
 	int	width;
 	int	height;
 	double	aspect_ratio;
@@ -18,6 +27,9 @@ void	render(t_scene *scene);
 
 // ray_casting
 t_color	cast_ray(t_window *win, t_vec2 *coord);
+
+// mlx_plus
+void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 // events
 int	quit_game(t_window *window);

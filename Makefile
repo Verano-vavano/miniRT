@@ -6,7 +6,7 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/12/09 01:24:06 by hdupire          ###   ########.fr        #
+#    Updated: 2023/12/10 21:34:44 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ LIBFT=$(addsuffix libft.a, ${LIBFT_PATH})
 RM=rm -f
 
 GCC=gcc
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror -g -fsanitize=thread
 
 ADDITIONAL_DEFINES='-D OS=unknown'
 

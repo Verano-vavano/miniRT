@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/08 12:04:18 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/10 19:10:02 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	apply_light(struct s_light l, t_vec3 hit, t_color *c)
 	double	d;
 
 	d = fmax(vec3_dot(vec3_mult_float(vec3_normalize(l.pos), -1.0f), hit), 0.0f);
-	printf("D = %f\n", d);
 	c->r = (int) (c->r * d);
 	c->g = (int) (c->g * d);
 	c->b = (int) (c->b * d);

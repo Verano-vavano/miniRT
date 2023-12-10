@@ -6,18 +6,20 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/09 00:22:01 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/10 21:37:23 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
-static void	render_scene(t_window *window)
+static void	render_scene(t_window **window_ptr)
 {
-	t_vec2	coord;
-	t_color	color;
+	t_vec2		coord;
+	t_color		color;
+	t_window	*window;
 
+	window = *window_ptr;
 	coord.y = 0;
 	while (coord.y <= window->height)
 	{
@@ -25,7 +27,10 @@ static void	render_scene(t_window *window)
 		while (coord.x <= window->width)
 		{
 			color = cast_ray(window, &coord);
-			custom_mlx_pixel_put(&window->img,
+			if (OS[0] == 'D')
+				mlx_pixel_put(window->mlx_ptr, window->window, coord.x, coord.y, (color.r << 16) | (color.g << 8) | color.b);
+			else
+				custom_mlx_pixel_put(&window->img,
 				coord.x, coord.y,
 				(color.r << 16) | (color.g << 8) | color.b);
 			coord.x++;
@@ -51,11 +56,15 @@ void	render(t_scene *scene)
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
 		window->width, window->height, "miniRT");
-	window->img.img = mlx_new_image(window->mlx_ptr, window->width, window->height);
-	window->img.addr = mlx_get_data_addr(window->img.img, &window->img.bits_per_pixel, &window->img.line_length, &window->img.endian);
+	if (OS[0] != 'D')
+	{
+		window->img.img = mlx_new_image(window->mlx_ptr, window->width, window->height);
+		window->img.addr = mlx_get_data_addr(window->img.img, &window->img.bits_per_pixel, &window->img.line_length, &window->img.endian);
+	}
 	mlx_hook(window->window, 17, 1L << 0, quit_game, window);
-	render_scene(window);
-	mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
+	render_scene(&window);
+	if (OS[0] != 'D')
+		mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
 	mlx_loop(window->mlx_ptr);
 	return ;
 }

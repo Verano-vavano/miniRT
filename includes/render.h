@@ -24,6 +24,7 @@ typedef struct s_window {
 }	t_window;
 
 void	render(t_scene *scene);
+void	render_scene(t_window **window_ptr);
 
 // ray_casting
 t_color	cast_ray(t_window *win, t_vec2 *coord);
@@ -33,5 +34,6 @@ void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 // events
 int	quit_game(t_window *window);
+int	key_event(int key, t_window *window);
 
 #endif

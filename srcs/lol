@@ -1,0 +1,97 @@
+
+    ->
+
+->                         ->
+
+Direction
+Longueur
+
+Origine : Caméra
+(x, y, z)
+
+Theta(deg) -> Theta * Pi / 180o
+tan(x) = sin(x) / cos(x)
+
+0,0
+0,1
+0,2
+
+1,0
+
+720,479
+720,480
+
+2D -> 3D -> 2D
+Espace image -> espace monde
+
+x < longeur
+0 <= x / longueur <= 1
+-1 -> 1
+
+(0.5, 0.5, 0) -> 1
+||v|| = sqrt(v.x² + v.y² + v.z²)
+
+v.x / ||v||
+v.y / ||v||
+v.z / ||v||
+
+
+x² + y² + z² = r²
+
+D = 2*r
+r = D/2
+
+x² + y² + z² = 2²
+
+Rayon = Origine + Direction * t
+(Origine.x + Direction.x * t;
+ Origine.y + Direction.y * t;
+ Origine.z + Direction.z * t)
+
+Rayon = (1;2;3) + (2;1;0) * t
+
+5 * (1 + 2) = 5 * 3 = 15
+			= 5 * 1 + 5 * 2 = 15
+(5 + 2) * (2 + 3) = 7 * 5 = 35
+				  = 5 * 2 + 5 * 3 + 2 * 2 + 2 * 3 = 10 + 15 + 4 + 6 = 35
+
+
+n * (a + b) = na + nb
+(a + b) * (c + d) = ac + ad + bc + bd 
+(a + b)² = a² + 2ab + b²
+(a - b)² = a² - 2ab + b²
+
+x² + y² + z² = r²
+(Ox + Dx*t)² + (Oy + Dy*t)² + (Oz + Dz*t)² - r² = 0
+(Ox + Dx*t)² = Ox² + 2 * Ox * Dx*t + Dx² * t²
+(Oy + Dy*t)² = Oy² + 2 * Oy * Dy*t + Dy² * t²
+(Oz + Dz*t)² = Oz² + 2 * Oz * Dz*t + Dz² * t²
+
+Ox² + 2*Ox*Dx*t + Dx²*t² + Oy² + 2*Oy*Dy*t + Dy²*t² + Oz² + 2*Oz*Dz*t + Dz²*t² - r² = 0
+t² (Dx² + Dy² + Dz²) + 2t (Ox*Dx + Oy*Dy + Oz*Dz) + (Ox² + Oy² + Oz² - r²) = 0
+
+at² + bt + c = 0
+
+u x		v x1
+  y		  y1
+  z		  z1
+
+u.v = x * x1 + y * y1 + z * z1
+u.v = ||u|| * ||v|| * cos(u, v)
+
+Direction : Dx, Dy, Dz
+Direction.Direction = Dx * Dx + Dy * Dy + Dz * Dz = Dx² + Dy² + Dz²
+a = (Dx² + Dy² + Dz²) = Produit scalaire (D, D)
+b = 2 * (Ox*Dx + Oy*Dy + Oz*Dz)
+c = Ox² + Oy² + Oz² - r²
+
+delta = b² - 4*a*c
+delta < 0 : il n'y a pas de solution, notre rayon et notre sphère ne se touchent jamais
+			Noir ou blanc
+delta = 0 : il y a 1 solution
+delta > 0 : il y en a 2
+
+x1 = (-b + sqrt(delta)) / (2*a)
+x2 = (-b - sqrt(delta)) / (2*a)
+
+hit = fmin(x1, x2)

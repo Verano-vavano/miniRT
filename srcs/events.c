@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/11 22:50:37 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/14 17:36:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,21 @@ int	key_event(int key, t_window *window)
 		quit_game(window);
 	else if (key == 'z' || key == 'w' || key == UP)
 	{
-		mlx_clear_window(window->mlx_ptr, window->window);
 		window->scene->camera.vp.z++;
 		render_scene(&window);
 	}
 	else if (key == 's' || key == DOWN)
 	{
-		mlx_clear_window(window->mlx_ptr, window->window);
 		window->scene->camera.vp.z--;
 		render_scene(&window);
 	}
 	else if (key == 'a' || key == 'q' || key == LEFT)
 	{
-		mlx_clear_window(window->mlx_ptr, window->window);
 		window->scene->camera.vp.x--;
 		render_scene(&window);
 	}
 	else if (key == 'd' || key == RIGHT)
 	{
-		mlx_clear_window(window->mlx_ptr, window->window);
 		window->scene->camera.vp.x++;
 		render_scene(&window);
 	}

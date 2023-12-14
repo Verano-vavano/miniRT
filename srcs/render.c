@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/11 13:08:25 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/14 17:37:12 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	render_scene(t_window **window_ptr)
 		window->img.img = mlx_new_image(window->mlx_ptr, window->width, window->height);
 		window->img.addr = mlx_get_data_addr(window->img.img, &window->img.bits_per_pixel, &window->img.line_length, &window->img.endian);
 	}
+	else
+		mlx_clear_window(window->mlx_ptr, window->window);
 	coord.y = 0;
 	while (coord.y <= window->height)
 	{
@@ -43,7 +45,10 @@ void	render_scene(t_window **window_ptr)
 		coord.y++;
 	}
 	if (OS[0] != 'D')
+	{
+		mlx_clear_window(window->mlx_ptr, window->window);
 		mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
+	}
 	return ;
 }
 
@@ -62,7 +67,7 @@ void	render(t_scene *scene)
 	window->height = 480;
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
-		window->width, window->height, "miniRT");
+		window->width, window->height, "Cyberpunk");
 	mlx_key_hook(window->window, key_event, window);
 	mlx_hook(window->window, 17, 1L << 0, quit_game, window);
 	render_scene(&window);

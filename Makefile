@@ -6,19 +6,18 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/12/10 21:34:44 by hdupire          ###   ########.fr        #
+#    Updated: 2023/12/16 18:31:10 by tcharanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=./miniRT
 
-SRCS=main.c\
-     scene.c scene_read_utils.c parser_mandatory.c parser_forms.c parser_errors.c parser_checker.c parser_checker_forms.c\
-     latof.c latof_errors.c\
-     colors.c vec3.c vec3_errors.c\
-     free_scene.c\
-     render.c events.c\
-     ray_casting.c mlx_plus.c vec3_math.c
+SRCS=colors.c events.c free_scene.c latof.c main.c \
+	 mlx_plus.c parser_checker.c parser_checker_forms.c \
+	 parser_forms.c parser_mandatory.c ray_casting.c render.c \
+	 scene.c scene_read_utils.c vec3.c vec3_math.c \
+	 errors/latof_errors.c errors/parser_errors.c \
+	 errors/parsing_errors.c errors/vec3_errors.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})
 DEST=${SRCS_DIR:.c=.o}
 NO_OF_FILES:=$(words $(SRCS))

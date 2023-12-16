@@ -15,4 +15,6 @@ bool	float_too_many_digits(char c);
 void	vec3_number_error(char *arg, char **xyz);
 void	vec3_arg_error(char *arg, char **xyz);
 
+bool	parsing_err(int argc, char **argv);
+
 #endif

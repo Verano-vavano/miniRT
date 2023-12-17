@@ -48,7 +48,7 @@ t_color	get_color(char *arg)
 		return (ret);
 	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3] != NULL)
 	{
-		vec3_number_error(arg, rgb);
+		vec3_number_err(arg, rgb);
 		return (ret);
 	}
 	i = 0;
@@ -56,7 +56,7 @@ t_color	get_color(char *arg)
 	{
 		if (assign_color_struct(&ret, rgb[i], i) == false)
 		{
-			vec3_arg_error(rgb[i], rgb);
+			vec3_arg_err(rgb[i], rgb);
 			return (ret);
 		}
 		i++;

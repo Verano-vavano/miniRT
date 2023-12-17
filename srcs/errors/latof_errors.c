@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   latof_errors.c                                     :+:      :+:    :+:   */
+/*   latof_errs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "errors.h"
 
-bool	float_convert_error(char c)
+bool	float_convert_err(char c)
 {
 	write(2, &c, 1);
 	write(2, ": Invalid char in float conversion\n", 35);

@@ -25,7 +25,7 @@ static bool	set_arg_ambient(t_scene *scene, char *arg, short arg_num)
 		return (check_ambient(scene));
 	}
 	else if (arg_num == 4)
-		return (too_many_args_error("AMBIENT", "2"));
+		return (too_many_args_err("AMBIENT", "2"));
 	return (true);
 }
 
@@ -44,7 +44,7 @@ static bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 		return (check_camera(scene));
 	}
 	else if (arg_num == 5)
-		return (too_many_args_error("CAMERA", "3"));
+		return (too_many_args_err("CAMERA", "3"));
 	return (true);
 }
 
@@ -60,7 +60,7 @@ static bool	set_arg_light(t_scene *scene, char *arg, short arg_num)
 		return (check_light(scene));
 	}
 	else if (arg_num == 5)
-		return (too_many_args_error("LIGHT", "3"));
+		return (too_many_args_err("LIGHT", "3"));
 	return (true);
 }
 
@@ -74,7 +74,7 @@ bool	adder(t_scene *scene, char *line, bool *verif, char name)
 	short	ret;
 
 	if (verif && *verif)
-		return (already_set_error(name));
+		return (already_set_err(name));
 	arg = get_line_arg(line, &advancement);
 	arg_num = 1;
 	ret = true;

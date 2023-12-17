@@ -22,7 +22,7 @@ bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 	{
 		new_sphere = ft_calloc(1, sizeof (struct s_sphere));
 		if (!new_sphere)
-			return (malloc_error("SPHERE"));
+			return (malloc_err("SPHERE"));
 		if (!scene->spheres)
 			scene->spheres = new_sphere;
 		else
@@ -39,6 +39,6 @@ bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 		return (check_last_sphere(scene));
 	}
 	else
-		return (too_many_args_error("SPHERE", "3"));
+		return (too_many_args_err("SPHERE", "3"));
 	return (true);
 }

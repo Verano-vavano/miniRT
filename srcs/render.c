@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/21 17:53:01 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/21 18:37:00 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	t_vec3		direction;
 	double		x_near;
 	double		x;
-	t_color		ret;
+	t_color		ret, temp;
 
 	ret.r = 0;
 	ret.g = 0;
@@ -30,12 +30,13 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	direction.z = scene->camera.dir.z;
 	direction = vec3_normalize(direction);
 	x_near = INFINITY;
-	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x) && x < x_near)
+	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x, &temp) && x < x_near)
 	{
 		x_near = x;
-		ret.r = 255;
-		ret.g = 255;
-		ret.b = 255;
+		ret.r = temp.r;
+		ret.g = temp.g;
+		ret.b = temp.b;
+		ret = light_pathing(scene->camera.vp, direction, scene->light, x_near, ret);
 	}
 	return (ret);
 }

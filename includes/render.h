@@ -27,7 +27,10 @@ void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
 
 // spheres
-bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x);
+bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, t_color *closest_col);
+
+// light_pathing
+t_color	light_pathing(t_vec3 origin, t_vec3 direction, struct s_light l, double x_hit, t_color base_color);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);

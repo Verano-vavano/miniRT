@@ -26,6 +26,7 @@ typedef struct	s_color {
 
 double	vec3_dot(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_add(t_vec3 v1, t_vec3 v2);
+t_vec3	vec3_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_mult_float(t_vec3 v, float n);
 t_vec3	vec3_normalize(t_vec3 v);
 float	vec3_length(t_vec3 v);

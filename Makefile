@@ -6,7 +6,7 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2023/12/16 18:31:10 by tcharanc         ###   ########.fr        #
+#    Updated: 2023/12/21 17:48:23 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=./miniRT
 
 SRCS=colors.c events.c free_scene.c latof.c main.c \
 	 mlx_plus.c parser_checker.c parser_checker_forms.c \
-	 parser_forms.c parser_mandatory.c ray_casting.c render.c \
+	 parser_forms.c parser_mandatory.c spheres.c render.c \
 	 scene.c scene_read_utils.c vec3.c vec3_math.c \
 	 errors/latof_errors.c errors/parser_errors.c \
 	 errors/parsing_errors.c errors/vec3_errors.c

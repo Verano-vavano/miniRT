@@ -6,20 +6,49 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/14 17:37:12 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/21 17:53:01 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
+static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
+{
+	t_scene		*scene;
+	t_vec3		direction;
+	double		x_near;
+	double		x;
+	t_color		ret;
+
+	ret.r = 0;
+	ret.g = 0;
+	ret.b = 0;
+	scene = window->scene;
+	direction.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
+	direction.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
+	direction.z = scene->camera.dir.z;
+	direction = vec3_normalize(direction);
+	x_near = INFINITY;
+	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x) && x < x_near)
+	{
+		x_near = x;
+		ret.r = 255;
+		ret.g = 255;
+		ret.b = 255;
+	}
+	return (ret);
+}
+
 void	render_scene(t_window **window_ptr)
 {
 	t_vec2		coord;
 	t_color		color;
 	t_window	*window;
+	float		fov;
 
 	window = *window_ptr;
+	fov = window->scene->camera.fov * M_PI / 180;
 	if (OS[0] != 'D')
 	{
 		window->img.img = mlx_new_image(window->mlx_ptr, window->width, window->height);
@@ -33,7 +62,7 @@ void	render_scene(t_window **window_ptr)
 		coord.x = 0;
 		while (coord.x <= window->width)
 		{
-			color = cast_ray(window, &coord);
+			color = cast_ray(window, &coord, fov);
 			if (OS[0] == 'D')
 				mlx_pixel_put(window->mlx_ptr, window->window, coord.x, coord.y, (color.r << 16) | (color.g << 8) | color.b);
 			else

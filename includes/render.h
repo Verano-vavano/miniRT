@@ -26,8 +26,8 @@ typedef struct s_window {
 void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
 
-// ray_casting
-t_color	cast_ray(t_window *win, t_vec2 *coord);
+// spheres
+bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);

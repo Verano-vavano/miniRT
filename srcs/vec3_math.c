@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:20:44 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/07 16:20:31 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/21 18:09:45 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ t_vec3	vec3_add(t_vec3 v1, t_vec3 v2)
 	return (ret);
 }
 
+t_vec3	vec3_sub(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3	ret;
+
+	ret.x = v1.x - v2.x;
+	ret.y = v1.y - v2.y;
+	ret.z = v1.z - v2.z;
+	return (ret);
+}
 
 t_vec3	vec3_mult_float(t_vec3 v, float n)
 {

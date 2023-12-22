@@ -45,7 +45,7 @@ t_vec3	get_coord_vec3(char *arg, bool smallest)
 		return (ret);
 	if (!xyz[0] || !xyz[1] || !xyz[2] || xyz[3])
 	{
-		vec3_number_error(arg, xyz);
+		vec3_number_err(arg, xyz);
 		return (ret);
 	}
 	current = 0;
@@ -53,7 +53,7 @@ t_vec3	get_coord_vec3(char *arg, bool smallest)
 	{
 		if (!assign_vec3(&ret, xyz[current], current, smallest))
 		{
-			vec3_arg_error(xyz[current], xyz);
+			vec3_arg_err(xyz[current], xyz);
 			return (ret);
 		}
 		current++;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_errors.c                                    :+:      :+:    :+:   */
+/*   parser_errs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "errors.h"
 
-bool	already_set_error(char set)
+bool	already_set_err(char set)
 {
 	write(2, "[", 1);
 	write(2, &set, 1);
@@ -20,7 +20,7 @@ bool	already_set_error(char set)
 	return (false);
 }
 
-bool	invalid_range_error(char *set, char *lb, char *ub)
+bool	invalid_range_err(char *set, char *lb, char *ub)
 {
 	write(2, "[", 1);
 	write(2, set, ft_strlen(set));
@@ -32,7 +32,7 @@ bool	invalid_range_error(char *set, char *lb, char *ub)
 	return (false);
 }
 
-bool	too_many_args_error(char *set, char *req)
+bool	too_many_args_err(char *set, char *req)
 {
 	write(2, "[", 1);
 	write(2, set, ft_strlen(set));
@@ -42,7 +42,7 @@ bool	too_many_args_error(char *set, char *req)
 	return (false);
 }
 
-bool	malloc_error(char *set)
+bool	malloc_err(char *set)
 {
 	write(2, "[", 1);
 	write(2, set, ft_strlen(set));

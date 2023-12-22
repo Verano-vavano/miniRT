@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_errors.c                                    :+:      :+:    :+:   */
+/*   colors_errs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "errors.h"
 #include "scene.h"
 
-void	vec3_number_error(char *arg, char **xyz)
+void	vec3_number_err(char *arg, char **xyz)
 {
 	write(2, "[VEC3] Invalid number of arguments. 3 required : ", 49);
 	write(2, arg, ft_strlen(arg));
@@ -21,7 +21,7 @@ void	vec3_number_error(char *arg, char **xyz)
 	free_char_etoile_etoile(xyz);
 }
 
-void	vec3_arg_error(char *arg, char **xyz)
+void	vec3_arg_err(char *arg, char **xyz)
 {
 	write(2, "[VEC3] Invalid argument : ", 26);
 	write(2, arg, ft_strlen(arg));

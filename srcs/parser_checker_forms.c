@@ -19,7 +19,7 @@ bool	check_last_sphere(t_scene *scene)
 	if (scene->last_sphere->diameter > 100000.0f)
 		return (false);
 	if (scene->last_sphere->diameter < 0.0f)
-		return (invalid_range_error("SPHERE", "0.0", "99999.9"));
+		return (invalid_range_err("SPHERE", "0.0", "99999.9"));
 	if (scene->last_sphere->pos.valid == false
 		|| scene->last_sphere->color.valid == false)
 		return (false);

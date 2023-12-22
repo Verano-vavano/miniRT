@@ -14,7 +14,7 @@
 #include "errors.h"
 #include <math.h>
 
-#define FLOAT_ERROR 111111
+#define FLOAT_err 111111
 
 static bool	float_check_arg(char *arg)
 {
@@ -26,7 +26,7 @@ static bool	float_check_arg(char *arg)
 	while (*arg && *arg != '.')
 	{
 		if (*arg < '0' || *arg > '9')
-			return (float_convert_error(*arg));
+			return (float_convert_err(*arg));
 		arg++;
 		d_count++;
 		if (d_count > 5)
@@ -37,7 +37,7 @@ static bool	float_check_arg(char *arg)
 	while (*arg)
 	{
 		if (*arg < '0' || *arg > '9')
-			return (float_convert_error(*arg));
+			return (float_convert_err(*arg));
 		arg++;
 		d_count++;
 		if (d_count > 5)
@@ -85,7 +85,7 @@ float	little_atof(char *arg)
 	short	neg;
 
 	if (!float_check_arg(arg))
-		return (FLOAT_ERROR);
+		return (FLOAT_err);
 	neg = 1;
 	while (*arg && (*arg == '+' || *arg == '-'))
 	{

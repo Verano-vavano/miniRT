@@ -6,12 +6,20 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/21 18:37:00 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/23 11:40:28 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
+
+static void	set_nearest(double *x_near, double x, t_color *ret, t_color temp)
+{
+	*x_near = x;
+	ret->r = temp.r;
+	ret->g = temp.g;
+	ret->b = temp.b;
+}
 
 static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 {
@@ -31,13 +39,9 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	direction = vec3_normalize(direction);
 	x_near = INFINITY;
 	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x, &temp) && x < x_near)
-	{
-		x_near = x;
-		ret.r = temp.r;
-		ret.g = temp.g;
-		ret.b = temp.b;
-		ret = light_pathing(scene->camera.vp, direction, scene->light, x_near, ret);
-	}
+		set_nearest(&x_near, x, &ret, temp);
+	if (planes_render_all(scene->planes, scene->camera.vp, direction, &x, &temp) && x < x_near)
+		set_nearest(&x_near, x, &ret, temp);
 	return (ret);
 }
 

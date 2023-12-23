@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 15:27:12 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/23 11:39:47 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,11 @@ bool	check_last_sphere(t_scene *scene)
 		|| scene->last_sphere->color.valid == false)
 		return (false);
 	return (true);
+}
+
+bool	check_last_plane(t_scene *scene)
+{
+	return (scene->last_plane->point.valid
+		&& scene->last_plane->normal.valid
+		&& scene->last_plane->color.valid);
 }

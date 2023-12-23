@@ -30,6 +30,13 @@ struct	s_sphere {
 	struct s_sphere	*next_sphere;
 };
 
+struct	s_plane {
+	t_vec3		point;
+	t_vec3		normal;
+	t_color		color;
+	struct s_plane	*next_plane;
+};
+
 typedef struct	s_scene {
 	bool			is_valid;
 	bool			has_camera;
@@ -39,6 +46,8 @@ typedef struct	s_scene {
 	struct s_light		light;
 	struct s_sphere		*spheres;
 	struct s_sphere		*last_sphere;
+	struct s_plane		*planes;
+	struct s_plane		*last_plane;
 }		t_scene;
 
 # include "render.h"
@@ -56,12 +65,14 @@ bool	adder(t_scene *scene, char *line, bool *verif, char name);
 
 // PARSER FORMS
 bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num);
+bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num);
 
 // CHECKER
 bool	check_ambient(t_scene *scene);
 bool	check_camera(t_scene *scene);
 bool	check_light(t_scene *scene);
 bool	check_last_sphere(t_scene *scene);
+bool	check_last_plane(t_scene *scene);
 
 // ATOF
 float	little_atof(char *arg);

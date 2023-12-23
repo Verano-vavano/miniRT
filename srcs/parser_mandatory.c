@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:29:49 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/22 18:45:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ bool	adder(t_scene *scene, char *line, bool *verif, char name)
 			ret = set_arg_light(scene, arg, arg_num);
 		else if (name == 's')
 			ret = set_new_arg_sphere(scene, arg, arg_num);
+		else if (name == 'p')
+			ret = set_new_arg_plane(scene, arg, arg_num);
 		free(arg);
 		arg_num++;
 		line += advancement;

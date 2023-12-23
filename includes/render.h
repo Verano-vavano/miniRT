@@ -26,8 +26,9 @@ typedef struct s_window {
 void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
 
-// spheres
+// renderers
 bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, t_color *closest_col);
+bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_color *closest_col);
 
 // light_pathing
 t_color	light_pathing(t_vec3 origin, t_vec3 direction, struct s_light l, double x_hit, t_color base_color);

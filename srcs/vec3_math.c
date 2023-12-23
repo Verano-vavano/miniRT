@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:20:44 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/21 18:09:45 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/23 11:40:04 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_vec3	vec3_mult_float(t_vec3 v, float n)
 {
 	t_vec3	ret;
 
+	ret.valid = v.valid;
 	ret.x = v.x * n;
 	ret.y = v.y * n;
 	ret.z = v.z * n;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 18:15:27 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/22 18:48:41 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,34 @@ bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 	}
 	else
 		return (too_many_args_err("SPHERE", "3"));
+	return (true);
+}
+
+bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num)
+{
+	struct s_plane	*new_plane;
+
+	if (arg_num == 1)
+	{
+		new_plane = ft_calloc(1, sizeof (struct s_plane));
+		if (!new_plane)
+			return (malloc_err("PLANE"));
+		if (!scene->planes)
+			scene->planes = new_plane;
+		else
+			scene->last_plane->next_plane = new_plane;
+		scene->last_plane = new_plane;
+	}
+	else if (arg_num == 2)
+		scene->last_plane->point = get_coord_vec3(arg, false);
+	else if (arg_num == 3)
+		scene->last_plane->normal = vec3_normalize(get_coord_vec3(arg, false));
+	else if (arg_num == 4)
+	{
+		scene->last_plane->color = get_color(arg);
+		return (check_last_plane(scene));
+	}
+	else
+		return (too_many_args_err("PLANE", "3"));
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 10:28:46 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/03 15:39:33 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/23 11:39:20 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_vec3	get_coord_vec3(char *arg, bool smallest)
 	int	current;
 	char	**xyz;
 
-	(void) smallest;
 	ret.valid = false;
 	xyz = ft_split(arg, ',');
 	if (!xyz)

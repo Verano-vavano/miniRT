@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 18:26:12 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/24 12:28:18 by hdupire          ###   ########.fr       */
+/*   Created: 2023/12/23 17:17:07 by hdupire           #+#    #+#             */
+/*   Updated: 2023/12/24 12:14:22 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-t_color	light_pathing(t_scene *scene, t_vec3 hit, t_lform *lform)
+/* LF shapes :
+ * 's' = sphere
+ * 'p' = plane
+ */
+t_vec3	get_normal(t_vec3 hit, t_lform *lf)
 {
-	t_vec3	normal;
+	t_vec3	ret;
 
-	normal = get_normal(hit, lform);
-	float	albedo = 1.f;
-	float	d = (albedo / M_PI) * scene->light.lgt_ratio * fmax(0, vec3_dot(normal, vec3_mult_float(scene->light.pos, -1.f)));
-
-	t_color	ret;
-	ret.r = d * scene->light.color.r;
-	ret.g = d * scene->light.color.g;
-	ret.b = d * scene->light.color.b;
+	ret.x = 0;
+	ret.y = 0;
+	ret.z = 0;
+	if (lf->shape == 's')
+	{
+		struct s_sphere *sp = (struct s_sphere *) lf->addr;
+		return (vec3_sub(hit, sp->pos));
+	}
+	else if (lf->shape == 'p')
+	{
+		struct s_plane *pl = (struct s_plane *) lf->addr;
+		return (pl->normal);
+	}
 	return (ret);
 }

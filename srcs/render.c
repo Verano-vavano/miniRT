@@ -6,20 +6,12 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/23 11:40:28 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/24 12:16:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
-
-static void	set_nearest(double *x_near, double x, t_color *ret, t_color temp)
-{
-	*x_near = x;
-	ret->r = temp.r;
-	ret->g = temp.g;
-	ret->b = temp.b;
-}
 
 static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 {
@@ -27,7 +19,8 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	t_vec3		direction;
 	double		x_near;
 	double		x;
-	t_color		ret, temp;
+	t_color		ret;
+	t_lform		last_form;
 
 	ret.r = 0;
 	ret.g = 0;
@@ -38,10 +31,16 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	direction.z = scene->camera.dir.z;
 	direction = vec3_normalize(direction);
 	x_near = INFINITY;
-	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x, &temp) && x < x_near)
-		set_nearest(&x_near, x, &ret, temp);
-	if (planes_render_all(scene->planes, scene->camera.vp, direction, &x, &temp) && x < x_near)
-		set_nearest(&x_near, x, &ret, temp);
+	last_form.addr = NULL;
+	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x, &last_form) && x < x_near)
+		x_near = x;
+	if (planes_render_all(scene->planes, scene->camera.vp, direction, &x, &last_form) && x < x_near)
+		x_near = x;
+	if (last_form.addr != NULL)
+	{
+		t_vec3	hit = vec3_normalize(vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near)));
+		ret = light_pathing(scene, hit, &last_form);
+	}
 	return (ret);
 }
 

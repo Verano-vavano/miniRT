@@ -5,6 +5,11 @@
 # include "math.h"
 # include "mlx.h"
 
+typedef struct s_last_form {
+	void	*addr;
+	char	shape;
+}	t_lform;
+
 typedef struct s_data {
 	void	*img;
 	char	*addr;
@@ -27,11 +32,14 @@ void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
 
 // renderers
-bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, t_color *closest_col);
-bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_color *closest_col);
+bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, t_lform *lform);
+bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_lform *lform);
+
+// normal
+t_vec3	get_normal(t_vec3 hit, t_lform *lf);
 
 // light_pathing
-t_color	light_pathing(t_vec3 origin, t_vec3 direction, struct s_light l, double x_hit, t_color base_color);
+t_color	light_pathing(t_scene *scene, t_vec3 hit, t_lform *lform);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);

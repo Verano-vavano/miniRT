@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/23 11:20:22 by hdupire          ###   ########.fr       */
+/*   Updated: 2023/12/24 12:16:20 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	plane_intersect(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *
 	return (false);
 }
 
-bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_color *closest_col)
+bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_lform *lform)
 {
 	double	hit_near, hit;
 	struct s_plane *closest;
@@ -48,9 +48,8 @@ bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_
 	if (closest)
 	{
 		*x = hit_near;
-		closest_col->r = closest->color.r;
-		closest_col->g = closest->color.g;
-		closest_col->b = closest->color.b;
+		lform->addr = (void *) closest;
+		lform->shape = 'p';
 	}
 	return (closest != NULL);
 }

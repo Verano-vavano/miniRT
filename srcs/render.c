@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/10 21:50:00 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 22:00:27 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
 		temp.addr = NULL;
 		normal = get_normal(hit, &last_form);
-		trace(scene, vec3_add(hit, normal), scene->light.inv_dir, &temp);
+		trace(scene, vec3_add(hit, vec3_mult_float(normal, SHADOW_BIAS)), scene->light.inv_dir, &temp);
 		if (temp.addr != NULL)
 		{
 			ret.r = 0;

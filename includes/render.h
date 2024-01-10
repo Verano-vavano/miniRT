@@ -5,6 +5,8 @@
 # include "math.h"
 # include "mlx.h"
 
+# include "render_options.h"
+
 typedef struct s_last_form {
 	void	*addr;
 	char	shape;

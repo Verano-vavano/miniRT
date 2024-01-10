@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/24 12:16:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 18:46:14 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 		x_near = x;
 	if (last_form.addr != NULL)
 	{
-		t_vec3	hit = vec3_normalize(vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near)));
+		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
 		ret = light_pathing(scene, hit, &last_form);
 	}
 	return (ret);

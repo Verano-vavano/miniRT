@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:17:07 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/24 12:14:22 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 18:45:48 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vec3	get_normal(t_vec3 hit, t_lform *lf)
 	if (lf->shape == 's')
 	{
 		struct s_sphere *sp = (struct s_sphere *) lf->addr;
-		return (vec3_sub(hit, sp->pos));
+		return (vec3_normalize(vec3_sub(hit, sp->pos)));
 	}
 	else if (lf->shape == 'p')
 	{

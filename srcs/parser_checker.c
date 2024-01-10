@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:36:09 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 11:06:46 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/06 19:58:13 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ bool	check_light(t_scene *scene)
 		return (invalid_range_err("LIGHT", "0.0", "1.0"));
 	if (scene->light.pos.valid == false || scene->light.color.valid == false)
 		return (false);
+	scene->light.pos = vec3_normalize(scene->light.pos);
 	return (true);
 }

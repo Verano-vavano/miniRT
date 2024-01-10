@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/23 17:03:59 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 20:43:58 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, 
 	if (closest)
 	{
 		*x = hit_near;
-		lform->addr = (void *) closest;
-		lform->shape = 's';
+		if (lform)
+		{
+			lform->addr = (void *) closest;
+			lform->shape = 's';
+		}
 	}
 	return (closest != NULL);
 }

@@ -18,7 +18,8 @@ struct	s_ambient {
 };
 
 struct	s_light {
-	t_vec3	pos;
+	t_vec3	dir;
+	t_vec3	inv_dir;
 	float	lgt_ratio;
 	t_color	color;
 };

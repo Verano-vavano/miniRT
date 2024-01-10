@@ -6,21 +6,35 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/10 18:46:14 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 21:50:00 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
+static double	trace(t_scene *scene, t_vec3 org, t_vec3 dest, t_lform *lform)
+{
+	double	x;
+	double	x_near;
+
+	x_near = INFINITY;
+	if (spheres_render_all(scene->spheres, org, dest, &x, lform) && x < x_near)
+		x_near = x;
+	if (planes_render_all(scene->planes, org, dest, &x, lform) && x < x_near)
+		x_near = x;
+	return (x_near);
+}
+
 static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 {
 	t_scene		*scene;
 	t_vec3		direction;
+	t_vec3		normal;
 	double		x_near;
-	double		x;
 	t_color		ret;
 	t_lform		last_form;
+	t_lform		temp;
 
 	ret.r = 0;
 	ret.g = 0;
@@ -30,16 +44,22 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	direction.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
 	direction.z = scene->camera.dir.z;
 	direction = vec3_normalize(direction);
-	x_near = INFINITY;
 	last_form.addr = NULL;
-	if (spheres_render_all(scene->spheres, scene->camera.vp, direction, &x, &last_form) && x < x_near)
-		x_near = x;
-	if (planes_render_all(scene->planes, scene->camera.vp, direction, &x, &last_form) && x < x_near)
-		x_near = x;
+	x_near = trace(scene, scene->camera.vp, direction, &last_form);
 	if (last_form.addr != NULL)
 	{
 		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
-		ret = light_pathing(scene, hit, &last_form);
+		temp.addr = NULL;
+		normal = get_normal(hit, &last_form);
+		trace(scene, vec3_add(hit, normal), scene->light.inv_dir, &temp);
+		if (temp.addr != NULL)
+		{
+			ret.r = 0;
+			ret.g = 0;
+			ret.b = 0;
+			return (ret);
+		}
+		ret = light_pathing(scene, normal);
 	}
 	return (ret);
 }

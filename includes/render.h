@@ -39,7 +39,7 @@ bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_
 t_vec3	get_normal(t_vec3 hit, t_lform *lf);
 
 // light_pathing
-t_color	light_pathing(t_scene *scene, t_vec3 hit, t_lform *lform);
+t_color	light_pathing(t_scene *scene, t_vec3 normal);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);

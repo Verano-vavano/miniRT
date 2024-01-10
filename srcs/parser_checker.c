@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:36:09 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/06 19:58:13 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 21:49:34 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ bool	check_light(t_scene *scene)
 		return (false);
 	if (scene->light.lgt_ratio < 0.0f || scene->light.lgt_ratio > 1.0f)
 		return (invalid_range_err("LIGHT", "0.0", "1.0"));
-	if (scene->light.pos.valid == false || scene->light.color.valid == false)
+	if (scene->light.dir.valid == false || scene->light.color.valid == false)
 		return (false);
-	scene->light.pos = vec3_normalize(scene->light.pos);
+	scene->light.dir = vec3_normalize(scene->light.dir);
+	scene->light.inv_dir = vec3_mult_float(scene->light.dir, -1.f);
 	return (true);
 }

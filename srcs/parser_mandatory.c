@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/22 18:45:08 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/10 21:48:39 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 static bool	set_arg_light(t_scene *scene, char *arg, short arg_num)
 {
 	if (arg_num == 2)
-		scene->light.pos = get_coord_vec3(arg, false);
+		scene->light.dir = get_coord_vec3(arg, false);
 	else if (arg_num == 3)
 		scene->light.lgt_ratio = little_atof(arg);
 	else if (arg_num == 4)

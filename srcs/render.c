@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 17:09:42 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:12:53 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 		trace(scene, vec3_add(hit, vec3_mult_float(normal, 0.9)), scene->light.inv_dir, &temp);
 		if (temp.addr == NULL)
 			light_pathing(scene, normal, &lgt_contr, lf_color);
-		else
-			printf("%c\n", temp.shape);
 	}
 	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
 	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;

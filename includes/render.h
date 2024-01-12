@@ -37,11 +37,11 @@ void	render_scene(t_window **window_ptr);
 bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, t_lform *lform);
 bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_lform *lform);
 
-// normal
-t_vec3	get_normal(t_vec3 hit, t_lform *lf);
+// lf_infos
+void	get_infos(t_vec3 hit, t_lform *lf, t_vec3 *normal, t_col01 *col);
 
 // light_pathing
-t_color	light_pathing(t_scene *scene, t_vec3 normal);
+void	light_pathing(t_scene *scene, t_vec3 normal, t_col01 *ret);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -49,5 +49,9 @@ void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
 // events
 int	quit_game(t_window *window);
 int	key_event(int key, t_window *window);
+
+// render_utilities
+void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b);
+void	copy_2vec3(t_vec3 *v1, t_vec3 v2);
 
 #endif

@@ -24,6 +24,12 @@ typedef struct	s_color {
 	bool		valid;
 }		t_color;
 
+typedef struct	s_col01 {
+	float	r;
+	float	g;
+	float	b;
+}		t_col01;
+
 double	vec3_dot(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_sub(t_vec3 v1, t_vec3 v2);

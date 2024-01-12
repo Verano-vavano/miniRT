@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal.c                                           :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/23 17:17:07 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/10 18:45:48 by hdupire          ###   ########.fr       */
+/*   Created: 2024/01/12 15:48:12 by hdupire           #+#    #+#             */
+/*   Updated: 2024/01/12 16:06:01 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-/* LF shapes :
- * 's' = sphere
- * 'p' = plane
- */
-t_vec3	get_normal(t_vec3 hit, t_lform *lf)
+void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b)
 {
-	t_vec3	ret;
+	col->r = r;
+	col->g = g;
+	col->b = b;
+	return ;
+}
 
-	ret.x = 0;
-	ret.y = 0;
-	ret.z = 0;
-	if (lf->shape == 's')
-	{
-		struct s_sphere *sp = (struct s_sphere *) lf->addr;
-		return (vec3_normalize(vec3_sub(hit, sp->pos)));
-	}
-	else if (lf->shape == 'p')
-	{
-		struct s_plane *pl = (struct s_plane *) lf->addr;
-		return (pl->normal);
-	}
-	return (ret);
+void	copy_2vec3(t_vec3 *v1, t_vec3 v2)
+{
+	v1->x = v2.x;
+	v1->y = v2.y;
+	v1->z = v2.z;
+	return ;
 }

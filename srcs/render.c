@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 16:03:15 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:33:50 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	t_vec3		normal;
 	double		x_near;
 	t_color		ret;
-	t_col01		calc_col;
+	t_col01		lf_color, amb_contr, lgt_contr;
 	t_lform		last_form;
 	t_lform		temp;
 
-	calc_col.r = 0;
-	calc_col.g = 0;
-	calc_col.b = 0;
+	lgt_contr.r = 0;
+	lgt_contr.g = 0;
+	lgt_contr.b = 0;
+	amb_contr.r = 0;
+	amb_contr.g = 0;
+	amb_contr.b = 0;
 	scene = window->scene;
 	direction.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
 	direction.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
@@ -51,20 +54,15 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	{
 		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
 		temp.addr = NULL;
-		get_infos(hit, &last_form, &normal, &calc_col);
+		get_infos(hit, &last_form, &normal, &lf_color);
+		ambient_lighting(scene->ambient, &amb_contr, lf_color);
 		trace(scene, vec3_add(hit, vec3_mult_float(normal, SHADOW_BIAS)), scene->light.inv_dir, &temp);
-		if (temp.addr != NULL)
-		{
-			ret.r = 0;
-			ret.g = 0;
-			ret.b = 0;
-			return (ret);
-		}
-		light_pathing(scene, normal, &calc_col);
+		if (temp.addr == NULL)
+			light_pathing(scene, normal, &lgt_contr, lf_color);
 	}
-	ret.r = calc_col.r * 255;
-	ret.g = calc_col.g * 255;
-	ret.b = calc_col.b * 255;
+	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
+	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;
+	ret.b = (fmin(1.f, lgt_contr.b + amb_contr.b)) * 255;
 	return (ret);
 }
 

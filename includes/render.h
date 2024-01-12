@@ -41,7 +41,8 @@ bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_
 void	get_infos(t_vec3 hit, t_lform *lf, t_vec3 *normal, t_col01 *col);
 
 // light_pathing
-void	light_pathing(t_scene *scene, t_vec3 normal, t_col01 *ret);
+void	light_pathing(t_scene *scene, t_vec3 normal, t_col01 *ret, t_col01 lf);
+void	ambient_lighting(struct s_ambient amb, t_col01 *ret, t_col01 lf);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);

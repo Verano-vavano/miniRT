@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/10 20:44:07 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/14 15:42:53 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,15 @@
 
 static bool	plane_intersect(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *hit)
 {
-	double	denom;
-	t_vec3	p0o;
+	float	d;
+	float	denom;
 
+	d = - (pl->normal.x * pl->point.x) - (pl->normal.y * pl->point.y) - (pl->normal.z * pl->point.z);
 	denom = vec3_dot(pl->normal, dir);
 	if (denom < 1e-6)
 		return (false);
-	p0o = vec3_sub(pl->point, org);
-	*hit = vec3_dot(p0o, pl->normal) / denom;
-	if (*hit >= 0)
-	{
-		return (true);
-	}
-	return (false);
+	*hit = - (vec3_dot(pl->normal, org) + d) / denom;
+	return (*hit >= 0);
 }
 
 bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_lform *lform)

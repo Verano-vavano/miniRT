@@ -6,23 +6,27 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/14 12:59:24 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/14 15:51:56 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
-static double	trace(t_scene *scene, t_vec3 org, t_vec3 dest, t_lform *lform)
+double	trace(t_scene *scene, t_vec3 org, t_vec3 dest, t_lform *lform)
 {
 	double	x;
 	double	x_near;
+	t_lform	temp;
 
 	x_near = INFINITY;
-	if (spheres_render_all(scene->spheres, org, dest, &x, lform) && x < x_near)
+	if (spheres_render_all(scene->spheres, org, dest, &x, lform))
 		x_near = x;
-	if (planes_render_all(scene->planes, org, dest, &x, lform) && x < x_near)
+	if (planes_render_all(scene->planes, org, dest, &x, &temp) && x < x_near)
+	{
 		x_near = x;
+		*lform = temp;
+	}
 	return (x_near);
 }
 
@@ -35,7 +39,6 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	t_color		ret;
 	t_col01		lf_color, amb_contr, lgt_contr;
 	t_lform		last_form;
-	t_lform		temp;
 
 	lgt_contr.r = 0;
 	lgt_contr.g = 0;
@@ -53,13 +56,9 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	if (last_form.addr != NULL)
 	{
 		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
-		temp.addr = NULL;
 		get_infos(hit, &last_form, &normal, &lf_color);
-		//ambient_lighting(scene->ambient, &amb_contr, lf_color);
-		/*trace(scene, vec3_add(hit, vec3_mult_float(normal, 0.9)), scene->light.inv_dir, &temp);
-		if (temp.addr == NULL)*/
-		(void) temp;
-		light_pathing(scene, normal, &lgt_contr, lf_color);
+		ambient_lighting(scene->ambient, &amb_contr, lf_color);
+		light_pathing(scene, hit, normal, &lgt_contr, lf_color);
 	}
 	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
 	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;

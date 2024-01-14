@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 17:21:29 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/14 14:48:06 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	understand_scene_line(t_scene *scene, char *line)
 	bool	ret;
 
 	item = get_line_arg(line, NULL);
-	if (!item)
+	if (!item || item[0] == '#')
 		return (true);
 	ret = true;
 	if (ft_strcmp(item, "A") == 0)

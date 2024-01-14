@@ -18,10 +18,11 @@ struct	s_ambient {
 };
 
 struct	s_light {
-	t_vec3	dir;
-	t_vec3	inv_dir;
-	float	lgt_ratio;
-	t_color	color;
+	t_vec3		dir;
+	t_vec3		inv_dir;
+	float		lgt_ratio;
+	t_color		color;
+	struct s_light	*next_light;
 };
 
 struct	s_sphere {
@@ -44,7 +45,8 @@ typedef struct	s_scene {
 	bool			has_ambient;
 	struct s_camera		camera;
 	struct s_ambient	ambient;
-	struct s_light		light;
+	struct s_light		*light;
+	struct s_light		*last_light;
 	struct s_sphere		*spheres;
 	struct s_sphere		*last_sphere;
 	struct s_plane		*planes;

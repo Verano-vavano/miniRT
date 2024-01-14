@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/22 18:43:44 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:21:29 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	understand_scene_line(t_scene *scene, char *line)
 		ret = adder(scene, line, &(scene->has_ambient), 'A');
 	else if (ft_strcmp(item, "C") == 0)
 		ret = adder(scene, line, &(scene->has_camera), 'C');
-	else if (ft_strcmp(item, "L") == 0)
+	else if (ft_strcmp(item, "L") == 0 || ft_strcmp(item, "l") == 0)
 		ret = adder(scene, line, NULL, 'L');
 	else if (ft_strcmp(item, "sp") == 0)
 		ret = adder(scene, line, NULL, 's');

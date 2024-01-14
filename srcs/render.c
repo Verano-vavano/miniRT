@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 17:12:53 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/14 12:59:24 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
 		temp.addr = NULL;
 		get_infos(hit, &last_form, &normal, &lf_color);
-		ambient_lighting(scene->ambient, &amb_contr, lf_color);
-		trace(scene, vec3_add(hit, vec3_mult_float(normal, 0.9)), scene->light.inv_dir, &temp);
-		if (temp.addr == NULL)
-			light_pathing(scene, normal, &lgt_contr, lf_color);
+		//ambient_lighting(scene->ambient, &amb_contr, lf_color);
+		/*trace(scene, vec3_add(hit, vec3_mult_float(normal, 0.9)), scene->light.inv_dir, &temp);
+		if (temp.addr == NULL)*/
+		(void) temp;
+		light_pathing(scene, normal, &lgt_contr, lf_color);
 	}
 	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
 	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;

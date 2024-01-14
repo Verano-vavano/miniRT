@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/10 21:48:39 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:29:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,28 @@ static bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 	return (true);
 }
 
-static bool	set_arg_light(t_scene *scene, char *arg, short arg_num)
+static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num)
 {
+	struct s_light	*new_light;
+
+	if (arg_num == 1)
+	{
+		new_light = ft_calloc(1, sizeof (struct s_light));
+		if (!new_light)
+			return (malloc_err("LIGHT"));
+		if (!scene->light)
+			scene->light = new_light;
+		else
+			scene->last_light->next_light = new_light;
+		scene->last_light = new_light;
+	}
 	if (arg_num == 2)
-		scene->light.dir = get_coord_vec3(arg, false);
+		scene->last_light->dir = get_coord_vec3(arg, false);
 	else if (arg_num == 3)
-		scene->light.lgt_ratio = little_atof(arg);
+		scene->last_light->lgt_ratio = little_atof(arg);
 	else if (arg_num == 4)
 	{
-		scene->light.color = get_color(arg);
+		scene->last_light->color = get_color(arg);
 		return (check_light(scene));
 	}
 	else if (arg_num == 5)
@@ -85,7 +98,7 @@ bool	adder(t_scene *scene, char *line, bool *verif, char name)
 		else if (name == 'A')
 			ret = set_arg_ambient(scene, arg, arg_num);
 		else if (name == 'L')
-			ret = set_arg_light(scene, arg, arg_num);
+			ret = set_new_arg_light(scene, arg, arg_num);
 		else if (name == 's')
 			ret = set_new_arg_sphere(scene, arg, arg_num);
 		else if (name == 'p')

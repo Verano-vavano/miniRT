@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 17:29:46 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 18:03:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 	return (true);
 }
 
-static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num)
+static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num, bool spherical)
 {
 	struct s_light	*new_light;
 
@@ -57,20 +57,35 @@ static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num)
 		new_light = ft_calloc(1, sizeof (struct s_light));
 		if (!new_light)
 			return (malloc_err("LIGHT"));
-		if (!scene->light)
-			scene->light = new_light;
+		if (spherical)
+		{
+			if (!scene->lighting.s_light)
+				scene->lighting.s_light = new_light;
+			else
+				scene->lighting.last_s_light->next_light = new_light;
+			scene->lighting.last_s_light = new_light;
+		}
 		else
-			scene->last_light->next_light = new_light;
-		scene->last_light = new_light;
+		{
+			if (!scene->lighting.light)
+				scene->lighting.light = new_light;
+			else
+				scene->lighting.last_light->next_light = new_light;
+			scene->lighting.last_light = new_light;
+		}
 	}
+	if (spherical)
+		new_light = scene->lighting.last_s_light;
+	else
+		new_light = scene->lighting.last_light;
 	if (arg_num == 2)
-		scene->last_light->dir = get_coord_vec3(arg, false);
+		new_light->vec = get_coord_vec3(arg, false);
 	else if (arg_num == 3)
-		scene->last_light->lgt_ratio = little_atof(arg);
+		new_light->lgt_ratio = little_atof(arg);
 	else if (arg_num == 4)
 	{
-		scene->last_light->color = get_color(arg);
-		return (check_light(scene));
+		new_light->color = get_color(arg);
+		return (check_light(new_light));
 	}
 	else if (arg_num == 5)
 		return (too_many_args_err("LIGHT", "3"));
@@ -79,7 +94,7 @@ static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num)
 
 // RET = 1 : CONTINUE
 // RET = 0 : ERROR
-bool	adder(t_scene *scene, char *line, bool *verif, char name)
+bool	adder(t_scene *scene, char *line, bool *verif, enum e_scene_arg name)
 {
 	int	advancement;
 	short	arg_num;
@@ -93,15 +108,17 @@ bool	adder(t_scene *scene, char *line, bool *verif, char name)
 	ret = true;
 	while (arg && ret)
 	{
-		if (name == 'C')
+		if (name == CAMERA)
 			ret = set_arg_camera(scene, arg, arg_num);
-		else if (name == 'A')
+		else if (name == AMBIENT)
 			ret = set_arg_ambient(scene, arg, arg_num);
-		else if (name == 'L')
-			ret = set_new_arg_light(scene, arg, arg_num);
-		else if (name == 's')
+		else if (name == DIR_LIGHT)
+			ret = set_new_arg_light(scene, arg, arg_num, false);
+		else if (name == SPH_LIGHT)
+			ret = set_new_arg_light(scene, arg, arg_num, true);
+		else if (name == SPHERE)
 			ret = set_new_arg_sphere(scene, arg, arg_num);
-		else if (name == 'p')
+		else if (name == PLANE)
 			ret = set_new_arg_plane(scene, arg, arg_num);
 		free(arg);
 		arg_num++;

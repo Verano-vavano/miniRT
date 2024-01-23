@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 03:56:46 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/23 11:05:06 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 18:00:50 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		free_scene(scene);
 		return (1);
 	}
-	render(scene);
+	//render(scene);
 	free_scene(scene);
 	return (0);
 }

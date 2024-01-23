@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 18:26:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/14 14:46:32 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 16:40:02 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	light_pathing(t_scene *scene, t_vec3 hit, t_vec3 normal, t_col01 *ret, t_co
 	struct s_light	*light;
 	t_lform		temp;
 
-	light = scene->light;
+	light = scene->lighting.light;
 	while (light)
 	{
 		temp.addr = NULL;

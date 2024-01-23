@@ -2,3 +2,7 @@ CONFIG LINE :
 Conf 720,480
 Conf = Configuration
 720,480 : x,y = window size (adapts to screen size)
+
+Spherical lights
+
+Mettre en place nouveau système de lighting dans la struct scene

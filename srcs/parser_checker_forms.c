@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/10 19:28:32 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 17:58:06 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ bool	check_last_plane(t_scene *scene)
 	if (scene->last_plane->point.valid
 		&& scene->last_plane->normal.valid
 		&& scene->last_plane->color.valid)
-	{
-		scene->last_plane->normal = vec3_normalize(scene->last_plane->normal);
 		return (true);
-	}
 	return (false);
 }

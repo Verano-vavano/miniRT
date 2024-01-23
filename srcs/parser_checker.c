@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:36:09 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 17:28:21 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 17:57:50 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,15 @@ bool	check_camera(t_scene *scene)
 	return (true);
 }
 
-bool	check_light(t_scene *scene)
+bool	check_light(struct s_light *light)
 {
-	struct s_light	*now;
-	struct s_light	*next;
-
-	now = scene->light;
-	while (now)
-	{
-		next = now->next_light;
-		if (now->lgt_ratio > 100000.0f)
-			return (false);
-		if (now->lgt_ratio < 0.0f || now->lgt_ratio > 1.0f)
-			return (invalid_range_err("LIGHT", "0.0", "1.0"));
-		if (now->dir.valid == false || now->color.valid == false)
-			return (false);
-		now->dir = vec3_normalize(now->dir);
-		now->inv_dir = vec3_mult_float(now->dir, -1.f);
-		now = next;
-	}
+	if (light->lgt_ratio > 100000.0f)
+		return (false);
+	if (light->lgt_ratio < 0.0f || light->lgt_ratio > 1.0f)
+		return (invalid_range_err("LIGHT", "0.0", "1.0"));
+	if (light->vec.valid == false || light->color.valid == false)
+		return (false);
+	light->vec = vec3_normalize(light->vec);
+	light->inv_dir = vec3_mult_float(light->vec, -1.f);
 	return (true);
 }

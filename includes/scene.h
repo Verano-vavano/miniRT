@@ -6,6 +6,15 @@
 
 # include <fcntl.h>
 
+enum e_scene_arg {
+	AMBIENT,
+	CAMERA,
+	DIR_LIGHT,
+	SPH_LIGHT,
+	SPHERE,
+	PLANE
+};
+
 struct	s_camera {
 	t_vec3	vp;
 	t_vec3	dir;
@@ -18,12 +27,19 @@ struct	s_ambient {
 };
 
 struct	s_light {
-	t_vec3		dir;
+	t_vec3		vec;
 	t_vec3		inv_dir;
 	float		lgt_ratio;
 	t_color		color;
 	struct s_light	*next_light;
 };
+
+typedef struct s_lighting {
+	struct s_light		*light;
+	struct s_light		*last_light;
+	struct s_light		*s_light;
+	struct s_light		*last_s_light;
+}	t_lighting;
 
 struct	s_sphere {
 	t_vec3		pos;
@@ -45,8 +61,7 @@ typedef struct	s_scene {
 	bool			has_ambient;
 	struct s_camera		camera;
 	struct s_ambient	ambient;
-	struct s_light		*light;
-	struct s_light		*last_light;
+	t_lighting		lighting;
 	struct s_sphere		*spheres;
 	struct s_sphere		*last_sphere;
 	struct s_plane		*planes;
@@ -64,7 +79,7 @@ char	*get_line_arg(char *line, int *adv);
 void	free_scene(t_scene *scene);
 
 // PARSER
-bool	adder(t_scene *scene, char *line, bool *verif, char name);
+bool	adder(t_scene *scene, char *line, bool *verif, enum e_scene_arg name);
 
 // PARSER FORMS
 bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num);
@@ -73,7 +88,7 @@ bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num);
 // CHECKER
 bool	check_ambient(t_scene *scene);
 bool	check_camera(t_scene *scene);
-bool	check_light(t_scene *scene);
+bool	check_light(struct s_light *light);
 bool	check_last_sphere(t_scene *scene);
 bool	check_last_plane(t_scene *scene);
 

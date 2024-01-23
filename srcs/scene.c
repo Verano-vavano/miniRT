@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/14 14:48:06 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 12:45:07 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,17 @@ static bool	understand_scene_line(t_scene *scene, char *line)
 		return (true);
 	ret = true;
 	if (ft_strcmp(item, "A") == 0)
-		ret = adder(scene, line, &(scene->has_ambient), 'A');
+		ret = adder(scene, line, &(scene->has_ambient), AMBIENT);
 	else if (ft_strcmp(item, "C") == 0)
-		ret = adder(scene, line, &(scene->has_camera), 'C');
+		ret = adder(scene, line, &(scene->has_camera), CAMERA);
 	else if (ft_strcmp(item, "L") == 0 || ft_strcmp(item, "l") == 0)
-		ret = adder(scene, line, NULL, 'L');
+		ret = adder(scene, line, NULL, DIR_LIGHT);
+	else if (ft_strcmp(item, "Sl") == 0 || ft_strcmp(item, "sl") == 0)
+		ret = adder(scene, line, NULL, SPH_LIGHT);
 	else if (ft_strcmp(item, "sp") == 0)
-		ret = adder(scene, line, NULL, 's');
+		ret = adder(scene, line, NULL, SPHERE);
 	else if (ft_strcmp(item, "pl") == 0)
-		ret = adder(scene, line, NULL, 'p');
+		ret = adder(scene, line, NULL, PLANE);
 	free(item);
 	return (ret);
 }

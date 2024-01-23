@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:35:34 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 17:28:10 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/19 18:00:31 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	free_scene(t_scene *scene)
 {
 	free_spheres(scene->spheres);
 	free_planes(scene->planes);
-	free_lights(scene->light);
+	free_lights(scene->lighting.light);
+	free_lights(scene->lighting.s_light);
 	free(scene);
 	return ;
 }

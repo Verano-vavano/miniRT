@@ -1,202 +1,135 @@
-==25748== Memcheck, a memory error detector
-==25748== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==25748== Using Valgrind-3.21.0-d97fed7c3e-20230428 and LibVEX; rerun with -h for copyright info
-==25748== Command: ./miniRT scenes/basic.rt
-==25748== Parent PID: 7467
-==25748== 
---25748-- 
---25748-- Valgrind options:
---25748--    --leak-check=full
---25748--    --show-leak-kinds=all
---25748--    --track-origins=yes
---25748--    --verbose
---25748--    --log-file=valgrind-out.txt
---25748-- Contents of /proc/version:
---25748--   Linux version 6.5.5-200.fc38.x86_64 (mockbuild@d4d01d62c9c942e59de1ef4aa94df5a2) (gcc (GCC) 13.2.1 20230728 (Red Hat 13.2.1-1), GNU ld version 2.39-9.fc38) #1 SMP PREEMPT_DYNAMIC Sun Sep 24 15:52:44 UTC 2023
---25748-- 
---25748-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3
---25748-- Page sizes: currently 4096, max supported 4096
---25748-- Valgrind library directory: /usr/libexec/valgrind
---25748-- Reading syms from /home/hugodupire/Bureau/Projets_42/miniRT/miniRT
---25748-- Reading syms from /usr/lib64/ld-linux-x86-64.so.2
---25748-- Warning: cross-CU LIMITATION: some inlined fn names
---25748-- might be shown as UnknownInlinedFun
---25748-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
-==25748== Downloading debug info for /usr/libexec/valgrind/memcheck-amd64-linux...
-==25748== Server query failed: No route to host
---25748--    object doesn't have a symbol table
---25748--    object doesn't have a dynamic symbol table
---25748-- Scheduler: using generic scheduler lock implementation.
---25748-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==25748== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-25748-by-hugodupire-on-VavanoFedora
-==25748== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-25748-by-hugodupire-on-VavanoFedora
-==25748== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-25748-by-hugodupire-on-VavanoFedora
-==25748== 
-==25748== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==25748== don't want to do, unless you know exactly what you're doing,
-==25748== or are doing some strange experiment):
-==25748==   /usr/libexec/valgrind/../../bin/vgdb --pid=25748 ...command...
-==25748== 
-==25748== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==25748==   /path/to/gdb ./miniRT
-==25748== and then give GDB the following command
-==25748==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=25748
-==25748== --pid is optional if only one valgrind process is running
-==25748== 
---25748-- REDIR: 0x4024730 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c3bf2 (???)
---25748-- REDIR: 0x4022ee0 (ld-linux-x86-64.so.2:index) redirected to 0x580c3c0c (???)
---25748-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---25748-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
-==25748== WARNING: new redirection conflicts with existing -- ignoring it
---25748--     old: 0x04024730 (strlen              ) R-> (0000.0) 0x580c3bf2 ???
---25748--     new: 0x04024730 (strlen              ) R-> (2007.0) 0x04847d60 strlen
---25748-- REDIR: 0x4023110 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4848e80 (strcmp)
---25748-- REDIR: 0x4022330 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484c6f0 (mempcpy)
---25748-- Reading syms from /usr/lib64/libX11.so.6.4.0
-==25748== Downloading debug info for /usr/lib64/libX11.so.6.4.0...
-==25748== Server query failed: No route to host
---25748--    object doesn't have a symbol table
---25748-- Reading syms from /usr/lib64/libXext.so.6.4.0
-==25748== Downloading debug info for /usr/lib64/libXext.so.6.4.0...
-==25748== Server query failed: No route to host
---25748--    object doesn't have a symbol table
---25748-- Reading syms from /usr/lib64/libm.so.6
-==25748== Downloading debug info for /usr/lib64/libm.so.6...
-==25748== Server query failed: No route to host
---25748--    object doesn't have a symbol table
---25748-- Reading syms from /usr/lib64/libc.so.6
-==25748== Downloading debug info for /usr/lib64/libc.so.6...
-==25748== Server query failed: No route to host
-==25748== WARNING: new redirection conflicts with existing -- ignoring it
---25748--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
---25748--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x048470ce aligned_alloc
-==25748== WARNING: new redirection conflicts with existing -- ignoring it
---25748--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
---25748--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x04847058 aligned_alloc
---25748-- Reading syms from /usr/lib64/libxcb.so.1.1.0
-==25748== Downloading debug info for /usr/lib64/libxcb.so.1.1.0...
-==25748== Server query failed: No route to host
---25748--    object doesn't have a symbol table
---25748-- Reading syms from /usr/lib64/libXau.so.6.0.0
-==25748== Downloading debug info for /usr/lib64/libXau.so.6.0.0...
-==25748== Server query failed: No route to host
---25748--    object doesn't have a symbol table
---25748-- REDIR: 0x40248d0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x48486b0 (strncmp)
---25748-- REDIR: 0x4b45c00 (libc.so.6:strnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45c90 (libc.so.6:strpbrk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43e60 (libc.so.6:strcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b58f50 (libc.so.6:wcsnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b42f60 (libc.so.6:memset) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b57700 (libc.so.6:wcslen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b424f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b574b0 (libc.so.6:wcschr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43d50 (libc.so.6:index) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45cc0 (libc.so.6:rindex) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b57540 (libc.so.6:wcscmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43180 (libc.so.6:stpncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b57b90 (libc.so.6:wmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45ab0 (libc.so.6:strncmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b431e0 (libc.so.6:strcasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b44fd0 (libc.so.6:strcspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b575d0 (libc.so.6:wcscpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43ce0 (libc.so.6:strcat) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b459b0 (libc.so.6:strncasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b42400 (libc.so.6:bcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b42ed0 (libc.so.6:memrchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43dd0 (libc.so.6:strchrnul) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b44f60 (libc.so.6:strcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43280 (libc.so.6:strcasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45880 (libc.so.6:strlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45b50 (libc.so.6:strncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b57c10 (libc.so.6:wmemcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43110 (libc.so.6:stpcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b42c90 (libc.so.6:memmove) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b42380 (libc.so.6:memchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45e90 (libc.so.6:strspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b42db0 (libc.so.6:mempcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b45910 (libc.so.6:strncasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b43050 (libc.so.6:rawmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4bc24f0 (libc.so.6:__memcpy_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4bc2610 (libc.so.6:__memmove_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
-==25748== WARNING: new redirection conflicts with existing -- ignoring it
---25748--     old: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2030.0) 0x0484c7f0 __memcpy_chk
---25748--     new: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2024.0) 0x0484c160 __memmove_chk
---25748-- REDIR: 0x4b466d0 (libc.so.6:strstr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
---25748-- REDIR: 0x4b563c0 (libc.so.6:__strrchr_sse2) redirected to 0x48477a0 (__strrchr_sse2)
---25748-- REDIR: 0x4b3ebd0 (libc.so.6:malloc) redirected to 0x48417b9 (malloc)
---25748-- REDIR: 0x4b3f190 (libc.so.6:free) redirected to 0x484423a (free)
-==25748== Invalid read of size 8
-==25748==    at 0x403174: set_new_arg_sphere (parser_forms.c:26)
-==25748==    by 0x4037F6: adder (parser_mandatory.c:103)
-==25748==    by 0x404946: understand_scene_line (scene.c:32)
-==25748==    by 0x4049C5: read_scene_file (scene.c:48)
-==25748==    by 0x404A8B: get_scene (scene.c:76)
-==25748==    by 0x402C34: main (main.c:23)
-==25748==  Address 0x4cb6230 is 16 bytes after a block of size 144 in arena "client"
-==25748== 
-==25748== Invalid write of size 8
-==25748==    at 0x403188: set_new_arg_sphere (parser_forms.c:27)
-==25748==    by 0x4037F6: adder (parser_mandatory.c:103)
-==25748==    by 0x404946: understand_scene_line (scene.c:32)
-==25748==    by 0x4049C5: read_scene_file (scene.c:48)
-==25748==    by 0x404A8B: get_scene (scene.c:76)
-==25748==    by 0x402C34: main (main.c:23)
-==25748==  Address 0x4cb6230 is 16 bytes after a block of size 144 in arena "client"
-==25748== 
-==25748== Invalid write of size 8
-==25748==    at 0x4031AC: set_new_arg_sphere (parser_forms.c:30)
-==25748==    by 0x4037F6: adder (parser_mandatory.c:103)
-==25748==    by 0x404946: understand_scene_line (scene.c:32)
-==25748==    by 0x4049C5: read_scene_file (scene.c:48)
-==25748==    by 0x404A8B: get_scene (scene.c:76)
-==25748==    by 0x402C34: main (main.c:23)
-==25748==  Address 0x4cb6238 is 24 bytes after a block of size 144 in arena "client"
-==25748== 
-
-valgrind: m_mallocfree.c:304 (get_bszB_as_is): Assertion 'bszB_lo == bszB_hi' failed.
-valgrind: Heap block lo/hi size mismatch: lo = 208, hi = 80449200.
-This is probably caused by your program erroneously writing past the
-end of a heap block and corrupting heap metadata.  If you fix any
-invalid writes reported by Memcheck, this assertion failure will
-probably go away.  Please try that before reporting this as a bug.
-
-
-host stacktrace:
-==25748==    at 0x580439FA: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x58043B2F: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x58043CC5: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x5804DCF8: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x5803BD1A: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x5803A427: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x5803EF10: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x580395B0: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x5800F83F: ??? (in /usr/libexec/valgrind/memcheck-amd64-linux)
-==25748==    by 0x1009101EDE: ???
-==25748==    by 0x1008FA9F0F: ???
-
-sched status:
-  running_tid=1
-
-Thread 1: status = VgTs_Runnable (lwpid 25748)
-==25748==    at 0x4031C3: set_new_arg_sphere (parser_forms.c:33)
-==25748==    by 0x4037F6: adder (parser_mandatory.c:103)
-==25748==    by 0x404946: understand_scene_line (scene.c:32)
-==25748==    by 0x4049C5: read_scene_file (scene.c:48)
-==25748==    by 0x404A8B: get_scene (scene.c:76)
-==25748==    by 0x402C34: main (main.c:23)
-client stack range: [0x1FFEFFE000 0x1FFF000FFF] client SP: 0x1FFEFFFCA0
-valgrind stack range: [0x1008EAA000 0x1008FA9FFF] top usage: 9136 of 1048576
-
-
-Note: see also the FAQ in the source distribution.
-It contains workarounds to several common problems.
-In particular, if Valgrind aborted or crashed after
-identifying problems in your program, there's a good chance
-that fixing those problems will prevent Valgrind aborting or
-crashing, especially if it happened in m_mallocfree.c.
-
-If that doesn't help, please report this bug to: www.valgrind.org
-
-In the bug report, send all the above text, the valgrind
-version, and what OS and version you are using.  Thanks.
-
+==33986== Memcheck, a memory error detector
+==33986== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==33986== Using Valgrind-3.21.0-d97fed7c3e-20230428 and LibVEX; rerun with -h for copyright info
+==33986== Command: ./miniRT scenes/basic.rt
+==33986== Parent PID: 3274
+==33986== 
+--33986-- 
+--33986-- Valgrind options:
+--33986--    --leak-check=full
+--33986--    --show-leak-kinds=all
+--33986--    --track-origins=yes
+--33986--    --verbose
+--33986--    --log-file=valgrind-out.txt
+--33986-- Contents of /proc/version:
+--33986--   Linux version 6.5.5-200.fc38.x86_64 (mockbuild@d4d01d62c9c942e59de1ef4aa94df5a2) (gcc (GCC) 13.2.1 20230728 (Red Hat 13.2.1-1), GNU ld version 2.39-9.fc38) #1 SMP PREEMPT_DYNAMIC Sun Sep 24 15:52:44 UTC 2023
+--33986-- 
+--33986-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3
+--33986-- Page sizes: currently 4096, max supported 4096
+--33986-- Valgrind library directory: /usr/libexec/valgrind
+--33986-- Reading syms from /home/hugodupire/Bureau/Projets_42/miniRT/miniRT
+--33986-- Reading syms from /usr/lib64/ld-linux-x86-64.so.2
+--33986-- Warning: cross-CU LIMITATION: some inlined fn names
+--33986-- might be shown as UnknownInlinedFun
+--33986-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+==33986== Downloading debug info for /usr/libexec/valgrind/memcheck-amd64-linux...
+==33986== Server query failed: No route to host
+--33986--    object doesn't have a symbol table
+--33986--    object doesn't have a dynamic symbol table
+--33986-- Scheduler: using generic scheduler lock implementation.
+--33986-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==33986== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-33986-by-hugodupire-on-VavanoFedora
+==33986== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-33986-by-hugodupire-on-VavanoFedora
+==33986== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-33986-by-hugodupire-on-VavanoFedora
+==33986== 
+==33986== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==33986== don't want to do, unless you know exactly what you're doing,
+==33986== or are doing some strange experiment):
+==33986==   /usr/libexec/valgrind/../../bin/vgdb --pid=33986 ...command...
+==33986== 
+==33986== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==33986==   /path/to/gdb ./miniRT
+==33986== and then give GDB the following command
+==33986==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=33986
+==33986== --pid is optional if only one valgrind process is running
+==33986== 
+--33986-- REDIR: 0x4024730 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c3bf2 (???)
+--33986-- REDIR: 0x4022ee0 (ld-linux-x86-64.so.2:index) redirected to 0x580c3c0c (???)
+--33986-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--33986-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==33986== WARNING: new redirection conflicts with existing -- ignoring it
+--33986--     old: 0x04024730 (strlen              ) R-> (0000.0) 0x580c3bf2 ???
+--33986--     new: 0x04024730 (strlen              ) R-> (2007.0) 0x04847d60 strlen
+--33986-- REDIR: 0x4023110 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4848e80 (strcmp)
+--33986-- REDIR: 0x4022330 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x484c6f0 (mempcpy)
+--33986-- Reading syms from /usr/lib64/libX11.so.6.4.0
+==33986== Downloading debug info for /usr/lib64/libX11.so.6.4.0...
+==33986== Server query failed: No route to host
+--33986--    object doesn't have a symbol table
+--33986-- Reading syms from /usr/lib64/libXext.so.6.4.0
+==33986== Downloading debug info for /usr/lib64/libXext.so.6.4.0...
+==33986== Server query failed: No route to host
+--33986--    object doesn't have a symbol table
+--33986-- Reading syms from /usr/lib64/libm.so.6
+==33986== Downloading debug info for /usr/lib64/libm.so.6...
+==33986== Server query failed: No route to host
+--33986--    object doesn't have a symbol table
+--33986-- Reading syms from /usr/lib64/libc.so.6
+==33986== Downloading debug info for /usr/lib64/libc.so.6...
+==33986== Server query failed: No route to host
+==33986== WARNING: new redirection conflicts with existing -- ignoring it
+--33986--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
+--33986--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x048470ce aligned_alloc
+==33986== WARNING: new redirection conflicts with existing -- ignoring it
+--33986--     old: 0x04b3f9b0 (memalign            ) R-> (1011.0) 0x04846bda memalign
+--33986--     new: 0x04b3f9b0 (memalign            ) R-> (1017.0) 0x04847058 aligned_alloc
+--33986-- Reading syms from /usr/lib64/libxcb.so.1.1.0
+==33986== Downloading debug info for /usr/lib64/libxcb.so.1.1.0...
+==33986== Server query failed: No route to host
+--33986--    object doesn't have a symbol table
+--33986-- Reading syms from /usr/lib64/libXau.so.6.0.0
+==33986== Downloading debug info for /usr/lib64/libXau.so.6.0.0...
+==33986== Server query failed: No route to host
+--33986--    object doesn't have a symbol table
+--33986-- REDIR: 0x40248d0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x48486b0 (strncmp)
+--33986-- REDIR: 0x4b45c00 (libc.so.6:strnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45c90 (libc.so.6:strpbrk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43e60 (libc.so.6:strcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b58f50 (libc.so.6:wcsnlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b42f60 (libc.so.6:memset) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b57700 (libc.so.6:wcslen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b424f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b574b0 (libc.so.6:wcschr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43d50 (libc.so.6:index) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45cc0 (libc.so.6:rindex) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b57540 (libc.so.6:wcscmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43180 (libc.so.6:stpncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b57b90 (libc.so.6:wmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45ab0 (libc.so.6:strncmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b431e0 (libc.so.6:strcasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b44fd0 (libc.so.6:strcspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b575d0 (libc.so.6:wcscpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43ce0 (libc.so.6:strcat) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b459b0 (libc.so.6:strncasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b42400 (libc.so.6:bcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b42ed0 (libc.so.6:memrchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43dd0 (libc.so.6:strchrnul) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b44f60 (libc.so.6:strcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43280 (libc.so.6:strcasecmp_l) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45880 (libc.so.6:strlen) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45b50 (libc.so.6:strncpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b57c10 (libc.so.6:wmemcmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43110 (libc.so.6:stpcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b42c90 (libc.so.6:memmove) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b42380 (libc.so.6:memchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45e90 (libc.so.6:strspn) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b42db0 (libc.so.6:mempcpy) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b45910 (libc.so.6:strncasecmp) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b43050 (libc.so.6:rawmemchr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4bc24f0 (libc.so.6:__memcpy_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4bc2610 (libc.so.6:__memmove_chk) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+==33986== WARNING: new redirection conflicts with existing -- ignoring it
+--33986--     old: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2030.0) 0x0484c7f0 __memcpy_chk
+--33986--     new: 0x04b49420 (__memcpy_chk_sse2_un) R-> (2024.0) 0x0484c160 __memmove_chk
+--33986-- REDIR: 0x4b466d0 (libc.so.6:strstr) redirected to 0x48361ea (_vgnU_ifunc_wrapper)
+--33986-- REDIR: 0x4b563c0 (libc.so.6:__strrchr_sse2) redirected to 0x48477a0 (__strrchr_sse2)
+--33986-- REDIR: 0x4b3ebd0 (libc.so.6:malloc) redirected to 0x48417b9 (malloc)
+--33986-- REDIR: 0x4b3f190 (libc.so.6:free) redirected to 0x484423a (free)
+==33986== 
+==33986== HEAP SUMMARY:
+==33986==     in use at exit: 0 bytes in 0 blocks
+==33986==   total heap usage: 196 allocs, 196 frees, 2,456 bytes allocated
+==33986== 
+==33986== All heap blocks were freed -- no leaks are possible
+==33986== 
+==33986== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

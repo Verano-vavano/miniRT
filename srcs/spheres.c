@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/12 16:43:53 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 18:08:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // This omission only works if Dir is normalized
 static bool	sphere_intersect(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *hit)
 {
-	double	b, c, discr, q, x_hit1, x_hit2;
+	double	b, c, discr, x_hit1, x_hit2;
 	t_vec3	sphere_org_rel;
 
 	sphere_org_rel = vec3_sub(org, sp->pos);
@@ -28,12 +28,8 @@ static bool	sphere_intersect(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double
 	discr = pow(b, 2) - (4 * c);
 	if (discr < 0)
 		return (false);
-	if (b >= 0)
-		q = -(b + discr) / 2;
-	else
-		q = -(b - discr) / 2;
-	x_hit1 = q;
-	x_hit2 = c / q;
+	x_hit1 = - (b + sqrt(discr)) / 2;
+	x_hit2 = - (b - sqrt(discr)) / 2;
 	if (x_hit1 >= 0 && (x_hit2 < 0 || x_hit1 < x_hit2))
 		*hit = x_hit1;
 	else if (x_hit2 >= 0 && (x_hit1 < 0 || x_hit2 < x_hit1))

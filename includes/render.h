@@ -10,6 +10,7 @@
 typedef struct s_last_form {
 	void	*addr;
 	char	shape;
+	t_col01	color;
 }	t_lform;
 
 typedef struct s_data {
@@ -42,7 +43,7 @@ bool	planes_render_all(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *x, t_
 void	get_infos(t_vec3 hit, t_lform *lf, t_vec3 *normal, t_col01 *col);
 
 // light_pathing
-void	light_pathing(t_scene *scene, t_vec3 hit, t_vec3 normal, t_col01 *ret, t_col01 lf);
+void	light_pathing(t_scene *scene, t_vec3 hit, t_vec3 normal, t_col01 *ret, t_lform *lform);
 void	ambient_lighting(struct s_ambient amb, t_col01 *ret, t_col01 lf);
 
 // mlx_plus

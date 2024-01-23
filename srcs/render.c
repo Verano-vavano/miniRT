@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/14 16:39:29 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:29:18 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	t_vec3		normal;
 	double		x_near;
 	t_color		ret;
-	t_col01		lf_color, amb_contr, lgt_contr;
+	t_col01		amb_contr, lgt_contr;
 	t_lform		last_form;
 
 	lgt_contr.r = 0;
@@ -56,9 +56,9 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	if (last_form.addr != NULL)
 	{
 		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
-		get_infos(hit, &last_form, &normal, &lf_color);
-		ambient_lighting(scene->ambient, &amb_contr, lf_color);
-		light_pathing(scene, hit, normal, &lgt_contr, lf_color);
+		get_infos(hit, &last_form, &normal, &(last_form.color));
+		ambient_lighting(scene->ambient, &amb_contr, last_form.color);
+		light_pathing(scene, hit, normal, &lgt_contr, &last_form);
 	}
 	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
 	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;

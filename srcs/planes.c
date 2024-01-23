@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/14 15:42:53 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 16:05:37 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static bool	plane_intersect(struct s_plane *pl, t_vec3 org, t_vec3 dir, double *
 	float	d;
 	float	denom;
 
-	d = - (pl->normal.x * pl->point.x) - (pl->normal.y * pl->point.y) - (pl->normal.z * pl->point.z);
+	d = -vec3_dot(pl->normal, pl->point);
 	denom = vec3_dot(pl->normal, dir);
-	if (denom < 1e-6)
+	if (fabs(denom) < 1e-6)
 		return (false);
 	*hit = - (vec3_dot(pl->normal, org) + d) / denom;
 	return (*hit >= 0);

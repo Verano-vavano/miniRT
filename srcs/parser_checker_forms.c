@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/19 17:58:06 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 15:41:41 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@ bool	check_last_sphere(t_scene *scene)
 
 bool	check_last_plane(t_scene *scene)
 {
-	if (scene->last_plane->point.valid
-		&& scene->last_plane->normal.valid
-		&& scene->last_plane->color.valid)
-		return (true);
-	return (false);
+	struct s_plane	*p;
+
+	p = scene->last_plane;
+	if (!p->point.valid
+		|| !p->normal.valid
+		|| !p->color.valid)
+		return (false);
+	if (p->normal.z > 0)
+		p->normal = vec3_mult_float(p->normal, -1.f);
+	return (true);
 }

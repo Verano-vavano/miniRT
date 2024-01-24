@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/22 18:48:41 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 20:37:03 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 {
-	struct s_sphere	*new_sphere;
+	t_sphere	*new_sphere;
 
 	if (arg_num == 1)
 	{
@@ -45,7 +45,7 @@ bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 
 bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num)
 {
-	struct s_plane	*new_plane;
+	t_plane	*new_plane;
 
 	if (arg_num == 1)
 	{

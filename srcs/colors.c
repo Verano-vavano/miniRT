@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 22:19:54 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/02 10:56:21 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 20:58:16 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_color	get_color(char *arg)
 {
 	t_color	ret;
 	char	**rgb;
-	int	i;
+	int		i;
 
 	ret.valid = false;
 	rgb = ft_split(arg, ',');
@@ -51,15 +51,14 @@ t_color	get_color(char *arg)
 		vec3_number_err(arg, rgb);
 		return (ret);
 	}
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
 		if (assign_color_struct(&ret, rgb[i], i) == false)
 		{
 			vec3_arg_err(rgb[i], rgb);
 			return (ret);
 		}
-		i++;
 	}
 	ret.valid = true;
 	free_char_etoile_etoile(rgb);

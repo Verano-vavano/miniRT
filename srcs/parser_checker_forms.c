@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 15:41:41 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 20:36:50 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	check_last_sphere(t_scene *scene)
 
 bool	check_last_plane(t_scene *scene)
 {
-	struct s_plane	*p;
+	t_plane	*p;
 
 	p = scene->last_plane;
 	if (!p->point.valid

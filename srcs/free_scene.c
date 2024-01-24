@@ -6,15 +6,15 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:35:34 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/19 18:00:31 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 20:36:30 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-static void	free_spheres(struct s_sphere *spheres)
+static void	free_spheres(t_sphere *spheres)
 {
-	struct s_sphere	*next;
+	t_sphere	*next;
 
 	while (spheres)
 	{
@@ -25,9 +25,9 @@ static void	free_spheres(struct s_sphere *spheres)
 	return ;
 }
 
-static void	free_planes(struct s_plane *planes)
+static void	free_planes(t_plane *planes)
 {
-	struct s_plane	*next;
+	t_plane	*next;
 
 	while (planes)
 	{
@@ -38,9 +38,9 @@ static void	free_planes(struct s_plane *planes)
 	return ;
 }
 
-static void	free_lights(struct s_light *light)
+static void	free_lights(t_light *light)
 {
-	struct s_light	*next;
+	t_light	*next;
 
 	while (light)
 	{

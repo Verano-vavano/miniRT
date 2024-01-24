@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:45:39 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/01 22:18:34 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 21:01:32 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "errors.h"
 #include <math.h>
 
-#define FLOAT_err 111111
+#define FLOAT_ERR 111111
 
 static bool	float_check_arg(char *arg)
 {
@@ -34,12 +34,11 @@ static bool	float_check_arg(char *arg)
 	}
 	d_count = 0;
 	arg += (*arg == '.');
-	while (*arg)
+	while (*arg && ++d_count)
 	{
 		if (*arg < '0' || *arg > '9')
 			return (float_convert_err(*arg));
 		arg++;
-		d_count++;
 		if (d_count > 5)
 			return (float_too_many_digits(*arg));
 	}
@@ -50,8 +49,8 @@ static float	atof_convert(char *arg)
 {
 	float	ret;
 	bool	dec;
-	int	decimal_point;
-	int	iter;
+	int		decimal_point;
+	int		iter;
 
 	iter = 0;
 	ret = 0;
@@ -85,12 +84,12 @@ float	little_atof(char *arg)
 	short	neg;
 
 	if (!float_check_arg(arg))
-		return (FLOAT_err);
+		return (FLOAT_ERR);
 	neg = 1;
 	while (*arg && (*arg == '+' || *arg == '-'))
 	{
 		neg *= (-1 * (*arg == '-') + 1 * (*arg == '+'));
 		arg++;
 	}
-	return (atof_convert(arg) * neg);;
+	return (atof_convert(arg) * neg);
 }

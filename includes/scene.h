@@ -1,74 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 20:10:56 by hdupire           #+#    #+#             */
+/*   Updated: 2024/01/23 20:50:06 by hdupire          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCENE_H
 # define SCENE_H
 
 # include "main.h"
-# include "vectors.h"
+# include "render.h"
 
 # include <fcntl.h>
-
-enum e_scene_arg {
-	AMBIENT,
-	CAMERA,
-	DIR_LIGHT,
-	SPH_LIGHT,
-	SPHERE,
-	PLANE
-};
-
-struct	s_camera {
-	t_vec3	vp;
-	t_vec3	dir;
-	short	fov;
-};
-
-struct	s_ambient {
-	float	lgt_ratio;
-	t_color	color;
-};
-
-struct	s_light {
-	t_vec3		vec;
-	t_vec3		inv_dir;
-	float		lgt_ratio;
-	t_color		color;
-	struct s_light	*next_light;
-};
-
-typedef struct s_lighting {
-	struct s_light		*light;
-	struct s_light		*last_light;
-	struct s_light		*s_light;
-	struct s_light		*last_s_light;
-}	t_lighting;
-
-struct	s_sphere {
-	t_vec3		pos;
-	float		diameter;
-	t_color		color;
-	struct s_sphere	*next_sphere;
-};
-
-struct	s_plane {
-	t_vec3		point;
-	t_vec3		normal;
-	t_color		color;
-	struct s_plane	*next_plane;
-};
-
-typedef struct	s_scene {
-	bool			is_valid;
-	bool			has_camera;
-	bool			has_ambient;
-	struct s_camera		camera;
-	struct s_ambient	ambient;
-	t_lighting		lighting;
-	struct s_sphere		*spheres;
-	struct s_sphere		*last_sphere;
-	struct s_plane		*planes;
-	struct s_plane		*last_plane;
-}		t_scene;
-
-# include "render.h"
 
 // SCENE
 t_scene	*get_scene(char *file);

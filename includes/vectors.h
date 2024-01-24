@@ -1,30 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vectors.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/23 20:13:29 by hdupire           #+#    #+#             */
+/*   Updated: 2024/01/23 20:27:34 by hdupire          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VECTORS_H
 # define VECTORS_H
 
-#include <stdbool.h>
-#include <math.h>
-#include <stdint.h>
+# include <stdbool.h>
+# include <math.h>
+# include <stdint.h>
 
-typedef struct	s_vec2 {
+typedef struct s_vec2
+{
 	double	x;
 	double	y;
 }		t_vec2;
 
-typedef struct	s_vec3 {
+typedef struct s_vec3
+{
 	double	x;
 	double	y;
 	double	z;
 	bool	valid;
 }		t_vec3;
 
-typedef struct	s_color {
+typedef struct s_ray
+{
+	t_vec3	org;
+	t_vec3	dir;
+}		t_ray;
+
+typedef struct s_color
+{
 	uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
-	bool		valid;
+	bool	valid;
 }		t_color;
 
-typedef struct	s_col01 {
+typedef struct s_col01
+{
 	float	r;
 	float	g;
 	float	b;

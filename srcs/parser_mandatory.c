@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/19 18:03:08 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 21:08:44 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,36 @@ static bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 	return (true);
 }
 
-static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num, bool spherical)
+static bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph)
 {
-	struct s_light	*new_light;
+	t_light	*new_light;
 
 	if (arg_num == 1)
 	{
 		new_light = ft_calloc(1, sizeof (struct s_light));
 		if (!new_light)
 			return (malloc_err("LIGHT"));
-		if (spherical)
+		if (sph)
 		{
-			if (!scene->lighting.s_light)
-				scene->lighting.s_light = new_light;
+			if (!sc->lighting.s_light)
+				sc->lighting.s_light = new_light;
 			else
-				scene->lighting.last_s_light->next_light = new_light;
-			scene->lighting.last_s_light = new_light;
+				sc->lighting.last_s_light->next_light = new_light;
+			sc->lighting.last_s_light = new_light;
 		}
 		else
 		{
-			if (!scene->lighting.light)
-				scene->lighting.light = new_light;
+			if (!sc->lighting.light)
+				sc->lighting.light = new_light;
 			else
-				scene->lighting.last_light->next_light = new_light;
-			scene->lighting.last_light = new_light;
+				sc->lighting.last_light->next_light = new_light;
+			sc->lighting.last_light = new_light;
 		}
 	}
-	if (spherical)
-		new_light = scene->lighting.last_s_light;
+	if (sph)
+		new_light = sc->lighting.last_s_light;
 	else
-		new_light = scene->lighting.last_light;
+		new_light = sc->lighting.last_light;
 	if (arg_num == 2)
 		new_light->vec = get_coord_vec3(arg, false);
 	else if (arg_num == 3)
@@ -96,7 +96,7 @@ static bool	set_new_arg_light(t_scene *scene, char *arg, short arg_num, bool sph
 // RET = 0 : ERROR
 bool	adder(t_scene *scene, char *line, bool *verif, enum e_scene_arg name)
 {
-	int	advancement;
+	int		advancement;
 	short	arg_num;
 	char	*arg;
 	short	ret;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 18:08:08 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/23 20:38:04 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 // Dir normalized, hence x² + y² + z² = 1
 // a = 1, so a isn't required
 // This omission only works if Dir is normalized
-static bool	sphere_intersect(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *hit)
+static bool	sphere_intersect(t_sphere *sp, t_ray ray, double *hit)
 {
 	double	b, c, discr, x_hit1, x_hit2;
 	t_vec3	sphere_org_rel;
 
-	sphere_org_rel = vec3_sub(org, sp->pos);
-	b = 2.0f * vec3_dot(sphere_org_rel, dir);
+	sphere_org_rel = vec3_sub(ray.org, sp->pos);
+	b = 2.0f * vec3_dot(sphere_org_rel, ray.dir);
 	c = vec3_dot(sphere_org_rel, sphere_org_rel) - pow(sp->diameter / 2, 2);
 	discr = pow(b, 2) - (4 * c);
 	if (discr < 0)
@@ -39,16 +39,16 @@ static bool	sphere_intersect(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double
 	return (true);
 }
 
-bool	spheres_render_all(struct s_sphere *sp, t_vec3 org, t_vec3 dir, double *x, t_lform *lform)
+bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lform)
 {
 	double	hit_near, hit;
-	struct s_sphere *closest;
+	t_sphere *closest;
 
 	hit_near = INFINITY;
 	closest = NULL;
 	while (sp)
 	{
-		if (sphere_intersect(sp, org, dir, &hit) && hit < hit_near)
+		if (sphere_intersect(sp, r, &hit) && hit < hit_near)
 		{
 			hit_near = hit;
 			closest = sp;

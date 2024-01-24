@@ -6,23 +6,23 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 15:29:18 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/24 02:30:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
-double	trace(t_scene *scene, t_vec3 org, t_vec3 dest, t_lform *lform)
+double	trace(t_scene *scene, t_ray ray, t_lform *lform)
 {
 	double	x;
 	double	x_near;
 	t_lform	temp;
 
 	x_near = INFINITY;
-	if (spheres_render_all(scene->spheres, org, dest, &x, lform))
+	if (sp_render(scene->spheres, ray, &x, lform))
 		x_near = x;
-	if (planes_render_all(scene->planes, org, dest, &x, &temp) && x < x_near)
+	if (pl_render(scene->planes, ray, &x, &temp) && x < x_near)
 	{
 		x_near = x;
 		*lform = temp;
@@ -33,8 +33,7 @@ double	trace(t_scene *scene, t_vec3 org, t_vec3 dest, t_lform *lform)
 static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 {
 	t_scene		*scene;
-	t_vec3		direction;
-	t_vec3		normal;
+	t_ray		ray;
 	double		x_near;
 	t_color		ret;
 	t_col01		amb_contr, lgt_contr;
@@ -47,18 +46,20 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	amb_contr.g = 0;
 	amb_contr.b = 0;
 	scene = window->scene;
-	direction.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
-	direction.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
-	direction.z = scene->camera.dir.z;
-	direction = vec3_normalize(direction);
+	ray.org = scene->camera.vp;
+	ray.dir.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
+	ray.dir.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
+	ray.dir.z = scene->camera.dir.z;
+	ray.dir = vec3_normalize(ray.dir);
 	last_form.addr = NULL;
-	x_near = trace(scene, scene->camera.vp, direction, &last_form);
+	x_near = trace(scene, ray, &last_form);
 	if (last_form.addr != NULL)
 	{
-		t_vec3	hit = vec3_add(scene->camera.vp, vec3_mult_float(direction, x_near));
-		get_infos(hit, &last_form, &normal, &(last_form.color));
+		t_vec3	hit = vec3_add(ray.org, vec3_mult_float(ray.dir, x_near));
+		get_infos(hit, &last_form, &(last_form.normal), &(last_form.color));
 		ambient_lighting(scene->ambient, &amb_contr, last_form.color);
-		light_pathing(scene, hit, normal, &lgt_contr, &last_form);
+		dir_lighting(scene, hit, &lgt_contr, &last_form);
+		//sph_lighting(scene, hit, &lgt_contr, &last_form);
 	}
 	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
 	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;

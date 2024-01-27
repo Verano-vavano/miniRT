@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:36:09 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/19 17:57:50 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:24:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ bool	check_light(struct s_light *light)
 		return (invalid_range_err("LIGHT", "0.0", "1.0"));
 	if (light->vec.valid == false || light->color.valid == false)
 		return (false);
-	light->vec = vec3_normalize(light->vec);
+	if (!light->spherical && vec3_length(light->vec) == 0)
+		return (false);
+	if (!light->spherical)
+		light->vec = vec3_normalize(light->vec);
 	light->inv_dir = vec3_mult_float(light->vec, -1.f);
 	return (true);
 }

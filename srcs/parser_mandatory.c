@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 21:08:44 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:24:37 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph)
 			return (malloc_err("LIGHT"));
 		if (sph)
 		{
+			new_light->spherical = true;
 			if (!sc->lighting.s_light)
 				sc->lighting.s_light = new_light;
 			else
@@ -79,7 +80,9 @@ static bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph)
 	else
 		new_light = sc->lighting.last_light;
 	if (arg_num == 2)
+	{
 		new_light->vec = get_coord_vec3(arg, false);
+	}
 	else if (arg_num == 3)
 		new_light->lgt_ratio = little_atof(arg);
 	else if (arg_num == 4)

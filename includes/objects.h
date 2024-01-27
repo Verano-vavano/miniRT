@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:53:18 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:23:30 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_light
 	t_vec3			inv_dir;
 	float			lgt_ratio;
 	t_color			color;
+	bool			spherical;
 	struct s_light	*next_light;
 }				t_light;
 

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 18:26:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/24 02:30:40 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/27 02:09:39 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	sph_lighting(t_scene *scene, t_vec3 hit, t_col01 *r, t_lform *lf)
 	while (s_light)
 	{
 		light_dir = vec3_sub(s_light->vec, hit);
-		r2 = vec3_length(light_dir);
+		r2 = light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z;
 		d = s_light->lgt_ratio / (4 * M_PI * r2);
-		r->r = fmin(1.f, r->r + lf->color.r * d * s_light->color.r / 255.f);
-		r->g = fmin(1.f, r->g + lf->color.g * d * s_light->color.g / 255.f);
-		r->b = fmin(1.f, r->b + lf->color.b * d * s_light->color.b / 255.f);
+		r->r = fmin(1.f, r->r + lf->color.r * d * s_light->color.r);
+		r->g = fmin(1.f, r->g + lf->color.g * d * s_light->color.g);
+		r->b = fmin(1.f, r->b + lf->color.b * d * s_light->color.b);
 		s_light = s_light->next_light;
 	}
 }

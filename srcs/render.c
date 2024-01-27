@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/24 02:30:46 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/27 02:09:45 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 		get_infos(hit, &last_form, &(last_form.normal), &(last_form.color));
 		ambient_lighting(scene->ambient, &amb_contr, last_form.color);
 		dir_lighting(scene, hit, &lgt_contr, &last_form);
-		//sph_lighting(scene, hit, &lgt_contr, &last_form);
+		sph_lighting(scene, hit, &lgt_contr, &last_form);
 	}
 	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
 	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;

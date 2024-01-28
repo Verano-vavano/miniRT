@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/24 02:04:56 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 07:02:52 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_window
 
 void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
-double	trace(t_scene *scene, t_ray ray, t_lform *lform);
+double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes);
 
 // renderers
 bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lf);

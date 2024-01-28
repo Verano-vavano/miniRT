@@ -6,14 +6,14 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/27 02:09:45 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 07:04:35 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
-double	trace(t_scene *scene, t_ray ray, t_lform *lform)
+double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes)
 {
 	double	x;
 	double	x_near;
@@ -22,7 +22,7 @@ double	trace(t_scene *scene, t_ray ray, t_lform *lform)
 	x_near = INFINITY;
 	if (sp_render(scene->spheres, ray, &x, lform))
 		x_near = x;
-	if (pl_render(scene->planes, ray, &x, &temp) && x < x_near)
+	if (planes && pl_render(scene->planes, ray, &x, &temp) && x < x_near)
 	{
 		x_near = x;
 		*lform = temp;
@@ -52,7 +52,7 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	ray.dir.z = scene->camera.dir.z;
 	ray.dir = vec3_normalize(ray.dir);
 	last_form.addr = NULL;
-	x_near = trace(scene, ray, &last_form);
+	x_near = trace(scene, ray, &last_form, true);
 	if (last_form.addr != NULL)
 	{
 		t_vec3	hit = vec3_add(ray.org, vec3_mult_float(ray.dir, x_near));

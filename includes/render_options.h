@@ -6,12 +6,22 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:10:08 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:10:15 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 04:56:32 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_OPTIONS_H
 # define RENDER_OPTIONS_H
+
+/* SMALL DEFINES */
+
+// Small value defining an ofset
+# define EPSILON 1e-4
+
+/* SHADING */
+
+// Number of recursive calls for reflection (mirror-like surfaces)
+# define MAX_REFLECTION 3
 
 /* SHADOWS */
 

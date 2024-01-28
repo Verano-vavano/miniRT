@@ -6,13 +6,22 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/27 03:28:39 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 06:38:10 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "errors.h"
 #include "libft.h"
+
+static bool	set_shade(t_shade *shade, char *arg)
+{
+	if (arg[0] == 'M')
+		shade->reflect = true;
+	else
+		return (false);
+	return (true);
+}
 
 bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 {
@@ -38,6 +47,8 @@ bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 		scene->last_sphere->color = get_color(arg);
 		return (check_last_sphere(scene));
 	}
+	else if (set_shade(&(scene->last_sphere->shading), arg))
+		return (true);
 	else
 		return (too_many_args_err("SPHERE", "3"));
 	return (true);

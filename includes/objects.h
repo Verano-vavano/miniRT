@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 06:29:18 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 10:14:40 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ struct	s_ambient
 	t_color	color;
 };
 
+typedef struct s_shade
+{
+	bool	reflect;
+}			   t_shade;
+
 typedef struct s_light
 {
 	t_vec3			vec;
@@ -55,11 +60,6 @@ typedef struct s_lighting
 	t_light		*s_light;
 	t_light		*last_s_light;
 }				t_lighting;
-
-typedef struct s_shade
-{
-	bool	reflect;
-}			   t_shade;
 
 typedef struct s_sphere
 {

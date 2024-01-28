@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 07:04:35 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 10:21:57 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,11 @@ void	render(t_scene *scene)
 	window->mlx_ptr = mlx_init();
 	if (!window->mlx_ptr)
 		return ;
+	t_sphere *nsp = scene->spheres;
+	while (nsp)
+	{
+		nsp = nsp->next_sphere;
+	}
 	window->scene = scene;
 	window->width = 720;
 	window->height = 480;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 07:03:53 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/28 10:27:06 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static bool	sphere_intersect(t_sphere *sp, t_ray ray, double *hit)
 	double	b, c, discr, x_hit1, x_hit2;
 	t_vec3	sphere_org_rel;
 
+	sphere_org_rel = vec3_sub(ray.org, sp->pos);
 	b = 2.0f * vec3_dot(sphere_org_rel, ray.dir);
 	c = vec3_dot(sphere_org_rel, sphere_org_rel) - pow(sp->diameter / 2, 2);
 	discr = pow(b, 2) - (4 * c);

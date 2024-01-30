@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:17:07 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 10:48:01 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/30 06:28:56 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_infos(t_vec3 hit, t_lform *lf)
 		pl = (t_plane *) lf->addr;
 		copy_color(&temp, pl->color.r, pl->color.g, pl->color.b);
 		copy_2vec3(&(lf->normal), pl->normal);
-		//lf->shade = &(pl->shade);
+		lf->shade = &(pl->shading);
 	}
 	lf->color.r = temp.r / 255.f;
 	lf->color.g = temp.g / 255.f;

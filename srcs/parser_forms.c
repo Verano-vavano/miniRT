@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 10:14:56 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/30 06:18:30 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num)
 		scene->last_plane->color = get_color(arg);
 		return (check_last_plane(scene));
 	}
+	else if (set_shade(&(scene->last_plane->shading), arg))
+		return (true);
 	else
 		return (too_many_args_err("PLANE", "3"));
 	return (true);

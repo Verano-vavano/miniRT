@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 10:30:39 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/30 06:18:03 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_plane
 	t_vec3			point;
 	t_vec3			normal;
 	t_color			color;
+	t_shade			shading;
 	struct s_plane	*next_plane;
 }				t_plane;
 

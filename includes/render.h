@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 07:02:52 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/29 02:57:37 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_last_form
 	char	shape;
 	t_col01	color;
 	t_vec3	normal;
+	t_shade	*shade;
 }	t_lform;
 
 typedef struct s_data
@@ -50,6 +51,7 @@ typedef struct s_window
 
 void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
+t_color	cast_ray(t_window *window, t_ray ray, int ray_num);
 double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes);
 
 // renderers
@@ -57,12 +59,15 @@ bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lf);
 bool	pl_render(t_plane *pl, t_ray r, double *x, t_lform *lf);
 
 // lf_infos
-void	get_infos(t_vec3 hit, t_lform *lf, t_vec3 *normal, t_col01 *col);
+void	get_infos(t_vec3 hit, t_lform *lf);
 
 // light_pathing
 void	ambient_lighting(struct s_ambient amb, t_col01 *ret, t_col01 lf);
 void	dir_lighting(t_scene *sc, t_vec3 hit, t_col01 *ret, t_lform *lf);
 void	sph_lighting(t_scene *sc, t_vec3 hit, t_col01 *ret, t_lform *lf);
+
+// shading
+t_color	reflect_color(t_window *window, t_vec3 hit, t_vec3 old_dir, t_lform *lf, int r_num);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);

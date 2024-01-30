@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 10:21:57 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/29 02:59:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes)
 	return (x_near);
 }
 
-static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
+t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 {
 	t_scene		*scene;
-	t_ray		ray;
 	double		x_near;
 	t_color		ret;
 	t_col01		amb_contr, lgt_contr;
@@ -46,17 +45,19 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	amb_contr.g = 0;
 	amb_contr.b = 0;
 	scene = window->scene;
-	ray.org = scene->camera.vp;
-	ray.dir.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
-	ray.dir.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
-	ray.dir.z = scene->camera.dir.z;
-	ray.dir = vec3_normalize(ray.dir);
 	last_form.addr = NULL;
 	x_near = trace(scene, ray, &last_form, true);
 	if (last_form.addr != NULL)
 	{
 		t_vec3	hit = vec3_add(ray.org, vec3_mult_float(ray.dir, x_near));
-		get_infos(hit, &last_form, &(last_form.normal), &(last_form.color));
+		get_infos(hit, &last_form);
+		if (last_form.shade && last_form.shade->reflect && ray_num < MAX_REFLECTION)
+		{
+			ret = reflect_color(window, hit, ray.dir, &last_form, ray_num);
+			last_form.color.r = ret.r / 255.f;
+			last_form.color.g = ret.g / 255.f;
+			last_form.color.b = ret.b / 255.f;
+		}
 		ambient_lighting(scene->ambient, &amb_contr, last_form.color);
 		dir_lighting(scene, hit, &lgt_contr, &last_form);
 		sph_lighting(scene, hit, &lgt_contr, &last_form);
@@ -67,9 +68,20 @@ static t_color	cast_ray(t_window *window, t_vec2 *coord, float fov)
 	return (ret);
 }
 
+static void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov)
+{
+	ray->org = window->scene->camera.vp;
+	ray->dir.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
+	ray->dir.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
+	ray->dir.z = window->scene->camera.dir.z;
+	ray->dir = vec3_normalize(ray->dir);
+	return ;
+}
+
 void	render_scene(t_window **window_ptr)
 {
 	t_vec2		coord;
+	t_ray		ray;
 	t_color		color;
 	t_window	*window;
 	float		fov;
@@ -89,7 +101,8 @@ void	render_scene(t_window **window_ptr)
 		coord.x = 0;
 		while (coord.x <= window->width)
 		{
-			color = cast_ray(window, &coord, fov);
+			calculate_ray(&ray, window, &coord, fov);
+			color = cast_ray(window, ray, 0);
 			if (OS[0] == 'D')
 				mlx_pixel_put(window->mlx_ptr, window->window, coord.x, coord.y, (color.r << 16) | (color.g << 8) | color.b);
 			else
@@ -118,11 +131,6 @@ void	render(t_scene *scene)
 	window->mlx_ptr = mlx_init();
 	if (!window->mlx_ptr)
 		return ;
-	t_sphere *nsp = scene->spheres;
-	while (nsp)
-	{
-		nsp = nsp->next_sphere;
-	}
 	window->scene = scene;
 	window->width = 720;
 	window->height = 480;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/30 06:18:03 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 23:09:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ enum e_scene_arg
 	DIR_LIGHT,
 	SPH_LIGHT,
 	SPHERE,
-	PLANE
+	PLANE,
+	CYLINDER
 };
 
 struct	s_camera
@@ -79,6 +80,18 @@ typedef struct s_plane
 	struct s_plane	*next_plane;
 }				t_plane;
 
+typedef struct s_cylinder
+{
+	t_vec3			center;
+	t_vec3			normal;
+	float			diameter;
+	float			radius;
+	float			height;
+	t_color			color;
+	t_shade			shading;
+	struct s_cylinder	*next;
+}		t_cylinder;
+
 typedef struct s_scene
 {
 	bool				is_valid;
@@ -91,6 +104,8 @@ typedef struct s_scene
 	t_sphere			*last_sphere;
 	t_plane				*planes;
 	t_plane				*last_plane;
+	t_cylinder			*cyl;
+	t_cylinder			*last_cyl;
 }				t_scene;
 
 #endif

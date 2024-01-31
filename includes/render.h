@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/29 02:57:37 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 23:14:11 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes);
 // renderers
 bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lf);
 bool	pl_render(t_plane *pl, t_ray r, double *x, t_lform *lf);
+bool	cyl_render(t_cylinder *cyl, t_ray r, double *x, t_lform *lf);
 
 // lf_infos
 void	get_infos(t_vec3 hit, t_lform *lf);
@@ -79,5 +80,8 @@ int		key_event(int key, t_window *window);
 // render_utilities
 void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b);
 void	copy_2vec3(t_vec3 *v1, t_vec3 v2);
+
+// utils
+bool	quadratic(double a, double b, double c, double *ret);
 
 #endif

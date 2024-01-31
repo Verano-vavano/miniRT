@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:35:34 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:36:30 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 10:03:43 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ static void	free_planes(t_plane *planes)
 	return ;
 }
 
+static void	free_cyl(t_cylinder *cyl)
+{
+	t_cylinder	*next;
+
+	while (cyl)
+	{
+		next = cyl->next;
+		free(cyl);
+		cyl = next;
+	}
+	return ;
+}
+
 static void	free_lights(t_light *light)
 {
 	t_light	*next;
@@ -55,6 +68,7 @@ void	free_scene(t_scene *scene)
 {
 	free_spheres(scene->spheres);
 	free_planes(scene->planes);
+	free_cyl(scene->cyl);
 	free_lights(scene->lighting.light);
 	free_lights(scene->lighting.s_light);
 	free(scene);

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/30 07:49:47 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 23:22:02 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes)
 	if (sp_render(scene->spheres, ray, &x, lform))
 		x_near = x;
 	if (planes && pl_render(scene->planes, ray, &x, &temp) && x < x_near)
+	{
+		x_near = x;
+		*lform = temp;
+	}
+	if (cyl_render(scene->cyl, ray, &x, &temp) && x < x_near)
 	{
 		x_near = x;
 		*lform = temp;
@@ -132,8 +137,8 @@ void	render(t_scene *scene)
 	if (!window->mlx_ptr)
 		return ;
 	window->scene = scene;
-	window->width = 720;
-	window->height = 480;
+	window->width = WIDTH;
+	window->height = HEIGHT;
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
 		window->width, window->height, "Cyberpunk");

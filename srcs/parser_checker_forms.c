@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:36:50 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 09:58:05 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,19 @@ bool	check_last_plane(t_scene *scene)
 		return (false);
 	if (p->normal.z > 0)
 		p->normal = vec3_mult_float(p->normal, -1.f);
+	return (true);
+}
+
+bool	check_last_cyl(t_scene *scene)
+{
+	t_cylinder	*c;
+
+	c = scene->last_cyl;
+	if (c->diameter > 100000.0f || c->diameter < 0.f
+		|| c->height > 100000.0f || c->height < 0.f)
+		return (false);
+	else if (!c->center.valid || !c->normal.valid
+		|| !c->color.valid)
+		return (false);
 	return (true);
 }

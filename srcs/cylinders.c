@@ -1,45 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   planes.c                                           :+:      :+:    :+:   */
+/*   cylinders.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 10:19:35 by hdupire          ###   ########.fr       */
+/*   Created: 2024/01/31 10:19:23 by hdupire           #+#    #+#             */
+/*   Updated: 2024/01/31 23:14:00 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
+static bool	cyl_intersect(t_cylinder *cyl, t_ray ray, double *hit)
 {
-	float	d;
-	float	denom;
+	double	a, b, c;
+	t_vec3	x, d, v;
+	double	dv, xv;
 
-	d = -vec3_dot(pl->normal, pl->point);
-	denom = vec3_dot(pl->normal, ray.dir);
-	if (fabs(denom) < 1e-6)
-		return (false);
-	*hit = - (vec3_dot(pl->normal, ray.org) + d) / denom;
-	return (*hit > 0);
+	d = ray.dir;
+	v = cyl->normal;
+	x = vec3_sub(ray.org, cyl->center);
+	dv = vec3_dot(d, v);
+	xv = vec3_dot(x, v);
+	a = 1 - pow(dv, 2);
+	b = 2 * (vec3_dot(d, x) - (dv * xv));
+	c = vec3_dot(x, x) - pow(xv, 2) - pow(cyl->radius, 2);
+	return (quadratic(a, b, c, hit));
 }
 
-bool	pl_render(t_plane *pl, t_ray ray, double *x, t_lform *lform)
+bool	cyl_render(t_cylinder *cyl, t_ray ray, double *x, t_lform *lform)
 {
 	double	hit_near, hit;
-	t_plane *closest;
+	t_cylinder *closest;
 
 	hit_near = INFINITY;
 	closest = NULL;
-	while (pl)
+	while (cyl)
 	{
-		if (plane_intersect(pl, ray, &hit) && hit < hit_near)
+		if (cyl_intersect(cyl, ray, &hit) && hit < hit_near)
 		{
 			hit_near = hit;
-			closest = pl;
+			closest = cyl;
 		}
-		pl = pl->next_plane;
+		cyl = cyl->next;
 	}
 	if (closest)
 	{
@@ -47,7 +51,7 @@ bool	pl_render(t_plane *pl, t_ray ray, double *x, t_lform *lform)
 		if (lform)
 		{
 			lform->addr = (void *) closest;
-			lform->shape = 'p';
+			lform->shape = 'c';
 		}
 	}
 	return (closest != NULL);

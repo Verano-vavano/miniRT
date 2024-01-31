@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/19 12:45:07 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 09:49:29 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static bool	understand_scene_line(t_scene *scene, char *line)
 		ret = adder(scene, line, NULL, SPHERE);
 	else if (ft_strcmp(item, "pl") == 0)
 		ret = adder(scene, line, NULL, PLANE);
+	else if (ft_strcmp(item, "cy") == 0)
+		ret = adder(scene, line, NULL, CYLINDER);
 	free(item);
 	return (ret);
 }

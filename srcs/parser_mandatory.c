@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/27 14:24:37 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 09:50:06 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ bool	adder(t_scene *scene, char *line, bool *verif, enum e_scene_arg name)
 			ret = set_new_arg_sphere(scene, arg, arg_num);
 		else if (name == PLANE)
 			ret = set_new_arg_plane(scene, arg, arg_num);
+		else if (name == CYLINDER)
+			ret = set_new_arg_cyl(scene, arg, arg_num);
 		free(arg);
 		arg_num++;
 		line += advancement;

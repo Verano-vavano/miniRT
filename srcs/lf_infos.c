@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:17:07 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/30 06:28:56 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 23:23:04 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	get_infos(t_vec3 hit, t_lform *lf)
 	t_color		temp;
 	t_sphere	*sp;
 	t_plane		*pl;
+	t_cylinder	*cl;
 
 	lf->normal.x = 0;
 	lf->normal.y = 0;
@@ -39,6 +40,13 @@ void	get_infos(t_vec3 hit, t_lform *lf)
 		copy_color(&temp, pl->color.r, pl->color.g, pl->color.b);
 		copy_2vec3(&(lf->normal), pl->normal);
 		lf->shade = &(pl->shading);
+	}
+	else if (lf->shape == 'c')
+	{
+		cl = (t_cylinder *) lf->addr;
+		copy_color(&temp, cl->color.r, cl->color.g, cl->color.b);
+		copy_2vec3(&(lf->normal), cl->normal);
+		lf->shade = &(cl->shading);
 	}
 	lf->color.r = temp.r / 255.f;
 	lf->color.g = temp.g / 255.f;

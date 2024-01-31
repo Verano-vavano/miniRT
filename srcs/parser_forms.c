@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/30 06:18:30 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 23:09:37 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,44 @@ bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num)
 		return (check_last_plane(scene));
 	}
 	else if (set_shade(&(scene->last_plane->shading), arg))
+		return (true);
+	else
+		return (too_many_args_err("PLANE", "3"));
+	return (true);
+}
+
+bool	set_new_arg_cyl(t_scene *scene, char *arg, short arg_num)
+{
+	t_cylinder	*new_cyl;
+
+	if (arg_num == 1)
+	{
+		new_cyl = ft_calloc(1, sizeof (t_cylinder));
+		if (!new_cyl)
+			return (malloc_err("CYLINDER"));
+		if (!scene->cyl)
+			scene->cyl = new_cyl;
+		else
+			scene->last_cyl->next = new_cyl;
+		scene->last_cyl = new_cyl;
+	}
+	else if (arg_num == 2)
+		scene->last_cyl->center = get_coord_vec3(arg, false);
+	else if (arg_num == 3)
+		scene->last_cyl->normal = vec3_normalize(get_coord_vec3(arg, false));
+	else if (arg_num == 4)
+	{
+		scene->last_cyl->diameter = little_atof(arg);
+		scene->last_cyl->radius = scene->last_cyl->diameter / 2;
+	}
+	else if (arg_num == 5)
+		scene->last_cyl->height = little_atof(arg);
+	else if (arg_num == 6)
+	{
+		scene->last_cyl->color = get_color(arg);
+		return (check_last_cyl(scene));
+	}
+	else if (set_shade(&(scene->last_cyl->shading), arg))
 		return (true);
 	else
 		return (too_many_args_err("PLANE", "3"));

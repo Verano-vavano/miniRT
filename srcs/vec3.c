@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 10:28:46 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:02 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/31 10:07:04 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
 
 static bool	assign_vec3(t_vec3 *ret, char *coord, int index, bool smallest)
 {
-	int	int_coord;
+	double	f_coord;
 
-	if (!is_intable(coord))
-		return (false);
-	int_coord = ft_atoi(coord);
-	if (smallest && (int_coord < -1 || int_coord > 1))
+	f_coord = little_atof(coord);
+	if (smallest && (f_coord < -1 || f_coord > 1))
 		return (false);
 	if (index == 0)
-		ret->x = int_coord;
+		ret->x = f_coord;
 	else if (index == 1)
-		ret->y = int_coord;
+		ret->y = f_coord;
 	else
-		ret->z = int_coord;
+		ret->z = f_coord;
 	return (true);
 }
 
@@ -57,7 +55,7 @@ t_vec3	get_coord_vec3(char *arg, bool smallest)
 		}
 		current++;
 	}
-	ret.valid = true;
+	ret.valid = (ret.x < 100000.f && ret.y < 100000.f && ret.z < 100000.f);
 	free_char_etoile_etoile(xyz);
 	return (ret);
 }

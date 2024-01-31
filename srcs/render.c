@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/29 02:59:08 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/30 07:49:47 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 	scene = window->scene;
 	last_form.addr = NULL;
 	x_near = trace(scene, ray, &last_form, true);
-	if (last_form.addr != NULL)
+	if (x_near > NEAR_CLIP && x_near < FAR_CLIP && last_form.addr != NULL)
 	{
 		t_vec3	hit = vec3_add(ray.org, vec3_mult_float(ray.dir, x_near));
 		get_infos(hit, &last_form);

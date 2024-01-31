@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:10:08 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/28 10:07:25 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/30 07:42:35 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 // Small value defining an ofset
 # define EPSILON 1e-4
+// Closest t-value where an object can appear
+# define NEAR_CLIP 1
+// Furthest t-value where an object can appear
+# define FAR_CLIP 80
 
 /* SHADING */
 

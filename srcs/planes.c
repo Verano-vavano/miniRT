@@ -6,12 +6,12 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:40:12 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/01/30 07:41:02 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-
+;
 static bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
 {
 	float	d;
@@ -22,7 +22,7 @@ static bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
 	if (fabs(denom) < 1e-6)
 		return (false);
 	*hit = - (vec3_dot(pl->normal, ray.org) + d) / denom;
-	return (*hit >= 0);
+	return (*hit > 0);
 }
 
 bool	pl_render(t_plane *pl, t_ray ray, double *x, t_lform *lform)

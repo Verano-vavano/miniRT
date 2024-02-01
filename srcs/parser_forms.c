@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 23:09:37 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/01 11:56:23 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ bool	set_new_arg_cyl(t_scene *scene, char *arg, short arg_num)
 	else if (arg_num == 4)
 	{
 		scene->last_cyl->diameter = little_atof(arg);
-		scene->last_cyl->radius = scene->last_cyl->diameter / 2;
+		scene->last_cyl->radius = scene->last_cyl->diameter / 2.f;
 	}
 	else if (arg_num == 5)
 		scene->last_cyl->height = little_atof(arg);

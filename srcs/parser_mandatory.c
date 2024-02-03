@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 09:50:06 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:47:39 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ static bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph)
 		new_light->color = get_color(arg);
 		return (check_light(new_light));
 	}
-	else if (arg_num == 5)
+	else if (arg_num >= 5 && arg[0] == 'M')
+		sc->lighting.movable = new_light;
+	else if (arg_num >= 5)
 		return (too_many_args_err("LIGHT", "3"));
 	return (true);
 }

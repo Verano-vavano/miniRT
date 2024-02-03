@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 03:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 22:08:55 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:57:22 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,17 @@ static void	cylinders_transform(t_cylinder *cl, t_transform t)
 		apply_rotation(&(cl->normal), to_rad(t.x), to_rad(t.y), to_rad(t.z));
 }
 
+static void	light_transform(t_light *l, t_transform t)
+{
+	if (t.type == 'r')
+		return ;
+	l->vec.x += t.x;
+	l->vec.y += t.y;
+	l->vec.z += t.z;
+	if (!l->spherical)
+		l->vec = vec3_normalize(l->vec);
+}
+
 void	apply_transformation(t_lform select, t_transform transform)
 {
 	if (select.shape == 's')
@@ -59,5 +70,7 @@ void	apply_transformation(t_lform select, t_transform transform)
 		planes_transform((t_plane *) select.addr, transform);
 	else if (select.shape == 'c')
 		cylinders_transform((t_cylinder *) select.addr, transform);
+	else if (select.shape == 'l')
+		light_transform((t_light *) select.addr, transform);
 	printf("%c %d %d %d\n", select.shape, transform.x, transform.y, transform.z);
 }

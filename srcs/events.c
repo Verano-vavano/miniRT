@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 23:12:31 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:55:58 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ int	key_event(int key, t_window *window)
 		quit_game(window);
 	else if (is_movement(key, window->keyboard, window))
 		return (0);
+	else if (key == 'l')
+	{
+		window->last_selected.addr = window->scene->lighting.movable;
+		window->last_selected.shape = 'l';
+	}
 	else if (key == 'r' || key == 't' || key == 'f')
 	{
 		window->transform.type = key;

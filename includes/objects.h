@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 23:09:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:43:52 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_lighting
 	t_light		*last_light;
 	t_light		*s_light;
 	t_light		*last_s_light;
+	t_light		*movable;
 }				t_lighting;
 
 typedef struct s_shade

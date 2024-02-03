@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:13:50 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/02 17:43:40 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 22:48:58 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int		ft_atoi(const char *str);
 long		ft_atol(const char *str);
 int		get_int_size(int n);
 bool		is_intable(char *s);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

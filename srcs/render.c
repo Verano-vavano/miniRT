@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:30:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:13:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ void	lookat(t_window *window)
 	tmp.y = 1;
 	tmp.z = 0;
 	forward = window->scene->camera.dir;
+	if (forward.x == 0 && forward.y == 0 && forward.z == 0)
+		forward.z = 1;
 	forward = vec3_normalize(forward);
 	right = vec3_cross(tmp, forward);
 	up = vec3_cross(forward, right);
@@ -178,6 +180,7 @@ void	render(t_scene *scene)
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
 		window->width, window->height, "Cyberpunk");
+	keyboard_conf(window);
 	lookat(window);
 	mlx_key_hook(window->window, key_event, window);
 	mlx_hook(window->window, 17, 1L << 0, quit_game, window);

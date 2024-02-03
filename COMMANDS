@@ -1,0 +1,18 @@
+Z : forward (z-axis +)
+S : backwards (z-axis -)
+Q : left (x-axis -)
+D : right (x_axis +)
+A : up (y-axis +)
+E : down (y-axis -)
+
+RMB + any of the above : rotate the camera
+
+LMB on an object : select the object
+
+t : initiates a translation
+r : initiates a rotation
+any number : indicates an amount (3 digits max)
+v : specifies the x coord
+b : specifies the y coord
+n : specifies the z coord
+SPACE : performs the transformation

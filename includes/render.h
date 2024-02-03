@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:48:38 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:02:16 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_window
 	int			height;
 	double		aspect_ratio;
 	float		cam[4][4];
+	char		keyboard;
+	bool		rmb_pressed;
 	t_lform		last_selected;
 	t_transform	transform;
 	t_scene		*scene;
@@ -63,6 +65,7 @@ typedef struct s_window
 
 void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
+void	lookat(t_window *window);
 t_color	cast_ray(t_window *window, t_ray ray, int ray_num);
 void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov);
 double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes);
@@ -97,6 +100,7 @@ void	apply_transformation(t_lform select, t_transform transform);
 // render_utilities
 void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b);
 void	copy_2vec3(t_vec3 *v1, t_vec3 v2);
+void	keyboard_conf(t_window *window);
 
 // utils
 bool	quadratic(double a, double b, double c, double *ret);

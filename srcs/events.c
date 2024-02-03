@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 04:09:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:12:31 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,41 @@ static short	get_eq(int key)
 	return (0);
 }
 
+static bool	is_movement(int key, char k, t_window *window)
+{
+	t_vec3	*to_change;
+
+	printf("%d\n", window->rmb_pressed);
+	if (!window->rmb_pressed)
+		to_change = &(window->scene->camera.vp);
+	else
+		to_change = &(window->scene->camera.dir);
+	if ((key == 'z' && k == 'a') || (key == 'w' && k == 'q') || key == UP)
+		to_change->z++;
+	else if (key == 's' || key == DOWN)
+		to_change->z--;
+	else if ((key == 'a' && k == 'q') || (key == 'q' && k == 'a') || key == LEFT)
+		to_change->x--;
+	else if (key == 'd' || key == RIGHT)
+		to_change->x++;
+	else if ((key == 'a' && k == 'a') || (key == 'q' && k == 'q'))
+		to_change->y--;
+	else if (key == 'e')
+		to_change->y++;
+	else
+		return (false);
+	if (window->rmb_pressed)
+		lookat(window);
+	render_scene(&window);
+	return (true);
+}
+
 int	key_event(int key, t_window *window)
 {
 	if (key == ESCAPE || key == 'p')
 		quit_game(window);
-	else if (key == 'z' || key == 'w' || key == UP)
-	{
-		window->scene->camera.vp.z++;
-		render_scene(&window);
-	}
-	else if (key == 's' || key == DOWN)
-	{
-		window->scene->camera.vp.z--;
-		render_scene(&window);
-	}
-	else if (key == 'a' || key == 'q' || key == LEFT)
-	{
-		window->scene->camera.vp.x--;
-		render_scene(&window);
-	}
-	else if (key == 'd' || key == RIGHT)
-	{
-		window->scene->camera.vp.x++;
-		render_scene(&window);
-	}
+	else if (is_movement(key, window->keyboard, window))
+		return (0);
 	else if (key == 'r' || key == 't' || key == 'f')
 	{
 		window->transform.type = key;
@@ -127,12 +138,16 @@ int	mousedown(int button, int x, int y, t_window *window)
 	t_ray	ray;
 	t_vec2	coord;
 
+	if (button == 3)
+	{
+		window->rmb_pressed ^= true;
+		return (0);
+	}
 	coord.x = x;
 	coord.y = y;
 	calculate_ray(&ray, window, &coord, window->scene->camera.fov * M_PI / 180);
 	trace(window->scene, ray, &(window->last_selected), true);
 	if (window->last_selected.addr)
 		printf("%c\n", window->last_selected.shape);
-	(void) button;
 	return (0);
 }

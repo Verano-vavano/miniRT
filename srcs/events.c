@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 04:01:08 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 04:09:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	key_event(int key, t_window *window)
 		apply_transformation(window->last_selected, window->transform);
 		render_scene(&window);
 	}
+	else if (key == 'i' && window->transform.type != 'f')
+		window->transform.temp *= -1;
 	else if (window->transform.type != 'f')
 	{
 		window->transform.temp *= 10;

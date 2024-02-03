@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 09:58:05 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 22:14:57 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ bool	check_last_cyl(t_scene *scene)
 	else if (!c->center.valid || !c->normal.valid
 		|| !c->color.valid)
 		return (false);
+	if (c->normal.z > 0)
+		c->normal = vec3_mult_float(c->normal, -1.f);
 	return (true);
 }

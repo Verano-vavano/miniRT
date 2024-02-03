@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 03:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 21:46:23 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 22:08:55 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,25 @@ static void	planes_transform(t_plane *pl, t_transform t)
 		apply_rotation(&(pl->normal), to_rad(t.x), to_rad(t.y), to_rad(t.z));
 }
 
+static void	cylinders_transform(t_cylinder *cl, t_transform t)
+{
+	if (t.type == 't')
+	{
+		cl->center.x += t.x;
+		cl->center.y += t.y;
+		cl->center.z += t.z;
+	}
+	else if (t.type == 'r')
+		apply_rotation(&(cl->normal), to_rad(t.x), to_rad(t.y), to_rad(t.z));
+}
+
 void	apply_transformation(t_lform select, t_transform transform)
 {
 	if (select.shape == 's')
 		sphere_transform((t_sphere *) select.addr, transform);
 	else if (select.shape == 'p')
 		planes_transform((t_plane *) select.addr, transform);
+	else if (select.shape == 'c')
+		cylinders_transform((t_cylinder *) select.addr, transform);
 	printf("%c %d %d %d\n", select.shape, transform.x, transform.y, transform.z);
 }

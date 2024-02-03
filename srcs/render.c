@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:13:02 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 03:30:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 	return (ret);
 }
 
-t_vec3	cam2world(float m[4][4], t_vec3 *v)
+static t_vec3	cam2world(float m[4][4], t_vec3 *v)
 {
 		t_vec3	dst;
 
@@ -83,7 +83,7 @@ t_vec3	cam2world(float m[4][4], t_vec3 *v)
 		return (dst);
 }
 
-static void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov)
+void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov)
 {
 	ray->org = window->scene->camera.vp;
 	ray->dir.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
@@ -181,6 +181,7 @@ void	render(t_scene *scene)
 	lookat(window);
 	mlx_key_hook(window->window, key_event, window);
 	mlx_hook(window->window, 17, 1L << 0, quit_game, window);
+	mlx_hook(window->window, 4, 1L << 2, mousedown, window);
 	render_scene(&window);
 	mlx_loop(window->mlx_ptr);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 02:49:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 03:31:00 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ typedef struct s_window
 	int		height;
 	double	aspect_ratio;
 	float	cam[4][4];
+	t_lform	last_selected;
 	t_scene	*scene;
 }	t_window;
 
 void	render(t_scene *scene);
 void	render_scene(t_window **window_ptr);
 t_color	cast_ray(t_window *window, t_ray ray, int ray_num);
+void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov);
 double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes);
 
 // renderers
@@ -77,6 +79,7 @@ void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
 // events
 int		quit_game(t_window *window);
 int		key_event(int key, t_window *window);
+int		mousedown(int button, int x, int y, t_window *window);
 
 // render_utilities
 void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b);

@@ -6,11 +6,12 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 03:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 04:12:21 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 21:46:23 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "rotation.h"
 
 static void	sphere_transform(t_sphere *sp, t_transform t)
 {
@@ -21,6 +22,11 @@ static void	sphere_transform(t_sphere *sp, t_transform t)
 	sp->pos.z += t.z;
 }
 
+static inline float	to_rad(int n)
+{
+	return ((float) n / 180 * M_PI);
+}
+
 static void	planes_transform(t_plane *pl, t_transform t)
 {
 	if (t.type == 't')
@@ -29,6 +35,8 @@ static void	planes_transform(t_plane *pl, t_transform t)
 		pl->point.y += t.y;
 		pl->point.z += t.z;
 	}
+	else if (t.type == 'r')
+		apply_rotation(&(pl->normal), to_rad(t.x), to_rad(t.y), to_rad(t.z));
 }
 
 void	apply_transformation(t_lform select, t_transform transform)

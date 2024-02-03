@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:29:03 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 04:01:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,31 @@ int	quit_game(t_window *window)
 	free_scene(window->scene);
 	free(window);
 	exit(0);
+}
+
+static short	get_eq(int key)
+{
+	if (key == ZERO)
+		return (0);
+	else if (key == ONE)
+		return (1);
+	else if (key == TWO)
+		return (2);
+	else if (key == THREE)
+		return (3);
+	else if (key == FOUR)
+		return (4);
+	else if (key == FIVE)
+		return (5);
+	else if (key == SIX)
+		return (6);
+	else if (key == SEVEN)
+		return (7);
+	else if (key == EIGHT)
+		return (8);
+	else if (key == NINE)
+		return (9);
+	return (0);
 }
 
 int	key_event(int key, t_window *window)
@@ -46,6 +71,52 @@ int	key_event(int key, t_window *window)
 		window->scene->camera.vp.x++;
 		render_scene(&window);
 	}
+	else if (key == 'r' || key == 't' || key == 'f')
+	{
+		window->transform.type = key;
+		printf("%c : transform start\n", key);
+		window->transform.x = 0;
+		window->transform.y = 0;
+		window->transform.z = 0;
+		window->transform.temp = 0;
+	}
+	else if (key == 'v' || key == 'b' || key == 'n')
+	{
+		if (key == 'v')
+		{
+			window->transform.x = window->transform.temp;
+			printf("X : %d\n", window->transform.temp);
+		}
+		else if (key == 'b')
+		{
+			window->transform.y = window->transform.temp;
+			printf("Y : %d\n", window->transform.temp);
+		}
+		if (key == 'n')
+		{
+			window->transform.z = window->transform.temp;
+			printf("Z : %d\n", window->transform.temp);
+		}
+		window->transform.temp = 0;
+	}
+	else if (key == SPACE)
+	{
+		apply_transformation(window->last_selected, window->transform);
+		render_scene(&window);
+	}
+	else if (window->transform.type != 'f')
+	{
+		window->transform.temp *= 10;
+		short	n = get_eq(key);
+		window->transform.temp += n;
+		if (window->transform.temp > 999)
+		{
+			printf("Too high value !\n");
+			window->transform.temp = 0;
+		}
+	}
+	else
+		printf("Key %d unknown\n", key);
 	return (0);
 }
 

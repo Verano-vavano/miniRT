@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:31:00 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 03:48:38 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,27 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_transform
+{
+	char	type;
+	int		x;
+	int		y;
+	int		z;
+	int		temp;
+}				t_transform;
+
 typedef struct s_window
 {
-	void	*mlx_ptr;
-	void	*window;
-	t_data	img;
-	int		width;
-	int		height;
-	double	aspect_ratio;
-	float	cam[4][4];
-	t_lform	last_selected;
-	t_scene	*scene;
+	void		*mlx_ptr;
+	void		*window;
+	t_data		img;
+	int			width;
+	int			height;
+	double		aspect_ratio;
+	float		cam[4][4];
+	t_lform		last_selected;
+	t_transform	transform;
+	t_scene		*scene;
 }	t_window;
 
 void	render(t_scene *scene);
@@ -80,6 +90,9 @@ void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		quit_game(t_window *window);
 int		key_event(int key, t_window *window);
 int		mousedown(int button, int x, int y, t_window *window);
+
+// transformations
+void	apply_transformation(t_lform select, t_transform transform);
 
 // render_utilities
 void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b);

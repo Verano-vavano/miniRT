@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:13:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:27:34 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 02:48:53 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_col01
 }		t_col01;
 
 double	vec3_dot(t_vec3 v1, t_vec3 v2);
+t_vec3	vec3_cross(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_add(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	vec3_mult_float(t_vec3 v, float n);

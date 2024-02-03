@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 23:14:11 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 02:49:54 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_window
 	int		width;
 	int		height;
 	double	aspect_ratio;
+	float	cam[4][4];
 	t_scene	*scene;
 }	t_window;
 

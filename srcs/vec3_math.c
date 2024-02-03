@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:20:44 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/14 15:19:30 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 02:48:33 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 double	vec3_dot(t_vec3 v1, t_vec3 v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
+
+t_vec3	vec3_cross(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3	ret;
+
+	ret.x = v1.y * v2.z - v1.z * v2.y;
+	ret.y = v1.z * v2.x - v1.x * v2.z;
+	ret.z = v1.x * v2.y - v1.y * v2.x;
+	return (ret);
 }
 
 t_vec3	vec3_add(t_vec3 v1, t_vec3 v2)

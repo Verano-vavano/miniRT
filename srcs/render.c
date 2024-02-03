@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 23:22:02 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/03 03:13:02 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,23 @@ t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 	return (ret);
 }
 
+t_vec3	cam2world(float m[4][4], t_vec3 *v)
+{
+		t_vec3	dst;
+
+		dst.x = v->x * m[0][0] + v->y * m[1][0] + v->z * m[2][0];
+		dst.y = v->x * m[0][1] + v->y * m[1][1] + v->z * m[2][1];
+		dst.z = v->x * m[0][2] + v->y * m[1][2] + v->z * m[2][2];
+		return (dst);
+}
+
 static void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov)
 {
 	ray->org = window->scene->camera.vp;
 	ray->dir.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
 	ray->dir.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
-	ray->dir.z = window->scene->camera.dir.z;
+	ray->dir.z = 1;
+	ray->dir = cam2world(window->cam, &ray->dir);
 	ray->dir = vec3_normalize(ray->dir);
 	return ;
 }
@@ -126,6 +137,31 @@ void	render_scene(t_window **window_ptr)
 	return ;
 }
 
+void	lookat(t_window *window)
+{
+	t_vec3	forward;
+	t_vec3	right;
+	t_vec3	up;
+	t_vec3	tmp;
+
+	tmp.x = 0;
+	tmp.y = 1;
+	tmp.z = 0;
+	forward = window->scene->camera.dir;
+	forward = vec3_normalize(forward);
+	right = vec3_cross(tmp, forward);
+	up = vec3_cross(forward, right);
+	window->cam[0][0] = right.x;
+	window->cam[0][1] = right.y;
+	window->cam[0][2] = right.z;
+	window->cam[1][0] = up.x;
+	window->cam[1][1] = up.y;
+	window->cam[1][2] = up.z;
+	window->cam[2][0] = forward.x;
+	window->cam[2][1] = forward.y;
+	window->cam[2][2] = forward.z;
+}
+
 void	render(t_scene *scene)
 {
 	t_window	*window;
@@ -142,6 +178,7 @@ void	render(t_scene *scene)
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
 		window->width, window->height, "Cyberpunk");
+	lookat(window);
 	mlx_key_hook(window->window, key_event, window);
 	mlx_hook(window->window, 17, 1L << 0, quit_game, window);
 	render_scene(&window);

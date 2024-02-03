@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 23:55:58 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 00:14:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,32 @@ static bool	is_movement(int key, char k, t_window *window)
 	return (true);
 }
 
+static void	size_modif(t_window *window, char key, t_lform lf)
+{
+	int	mod;
+
+	mod = (1 * (key == 'p')) + (-1 * (key == 'm'));
+	if (lf.shape == 's')
+	{
+		t_sphere	*sp = (t_sphere *) lf.addr;
+		sp->diameter += mod;
+	}
+	else if (lf.shape == 'c')
+	{
+		t_cylinder	*cy = (t_cylinder *) lf.addr;
+		if (window->height_mod)
+			cy->height += mod;
+		else
+			cy->radius += mod;
+	}
+	else
+		return ;
+	render_scene(&window);
+}
+
 int	key_event(int key, t_window *window)
 {
-	if (key == ESCAPE || key == 'p')
+	if (key == ESCAPE)
 		quit_game(window);
 	else if (is_movement(key, window->keyboard, window))
 		return (0);
@@ -87,6 +110,10 @@ int	key_event(int key, t_window *window)
 		window->last_selected.addr = window->scene->lighting.movable;
 		window->last_selected.shape = 'l';
 	}
+	else if (key == 'o')
+		window->height_mod ^= true;
+	else if (key == 'p' || key == 'm')
+		size_modif(window, key, window->last_selected);
 	else if (key == 'r' || key == 't' || key == 'f')
 	{
 		window->transform.type = key;

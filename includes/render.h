@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 23:02:16 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 00:05:24 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_window
 	float		cam[4][4];
 	char		keyboard;
 	bool		rmb_pressed;
+	bool		height_mod;
 	t_lform		last_selected;
 	t_transform	transform;
 	t_scene		*scene;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 14:49:12 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 16:55:01 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,27 @@ t_hit	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes)
 	t_hit	hit;
 	t_hit	temp_hit;
 
+	hit.has_hit = false;
 	hit.t = INFINITY;
+	temp_hit.t = INFINITY;
 	if (sp_render(scene->spheres, ray, &temp_hit, lform))
+	{
 		hit = temp_hit;
+		hit.has_hit = true;
+	}
+	temp_hit.t = INFINITY;
 	if (planes && pl_render(scene->planes, ray, &temp_hit, &temp_lf) && temp_hit.t < hit.t)
 	{
 		hit = temp_hit;
 		*lform = temp_lf;
+		hit.has_hit = true;
 	}
+	temp_hit.t = INFINITY;
 	if (cyl_render(scene->cyl, ray, &temp_hit, &temp_lf) && temp_hit.t < hit.t)
 	{
 		hit = temp_hit;
 		*lform = temp_lf;
+		hit.has_hit = true;
 	}
 	return (hit);
 }
@@ -51,16 +60,18 @@ t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 	amb_contr.b = 0;
 	scene = window->scene;
 	last_form.addr = NULL;
+	hit.shade = NULL;
 	hit = trace(scene, ray, &last_form, true);
+	(void) ray_num;
 	if (hit.t > NEAR_CLIP && hit.t < FAR_CLIP && last_form.addr != NULL)
 	{
-		if (hit.shade && hit.shade->reflect && ray_num < MAX_REFLECTION)
+		/*if (hit.shade && hit.shade->reflect && ray_num < MAX_REFLECTION)
 		{
 			ret = reflect_color(window, hit, ray.dir, ray_num);
 			hit.color.r = ret.r / 255.f;
 			hit.color.g = ret.g / 255.f;
 			hit.color.b = ret.b / 255.f;
-		}
+		}*/
 		ambient_lighting(scene->ambient, &amb_contr, hit.color);
 		dir_lighting(scene, &hit, &lgt_contr);
 		sph_lighting(scene, &hit, &lgt_contr);

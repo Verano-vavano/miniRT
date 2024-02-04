@@ -6,40 +6,47 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 18:26:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 13:07:29 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 17:40:00 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+static void	sph_lgt_vals(t_light *sl, t_hit *hit, float rv[3], t_ray *nr)
+{
+	t_vec3	light_dir;
+
+	light_dir = vec3_sub(sl->vec, hit->hit);
+	nr->org = vec3_add(hit->hit, vec3_mult_float(hit->normal, SHADOW_BIAS));
+	rv[0] = light_dir.x * light_dir.x + light_dir.y * light_dir.y
+		+ light_dir.z * light_dir.z;
+	rv[1] = sqrtf(rv[0]);
+	nr->dir = vec3_normalize(vec3_mult_float(light_dir, 1.f / rv[1]));
+}
+
 void	sph_lighting(t_scene *scene, t_hit *hit, t_col01 *ret)
 {
-	t_light	*s_light;
-	t_vec3	light_dir;
+	t_light	*s_lgt;
 	t_ray	new_ray;
 	t_lform	temp;
-	float	r;
-	float	r2;
-	float	d;
+	t_hit	t;
+	float	rv[3];
 
-	s_light = scene->lighting.s_light;
-	while (s_light)
+	s_lgt = scene->lighting.s_light;
+	while (s_lgt)
 	{
 		temp.addr = NULL;
-		light_dir = vec3_sub(s_light->vec, hit->hit);
-		new_ray.org = vec3_add(hit->hit, vec3_mult_float(hit->normal, SHADOW_BIAS));
-		r2 = light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z;
-		r = sqrtf(r2);
-		new_ray.dir = vec3_mult_float(light_dir, 1.f/r);
-		t_hit t = trace(scene, new_ray, &temp, true);
-		if (temp.addr == NULL || t.t > r + EPSILON)
+		sph_lgt_vals(s_lgt, hit, rv, &new_ray);
+		t = trace(scene, new_ray, &temp, true);
+		if (temp.addr == NULL
+			|| vec3_length(calc_ray_point(new_ray, t.t)) > rv[1] + EPSILON)
 		{
-			d = s_light->lgt_ratio / (4 * M_PI * r2);
-			ret->r = fmin(1.f, ret->r + hit->color.r * d * s_light->color.r);
-			ret->g = fmin(1.f, ret->g + hit->color.g * d * s_light->color.g);
-			ret->b = fmin(1.f, ret->b + hit->color.b * d * s_light->color.b);
+			rv[2] = s_lgt->lgt_ratio / (4 * M_PI * rv[0]) * 0.3;
+			ret->r = fmin(1.f, ret->r + hit->color.r * rv[2] * s_lgt->color.r);
+			ret->g = fmin(1.f, ret->g + hit->color.g * rv[2] * s_lgt->color.g);
+			ret->b = fmin(1.f, ret->b + hit->color.b * rv[2] * s_lgt->color.b);
 		}
-		s_light = s_light->next_light;
+		s_lgt = s_lgt->next_light;
 	}
 }
 
@@ -54,7 +61,8 @@ void	dir_lighting(t_scene *scene, t_hit *hit, t_col01 *r)
 	while (light)
 	{
 		temp.addr = NULL;
-		new_ray.org = vec3_add(hit->hit, vec3_mult_float(hit->normal, SHADOW_BIAS));
+		new_ray.org = vec3_add(hit->hit,
+				vec3_mult_float(hit->normal, SHADOW_BIAS));
 		new_ray.dir = light->inv_dir;
 		trace(scene, new_ray, &temp, PLANE_SHADOW == true);
 		if (temp.addr == NULL)

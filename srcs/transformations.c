@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 03:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 08:53:50 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:22:24 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ static void	sphere_transform(t_sphere *sp, t_transform t)
 	sp->pos.x += t.x;
 	sp->pos.y += t.y;
 	sp->pos.z += t.z;
-}
-
-static inline float	to_rad(int n)
-{
-	return ((float) n / 180 * M_PI);
 }
 
 static void	planes_transform(t_plane *pl, t_transform t)

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 14:49:47 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:22:32 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,9 @@ bool	quadratic(double a, double b, double c, double *ret)
 		return (false);
 	return (true);
 }
+
+inline float	to_rad(int n)
+{
+	return ((float) n / 180 * M_PI);
+}
+

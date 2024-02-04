@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 22:14:57 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:48:49 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ bool	check_last_cyl(t_scene *scene)
 	if (c->diameter > 100000.0f || c->diameter < 0.f
 		|| c->height > 100000.0f || c->height < 0.f)
 		return (false);
-	else if (!c->center.valid || !c->normal.valid
+	else if (!c->center.valid || !c->dir.valid
 		|| !c->color.valid)
 		return (false);
-	if (c->normal.z > 0)
-		c->normal = vec3_mult_float(c->normal, -1.f);
+	if (c->dir.z > 0)
+		c->dir = vec3_mult_float(c->dir, -1.f);
+	c->p_bot = vec3_mult_float(c->dir, c->height * (-0.5));
+	c->p_top = vec3_mult_float(c->dir, c->height * 0.5);
+	c->p_bot = vec3_add(c->p_bot, c->center);
+	c->p_top = vec3_add(c->p_top, c->center);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/01 11:56:23 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:49:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ bool	set_new_arg_cyl(t_scene *scene, char *arg, short arg_num)
 	else if (arg_num == 2)
 		scene->last_cyl->center = get_coord_vec3(arg, false);
 	else if (arg_num == 3)
-		scene->last_cyl->normal = vec3_normalize(get_coord_vec3(arg, false));
+		scene->last_cyl->dir = vec3_normalize(get_coord_vec3(arg, false));
 	else if (arg_num == 4)
 	{
 		scene->last_cyl->diameter = little_atof(arg);

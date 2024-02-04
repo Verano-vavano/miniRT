@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:20:44 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 02:48:33 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:47:05 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,11 @@ t_vec3	vec3_normalize(t_vec3 v)
 float	vec3_length(t_vec3 v)
 {
 	return (sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2)));
+}
+
+float	vec3_dist(t_vec3 v1, t_vec3 v2)
+{
+	return (sqrt(pow(v1.x - v2.x, 2)
+		+ pow(v1.y - v2.y, 2)
+		+ pow(v1.z - v2.z, 2)));
 }

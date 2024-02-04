@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 00:05:24 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:44:06 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ void	render_scene(t_window **window_ptr);
 void	lookat(t_window *window);
 t_color	cast_ray(t_window *window, t_ray ray, int ray_num);
 void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov);
+t_vec3	calc_ray_point(t_ray ray, double hit);
 double	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes);
 
 // renderers
 bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lf);
 bool	pl_render(t_plane *pl, t_ray r, double *x, t_lform *lf);
+bool	plane_intersect(t_plane *pl, t_ray ray, double *hit);
 bool	cyl_render(t_cylinder *cyl, t_ray r, double *x, t_lform *lf);
 
 // lf_infos

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 03:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 23:57:22 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:53:50 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	cylinders_transform(t_cylinder *cl, t_transform t)
 		cl->center.z += t.z;
 	}
 	else if (t.type == 'r')
-		apply_rotation(&(cl->normal), to_rad(t.x), to_rad(t.y), to_rad(t.z));
+		apply_rotation(&(cl->dir), to_rad(t.x), to_rad(t.y), to_rad(t.z));
 }
 
 static void	light_transform(t_light *l, t_transform t)

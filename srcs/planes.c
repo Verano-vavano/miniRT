@@ -6,13 +6,13 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 10:19:35 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:25:12 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
+bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
 {
 	float	d;
 	float	denom;

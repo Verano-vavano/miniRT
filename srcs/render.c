@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 01:28:32 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:52:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,11 @@ void	render_scene(t_window **window_ptr)
 		mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
 	}
 	return ;
+}
+
+inline t_vec3	calc_ray_point(t_ray ray, double hit)
+{
+	return (vec3_add(ray.org, vec3_mult_float(ray.dir, hit)));
 }
 
 void	lookat(t_window *window)

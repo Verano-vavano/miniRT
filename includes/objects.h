@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 23:43:52 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 08:22:49 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_vec3			center;
-	t_vec3			normal;
+	t_vec3			p_bot;
+	t_vec3			p_top;
+	t_vec3			dir;
 	float			diameter;
 	float			radius;
 	float			height;

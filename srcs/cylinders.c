@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:19:23 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/01 12:06:37 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 01:18:30 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,18 @@ static bool	cyl_intersect(t_cylinder *cyl, t_ray ray, double *hit)
 	a = 1 - pow(dv, 2);
 	b = 2 * (vec3_dot(d, x) - (dv * xv));
 	c = fabs(vec3_dot(x, x) - pow(xv, 2) - pow(cyl->radius, 2));
-	return (quadratic(a, b, c, hit));
+	if (quadratic(a, b, c, hit))
+	{
+		t_vec3	point;
+		point = vec3_add(ray.org, vec3_mult_float(ray.dir, *hit));
+		return (!(point.x < cyl->center.x - cyl->height ||
+			point.x > cyl->center.x + cyl->height ||
+			point.y < cyl->center.y - cyl->height ||
+			point.y > cyl->center.y + cyl->height ||
+			point.z < cyl->center.z - cyl->height ||
+			point.z > cyl->center.z + cyl->height));
+	}
+	return (false);
 }
 
 bool	cyl_render(t_cylinder *cyl, t_ray ray, double *x, t_lform *lform)

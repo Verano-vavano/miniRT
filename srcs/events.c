@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 00:14:46 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 00:21:03 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,31 @@ static bool	is_movement(int key, char k, t_window *window)
 
 static void	size_modif(t_window *window, char key, t_lform lf)
 {
-	int	mod;
+	int		mod;
+	long	new;
 
 	mod = (1 * (key == 'p')) + (-1 * (key == 'm'));
 	if (lf.shape == 's')
 	{
 		t_sphere	*sp = (t_sphere *) lf.addr;
-		sp->diameter += mod;
+		new = sp->diameter + mod;
+		if (new >= 0 && new < INT_MAX)
+			sp->diameter += mod;
 	}
 	else if (lf.shape == 'c')
 	{
 		t_cylinder	*cy = (t_cylinder *) lf.addr;
 		if (window->height_mod)
-			cy->height += mod;
+			new = cy->height + mod;
 		else
-			cy->radius += mod;
+			new = cy->radius + mod;
+		if (new >= 0 && new < INT_MAX)
+		{
+			if (window->height_mod)
+				cy->height = new;
+			else
+				cy->radius = new;
+		}
 	}
 	else
 		return ;

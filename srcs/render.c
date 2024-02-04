@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 23:13:54 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 01:28:32 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,13 @@ void	lookat(t_window *window)
 	window->cam[2][2] = forward.z;
 }
 
+static int	unminimize(t_window *window)
+{
+	mlx_clear_window(window->mlx_ptr, window->window);
+	mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
+	return (0);
+}
+
 void	render(t_scene *scene)
 {
 	t_window	*window;
@@ -185,6 +192,7 @@ void	render(t_scene *scene)
 	mlx_key_hook(window->window, key_event, window);
 	mlx_hook(window->window, 17, 1L << 0, quit_game, window);
 	mlx_hook(window->window, 4, 1L << 2, mousedown, window);
+	mlx_hook(window->window, 12, 1L << 15, unminimize, window);
 	render_scene(&window);
 	mlx_loop(window->mlx_ptr);
 	return ;

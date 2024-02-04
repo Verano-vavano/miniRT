@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 14:48:22 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:19:19 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	quit_game(t_window *window)
 int	unminimize(t_window *window)
 {
 	mlx_clear_window(window->mlx_ptr, window->window);
-	mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
+	mlx_put_image_to_window(window->mlx_ptr, window->window,
+		window->img.img, 0, 0);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 16:19:52 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 20:29:34 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ typedef struct s_transform
 	int		temp;
 }				t_transform;
 
+typedef struct s_lcont
+{
+	t_col01	lgt_contr;
+	t_col01	amb_contr;
+}				t_lcont;
+
 typedef struct s_window
 {
 	void		*mlx_ptr;
@@ -62,6 +68,7 @@ typedef struct s_window
 	int			width;
 	int			height;
 	double		aspect_ratio;
+	float		fov;
 	float		cam[4][4];
 	char		keyboard;
 	bool		rmb_pressed;
@@ -99,7 +106,7 @@ void	dir_lighting(t_scene *sc, t_hit *hit, t_col01 *ret);
 void	sph_lighting(t_scene *sc, t_hit *hit, t_col01 *ret);
 
 // shading
-t_color	reflect_color(t_window *window, t_hit hit, t_vec3 old_dir, int r_num);
+void	reflect_color(t_window *window, t_hit *hit, t_vec3 old_dir, int r_num);
 
 // mlx_plus
 void	custom_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -121,5 +128,6 @@ void	copy_2vec3(t_vec3 *v1, t_vec3 v2);
 void	keyboard_conf(t_window *window);
 bool	quadratic(double a, double b, double c, double *ret);
 float	to_rad(int n);
+void	init_lgt_contr(t_lcont *contr);
 
 #endif

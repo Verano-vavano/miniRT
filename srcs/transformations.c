@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 03:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 15:22:24 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:58:42 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,4 @@ void	apply_transformation(t_lform select, t_transform transform)
 		cylinders_transform((t_cylinder *) select.addr, transform);
 	else if (select.shape == 'l')
 		light_transform((t_light *) select.addr, transform);
-	printf("%c %d %d %d\n", select.shape, transform.x, transform.y, transform.z);
 }

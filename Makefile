@@ -6,7 +6,7 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2024/02/04 17:53:54 by hdupire          ###   ########.fr        #
+#    Updated: 2024/02/04 20:16:34 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME=./miniRT
 
 SRCS=camera.c colors.c events.c key_events.c free_scene.c latof.c main.c \
 	 mlx_plus.c adder.c parser_checker.c parser_checker_forms.c \
-	 parser_forms.c parser_mandatory.c spheres.c planes.c cylinders.c cylinder_check_inter.c render.c \
-	 scene.c scene_read_utils.c light.c vec3.c vec3_math.c render_utils.c reflection.c \
-	 transformations.c transformations2.c rotation.c keyboard.c\
+	 parser_forms.c parser_mandatory.c spheres.c planes.c cylinders.c cylinder_check_inter.c render.c raytracing.c \
+	 scene.c scene_read_utils.c light.c vec3.c vec3_math.c vec3_operations.c render_utils.c reflection.c \
+	 transformations.c transformations2.c rotation.c rotation_matrices.c keyboard.c\
 	errors/latof_errors.c errors/parser_errors.c \
 	 errors/parsing_errors.c errors/vec3_errors.c
 SRCS_DIR=$(addprefix ./srcs/, ${SRCS})

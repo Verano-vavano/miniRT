@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:21:51 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 20:18:17 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
 		return (false);
 	*hit = - (vec3_dot(pl->normal, ray.org) + d) / denom;
 	return (*hit > 0);
+}
+
+static void	pl_assign_hit(t_hit *x, t_plane *pl, t_ray ray)
+{
+	x->hit = calc_ray_point(ray, x->t);
+	x->normal = pl->normal;
+	x->color = copy_col_to_01(pl->color);
+	x->shade = &(pl->shading);
 }
 
 bool	pl_render(t_plane *pl, t_ray ray, t_hit *x, t_lform *lform)
@@ -43,10 +51,7 @@ bool	pl_render(t_plane *pl, t_ray ray, t_hit *x, t_lform *lform)
 	}
 	if (!closest)
 		return (false);
-	x->hit = calc_ray_point(ray, x->t);
-	x->normal = closest->normal;
-	x->color = copy_col_to_01(closest->color);
-	x->shade = &(pl->shading);
+	pl_assign_hit(x, closest, ray);
 	if (lform)
 	{
 		lform->addr = (void *) closest;

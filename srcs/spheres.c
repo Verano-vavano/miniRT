@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:23:46 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:57:32 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 // This omission only works if Dir is normalized
 static bool	sphere_intersect(t_sphere *sp, t_ray ray, double *hit)
 {
-	double	b, c;
+	double	b;
+	double	c;
 	t_vec3	sphere_org_rel;
 
 	sphere_org_rel = vec3_sub(ray.org, sp->pos);
@@ -28,10 +29,20 @@ static bool	sphere_intersect(t_sphere *sp, t_ray ray, double *hit)
 	return (quadratic(1, b, c, hit));
 }
 
+static void	sphere_assign_hit(t_hit *x, double hit_near, t_sphere *sp, t_ray r)
+{
+	x->t = hit_near;
+	x->hit = calc_ray_point(r, x->t);
+	x->normal = vec3_normalize(vec3_sub(x->hit, sp->pos));
+	x->color = copy_col_to_01(sp->color);
+	x->shade = &(sp->shading);
+}
+
 bool	sp_render(t_sphere *sp, t_ray r, t_hit *x, t_lform *lform)
 {
-	double	hit_near, hit;
-	t_sphere *closest;
+	double		hit_near;
+	double		hit;
+	t_sphere	*closest;
 
 	x->t = INFINITY;
 	hit_near = INFINITY;
@@ -45,18 +56,13 @@ bool	sp_render(t_sphere *sp, t_ray r, t_hit *x, t_lform *lform)
 		}
 		sp = sp->next_sphere;
 	}
-	if (closest)
+	if (!closest)
+		return (false);
+	sphere_assign_hit(x, hit_near, closest, r);
+	if (lform)
 	{
-		x->t = hit_near;
-		x->hit = calc_ray_point(r, x->t);
-		x->normal = vec3_normalize(vec3_sub(x->hit, closest->pos));
-		x->color = copy_col_to_01(closest->color);
-		x->shade = &(closest->shading);
-		if (lform)
-		{
-			lform->addr = (void *) closest;
-			lform->shape = 's';
-		}
+		lform->addr = (void *) closest;
+		lform->shape = 's';
 	}
-	return (closest != NULL);
+	return (true);
 }

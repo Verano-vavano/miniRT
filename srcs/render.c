@@ -6,133 +6,66 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 16:55:01 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:47:24 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "libft.h"
 
-t_hit	trace(t_scene *scene, t_ray ray, t_lform *lform, bool planes)
+static void	ray_caster(t_window *w, t_vec2 coord, float fov)
 {
-	t_lform	temp_lf;
-	t_hit	hit;
-	t_hit	temp_hit;
+	t_ray		ray;
+	t_color		color;
 
-	hit.has_hit = false;
-	hit.t = INFINITY;
-	temp_hit.t = INFINITY;
-	if (sp_render(scene->spheres, ray, &temp_hit, lform))
-	{
-		hit = temp_hit;
-		hit.has_hit = true;
-	}
-	temp_hit.t = INFINITY;
-	if (planes && pl_render(scene->planes, ray, &temp_hit, &temp_lf) && temp_hit.t < hit.t)
-	{
-		hit = temp_hit;
-		*lform = temp_lf;
-		hit.has_hit = true;
-	}
-	temp_hit.t = INFINITY;
-	if (cyl_render(scene->cyl, ray, &temp_hit, &temp_lf) && temp_hit.t < hit.t)
-	{
-		hit = temp_hit;
-		*lform = temp_lf;
-		hit.has_hit = true;
-	}
-	return (hit);
+	calculate_ray(&ray, w, &coord, fov);
+	color = cast_ray(w, ray, 0);
+	if (OS[0] == 'D')
+		mlx_pixel_put(w->mlx_ptr, w->window, coord.x, coord.y,
+			(color.r << 16) | (color.g << 8) | color.b);
+	else
+		custom_mlx_pixel_put(&w->img,
+			coord.x, coord.y,
+			(color.r << 16) | (color.g << 8) | color.b);
 }
 
-t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
+static void	init_rt(t_window **window_ptr)
 {
-	t_scene		*scene;
-	t_hit		hit;
-	t_color		ret;
-	t_col01		amb_contr, lgt_contr;
-	t_lform		last_form;
+	t_window	*w;
 
-	lgt_contr.r = 0;
-	lgt_contr.g = 0;
-	lgt_contr.b = 0;
-	amb_contr.r = 0;
-	amb_contr.g = 0;
-	amb_contr.b = 0;
-	scene = window->scene;
-	last_form.addr = NULL;
-	hit.shade = NULL;
-	hit = trace(scene, ray, &last_form, true);
-	(void) ray_num;
-	if (hit.t > NEAR_CLIP && hit.t < FAR_CLIP && last_form.addr != NULL)
+	w = *window_ptr;
+	w->fov = w->scene->camera.fov * M_PI / 180;
+	mlx_clear_window(w->mlx_ptr, w->window);
+	if (OS[0] != 'D')
 	{
-		/*if (hit.shade && hit.shade->reflect && ray_num < MAX_REFLECTION)
-		{
-			ret = reflect_color(window, hit, ray.dir, ray_num);
-			hit.color.r = ret.r / 255.f;
-			hit.color.g = ret.g / 255.f;
-			hit.color.b = ret.b / 255.f;
-		}*/
-		ambient_lighting(scene->ambient, &amb_contr, hit.color);
-		dir_lighting(scene, &hit, &lgt_contr);
-		sph_lighting(scene, &hit, &lgt_contr);
+		w->img.img = mlx_new_image(w->mlx_ptr, w->width, w->height);
+		w->img.addr = mlx_get_data_addr(w->img.img, &w->img.bits_per_pixel,
+				&w->img.line_length, &w->img.endian);
 	}
-	ret.r = (fmin(1.f, lgt_contr.r + amb_contr.r)) * 255;
-	ret.g = (fmin(1.f, lgt_contr.g + amb_contr.g)) * 255;
-	ret.b = (fmin(1.f, lgt_contr.b + amb_contr.b)) * 255;
-	return (ret);
-}
-
-
-void	calculate_ray(t_ray *ray, t_window *window, t_vec2 *coord, float fov)
-{
-	ray->org = window->scene->camera.vp;
-	ray->dir.x = (2.0f * (coord->x + 0.5f) / window->width - 1.0f) * window->aspect_ratio * tan(fov / 2);
-	ray->dir.y = (1.0f - 2.0f * (coord->y + 0.5f) / window->height) * tan(fov / 2);
-	ray->dir.z = 1;
-	ray->dir = cam2world(window->cam, &ray->dir);
-	ray->dir = vec3_normalize(ray->dir);
-	return ;
 }
 
 void	render_scene(t_window **window_ptr)
 {
 	t_vec2		coord;
-	t_ray		ray;
-	t_color		color;
-	t_window	*window;
-	float		fov;
+	t_window	*w;
 
-	window = *window_ptr;
-	fov = window->scene->camera.fov * M_PI / 180;
-	if (OS[0] != 'D')
-	{
-		window->img.img = mlx_new_image(window->mlx_ptr, window->width, window->height);
-		window->img.addr = mlx_get_data_addr(window->img.img, &window->img.bits_per_pixel, &window->img.line_length, &window->img.endian);
-	}
-	else
-		mlx_clear_window(window->mlx_ptr, window->window);
+	w = *window_ptr;
+	init_rt(window_ptr);
 	coord.y = 0;
-	while (coord.y <= window->height)
+	while (coord.y <= w->height)
 	{
 		coord.x = 0;
-		while (coord.x <= window->width)
+		while (coord.x <= w->width)
 		{
-			calculate_ray(&ray, window, &coord, fov);
-			color = cast_ray(window, ray, 0);
-			if (OS[0] == 'D')
-				mlx_pixel_put(window->mlx_ptr, window->window, coord.x, coord.y, (color.r << 16) | (color.g << 8) | color.b);
-			else
-				custom_mlx_pixel_put(&window->img,
-				coord.x, coord.y,
-				(color.r << 16) | (color.g << 8) | color.b);
+			ray_caster(w, coord, w->fov);
 			coord.x++;
 		}
 		coord.y++;
 	}
 	if (OS[0] != 'D')
 	{
-		mlx_clear_window(window->mlx_ptr, window->window);
-		mlx_put_image_to_window(window->mlx_ptr, window->window, window->img.img, 0, 0);
+		mlx_clear_window(w->mlx_ptr, w->window);
+		mlx_put_image_to_window(w->mlx_ptr, w->window, w->img.img, 0, 0);
 	}
 	return ;
 }
@@ -152,7 +85,7 @@ void	render(t_scene *scene)
 	window->height = HEIGHT;
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
-		window->width, window->height, "Cyberpunk");
+			window->width, window->height, "Cyberpunk");
 	keyboard_conf(window);
 	lookat(window);
 	mlx_key_hook(window->window, key_event, window);

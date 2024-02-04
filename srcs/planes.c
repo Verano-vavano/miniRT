@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 18:03:09 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:21:51 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ bool	pl_render(t_plane *pl, t_ray ray, t_hit *x, t_lform *lform)
 	double	hit;
 	t_plane	*closest;
 
+	x->t = INFINITY;
 	closest = NULL;
 	while (pl)
 	{

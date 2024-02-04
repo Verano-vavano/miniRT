@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:48:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 15:22:32 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:49:08 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ inline t_vec3	calc_ray_point(t_ray ray, double hit)
 
 bool	quadratic(double a, double b, double c, double *ret)
 {
-	double	discr, x_hit1, x_hit2;
+	double	discr;
+	double	x_hit1;
+	double	x_hit2;
 
 	discr = pow(b, 2) - (4 * a * c);
 	if (discr < 0)
@@ -49,3 +51,12 @@ inline float	to_rad(int n)
 	return ((float) n / 180 * M_PI);
 }
 
+void	init_lgt_contr(t_lcont *contr)
+{
+	contr->lgt_contr.r = 0;
+	contr->lgt_contr.g = 0;
+	contr->lgt_contr.b = 0;
+	contr->amb_contr.r = 0;
+	contr->amb_contr.g = 0;
+	contr->amb_contr.b = 0;
+}

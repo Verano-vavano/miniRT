@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 16:48:27 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:53:32 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	read_scene_file(t_scene *scene, int file_fd)
 t_scene	*get_scene(char *file)
 {
 	t_scene	*scene;
-	int	file_fd;
+	int		file_fd;
 
 	scene = ft_calloc(1, sizeof (t_scene));
 	if (!scene)

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 13:59:23 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:23:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	sp_render(t_sphere *sp, t_ray r, t_hit *x, t_lform *lform)
 	double	hit_near, hit;
 	t_sphere *closest;
 
+	x->t = INFINITY;
 	hit_near = INFINITY;
 	closest = NULL;
 	while (sp)

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:19:14 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 14:48:32 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 16:19:52 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_last_form
 typedef struct s_hit
 {
 	double	t;
+	bool	has_hit;
 	t_vec3	hit;
 	t_vec3	normal;
 	t_col01	color;
@@ -82,6 +83,8 @@ bool	sp_render(t_sphere *sp, t_ray r, t_hit *x, t_lform *lf);
 bool	pl_render(t_plane *pl, t_ray r, t_hit *x, t_lform *lf);
 bool	plane_intersect(t_plane *pl, t_ray ray, double *hit);
 bool	cyl_render(t_cylinder *cyl, t_ray r, t_hit *x, t_lform *lf);
+bool	check_cyl_planes(t_plane *p, t_ray ray, t_hit *hit, float radius);
+bool	check_cyl_center(t_cylinder *cyl, t_ray ray, t_hit *hit);
 
 // camera
 t_vec3	cam2world(float m[4][4], t_vec3 *v);
@@ -109,14 +112,14 @@ int		unminimize(t_window *window);
 
 // transformations
 void	apply_transformation(t_lform select, t_transform transform);
+void	size_modif(t_window *window, char key, t_lform lf);
 
 // render_utilities
 void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b);
 t_col01	copy_col_to_01(t_color col);
 void	copy_2vec3(t_vec3 *v1, t_vec3 v2);
 void	keyboard_conf(t_window *window);
-
-// utils
 bool	quadratic(double a, double b, double c, double *ret);
+float	to_rad(int n);
 
 #endif

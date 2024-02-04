@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:09:37 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:58:14 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:51:36 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@
 # define EIGHT 95
 # define NINE 231
 # define ZERO 224
+
+short	get_eq(int key);
 
 #endif

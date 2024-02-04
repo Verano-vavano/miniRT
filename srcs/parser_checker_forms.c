@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:06:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 08:48:49 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 17:44:55 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ bool	check_last_cyl(t_scene *scene)
 	c->p_top = vec3_mult_float(c->dir, c->height * 0.5);
 	c->p_bot = vec3_add(c->p_bot, c->center);
 	c->p_top = vec3_add(c->p_top, c->center);
+	c->radius = c->diameter / 2.f;
 	return (true);
 }

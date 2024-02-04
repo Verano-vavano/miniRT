@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 16:52:17 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 18:03:09 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
 bool	pl_render(t_plane *pl, t_ray ray, t_hit *x, t_lform *lform)
 {
 	double	hit;
-	t_plane *closest;
+	t_plane	*closest;
 
 	closest = NULL;
 	while (pl)
@@ -40,17 +40,16 @@ bool	pl_render(t_plane *pl, t_ray ray, t_hit *x, t_lform *lform)
 		}
 		pl = pl->next_plane;
 	}
-	if (closest)
+	if (!closest)
+		return (false);
+	x->hit = calc_ray_point(ray, x->t);
+	x->normal = closest->normal;
+	x->color = copy_col_to_01(closest->color);
+	x->shade = &(pl->shading);
+	if (lform)
 	{
-		x->hit = calc_ray_point(ray, x->t);
-		x->normal = closest->normal;
-		x->color = copy_col_to_01(closest->color);
-		x->shade = &(pl->shading);
-		if (lform)
-		{
-			lform->addr = (void *) closest;
-			lform->shape = 'p';
-		}
+		lform->addr = (void *) closest;
+		lform->shape = 'p';
 	}
-	return (closest != NULL);
+	return (true);
 }

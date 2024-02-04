@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:10:56 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 09:55:12 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 17:55:44 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	free_scene(t_scene *scene);
 
 // PARSER
 bool	adder(t_scene *scene, char *line, bool *verif, enum e_scene_arg name);
+bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph);
+bool	set_arg_camera(t_scene *scene, char *arg, short arg_num);
+bool	set_arg_ambient(t_scene *scene, char *arg, short arg_num);
 
 // PARSER FORMS
 bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num);

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 11:12:32 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 08:25:12 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 13:57:51 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,27 @@ bool	plane_intersect(t_plane *pl, t_ray ray, double *hit)
 	return (*hit > 0);
 }
 
-bool	pl_render(t_plane *pl, t_ray ray, double *x, t_lform *lform)
+bool	pl_render(t_plane *pl, t_ray ray, t_hit *x, t_lform *lform)
 {
-	double	hit_near, hit;
+	double	hit;
 	t_plane *closest;
 
-	hit_near = INFINITY;
 	closest = NULL;
 	while (pl)
 	{
-		if (plane_intersect(pl, ray, &hit) && hit < hit_near)
+		if (plane_intersect(pl, ray, &hit) && hit < x->t)
 		{
-			hit_near = hit;
+			x->t = hit;
 			closest = pl;
 		}
 		pl = pl->next_plane;
 	}
 	if (closest)
 	{
-		*x = hit_near;
+		x->hit = calc_ray_point(ray, x->t);
+		x->normal = closest->normal;
+		x->color = copy_col_to_01(closest->color);
+		x->shade = &(pl->shading);
 		if (lform)
 		{
 			lform->addr = (void *) closest;

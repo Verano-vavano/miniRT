@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:20:44 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 08:47:05 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 14:27:52 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,9 @@ float	vec3_dist(t_vec3 v1, t_vec3 v2)
 		+ pow(v1.y - v2.y, 2)
 		+ pow(v1.z - v2.z, 2)));
 }
+
+inline t_vec3	vec3_lin_comb(double alpha, t_vec3 a, double beta, t_vec3 b)
+{
+	return (vec3_add(vec3_mult_float(a, alpha), vec3_mult_float(b, beta)));
+}
+

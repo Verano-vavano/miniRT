@@ -6,16 +6,16 @@
 #    By: hdupire <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:34:46 by hdupire           #+#    #+#              #
-#    Updated: 2024/02/03 22:40:46 by hdupire          ###   ########.fr        #
+#    Updated: 2024/02/04 14:53:14 by hdupire          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=./miniRT
 
-SRCS=colors.c events.c free_scene.c latof.c main.c \
+SRCS=camera.c colors.c events.c key_events.c free_scene.c latof.c main.c \
 	 mlx_plus.c parser_checker.c parser_checker_forms.c \
-	 parser_forms.c parser_mandatory.c spheres.c planes.c cylinders.c render.c utils.c \
-	 scene.c scene_read_utils.c light.c lf_infos.c vec3.c vec3_math.c render_utils.c reflection.c \
+	 parser_forms.c parser_mandatory.c spheres.c planes.c cylinders.c render.c \
+	 scene.c scene_read_utils.c light.c vec3.c vec3_math.c render_utils.c reflection.c \
 	 transformations.c rotation.c keyboard.c\
 	errors/latof_errors.c errors/parser_errors.c \
 	 errors/parsing_errors.c errors/vec3_errors.c

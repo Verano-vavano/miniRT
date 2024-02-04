@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 22:19:54 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/23 20:58:16 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 14:51:59 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,23 @@ t_color	get_color(char *arg)
 	}
 	ret.valid = true;
 	free_char_etoile_etoile(rgb);
+	return (ret);
+}
+
+void	copy_color(t_color *col, uint8_t r, uint8_t g, uint8_t b)
+{
+	col->r = r;
+	col->g = g;
+	col->b = b;
+	return ;
+}
+
+t_col01	copy_col_to_01(t_color col)
+{
+	t_col01	ret;
+
+	ret.r = col.r / 255.f;
+	ret.g = col.g / 255.f;
+	ret.b = col.b / 255.f;
 	return (ret);
 }

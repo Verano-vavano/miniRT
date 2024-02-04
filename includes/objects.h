@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:53:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 08:22:49 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 14:26:07 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_lighting
 typedef struct s_shade
 {
 	bool	reflect;
-}			   t_shade;
+}				t_shade;
 
 typedef struct s_sphere
 {
@@ -83,15 +83,15 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_vec3			center;
-	t_vec3			p_bot;
-	t_vec3			p_top;
-	t_vec3			dir;
-	float			diameter;
-	float			radius;
-	float			height;
-	t_color			color;
-	t_shade			shading;
+	t_vec3				center;
+	t_vec3				p_bot;
+	t_vec3				p_top;
+	t_vec3				dir;
+	float				diameter;
+	float				radius;
+	float				height;
+	t_color				color;
+	t_shade				shading;
 	struct s_cylinder	*next;
 }		t_cylinder;
 

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:10:08 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 22:21:30 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 14:17:10 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 // Closest t-value where an object can appear
 # define NEAR_CLIP 1
 // Furthest t-value where an object can appear
-# define FAR_CLIP 80
+# define FAR_CLIP 1500
 // Width and height of window
-# define WIDTH 720
-# define HEIGHT 480
+# define WIDTH 1440
+# define HEIGHT 960
 
 /* SHADING */
 

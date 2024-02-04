@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/31 23:13:21 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 13:59:23 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	sphere_intersect(t_sphere *sp, t_ray ray, double *hit)
 	return (quadratic(1, b, c, hit));
 }
 
-bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lform)
+bool	sp_render(t_sphere *sp, t_ray r, t_hit *x, t_lform *lform)
 {
 	double	hit_near, hit;
 	t_sphere *closest;
@@ -46,7 +46,11 @@ bool	sp_render(t_sphere *sp, t_ray r, double *x, t_lform *lform)
 	}
 	if (closest)
 	{
-		*x = hit_near;
+		x->t = hit_near;
+		x->hit = calc_ray_point(r, x->t);
+		x->normal = vec3_normalize(vec3_sub(x->hit, closest->pos));
+		x->color = copy_col_to_01(closest->color);
+		x->shade = &(closest->shading);
 		if (lform)
 		{
 			lform->addr = (void *) closest;

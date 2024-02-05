@@ -6,11 +6,12 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/05 01:06:34 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/05 02:18:59 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "events.h"
 #include "libft.h"
 
 static void	ray_caster(t_window *w, t_vec2 coord, float fov)
@@ -90,9 +91,9 @@ void	render(t_scene *scene)
 	keyboard_conf(window);
 	lookat(window);
 	mlx_key_hook(window->window, key_event, window);
-	mlx_hook(window->window, 17, 1L << 0, quit_game, window);
-	mlx_hook(window->window, 4, 1L << 2, mousedown, window);
-	mlx_hook(window->window, 12, 1L << 15, unminimize, window);
+	mlx_hook(window->window, DESTROY_NOTIFY, M_KEYPRESS, quit_game, window);
+	mlx_hook(window->window, BUTTON_PRESS, M_BUTTONPRESS, mousedown, window);
+	mlx_hook(window->window, EXPOSE, M_EXPOSURE, unminimize, window);
 	render_scene(&window);
 	mlx_loop(window->mlx_ptr);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 18:26:12 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 17:40:00 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/05 01:03:15 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sph_lighting(t_scene *scene, t_hit *hit, t_col01 *ret)
 		if (temp.addr == NULL
 			|| vec3_length(calc_ray_point(new_ray, t.t)) > rv[1] + EPSILON)
 		{
-			rv[2] = s_lgt->lgt_ratio / (4 * M_PI * rv[0]) * 0.3;
+			rv[2] = s_lgt->lgt_ratio / (4 * M_PI * rv[0]);
 			ret->r = fmin(1.f, ret->r + hit->color.r * rv[2] * s_lgt->color.r);
 			ret->g = fmin(1.f, ret->g + hit->color.g * rv[2] * s_lgt->color.g);
 			ret->b = fmin(1.f, ret->b + hit->color.b * rv[2] * s_lgt->color.b);

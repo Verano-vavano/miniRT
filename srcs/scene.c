@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:53:32 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/04 21:00:25 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ t_scene	*get_scene(char *file)
 	}
 	else
 		read_scene_file(scene, file_fd);
+	scene->is_valid = (scene->is_valid && scene->has_camera && scene->has_ambient);
 	return (scene);
 }

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 19:41:35 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 20:29:52 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/05 01:19:21 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 	last_form.addr = NULL;
 	hit.shade = NULL;
 	hit = trace(scene, ray, &last_form, true);
-	if (hit.t > NEAR_CLIP && hit.t < FAR_CLIP && last_form.addr != NULL)
+	if (hit.t > (NEAR_CLIP * (ray_num == 0)) && hit.t < FAR_CLIP && last_form.addr != NULL)
 	{
 		if (hit.shade && hit.shade->reflect && ray_num < MAX_REFLECTION)
 			reflect_color(window, &hit, ray.dir, ray_num);

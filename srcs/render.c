@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:47:24 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/05 01:06:34 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static void	init_rt(t_window **window_ptr)
 
 	w = *window_ptr;
 	w->fov = w->scene->camera.fov * M_PI / 180;
-	mlx_clear_window(w->mlx_ptr, w->window);
 	if (OS[0] != 'D')
 	{
 		w->img.img = mlx_new_image(w->mlx_ptr, w->width, w->height);
 		w->img.addr = mlx_get_data_addr(w->img.img, &w->img.bits_per_pixel,
 				&w->img.line_length, &w->img.endian);
 	}
+	else
+		mlx_clear_window(w->mlx_ptr, w->window);
 }
 
 void	render_scene(t_window **window_ptr)

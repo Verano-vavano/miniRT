@@ -1,0 +1,7 @@
+img1.rt -> sphere
+img2.rt -> cylinders
+img3.rt -> planes and spherical lighting
+img4.rt -> everything with shadow
+img5.rt -> same scene from a diferent angle
+img6.rt -> same scene with front heading light to show shadows on back plane
+img7.rt -> nice scene with pilars

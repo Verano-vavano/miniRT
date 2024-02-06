@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:15:47 by hdupire           #+#    #+#             */
-/*   Updated: 2023/12/05 10:59:10 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/06 23:28:07 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ bool	malloc_err(char *set)
 	write(2, set, ft_strlen(set));
 	write(2, "] MEMORY ALLOCATION ERROR\n", 26);
 	return (false);
+}
+
+void	print_error(char *error)
+{
+	write(2, "Error\n", 6);
+	write(2, error, ft_strlen(error));
+	write(2, "\n", 1);
 }

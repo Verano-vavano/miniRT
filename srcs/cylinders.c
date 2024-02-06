@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:19:23 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:22:20 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/05 11:54:53 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	calculate_cyl_normal(t_cylinder *cyl, t_hit *hit, bool is_plane)
 {
-	double	h;
+	t_vec3	v;
 
 	if (is_plane)
 		copy_2vec3(&(hit->normal), cyl->dir);
 	else
 	{
-		h = vec3_dot(vec3_sub(hit->hit, cyl->center), cyl->dir);
-		hit->normal = vec3_normalize(vec3_sub(hit->hit, vec3_add(cyl->center,
-						vec3_mult_float(cyl->dir, h))));
+		v = vec3_sub(cyl->center, hit->hit);
+		hit->normal = vec3_cross(v, cyl->dir);
+		hit->normal = vec3_normalize(vec3_cross(hit->normal, cyl->dir));
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 17:58:07 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:09:52 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 	else if (arg_num == 2)
 		scene->camera.vp = get_coord_vec3(arg, false);
 	else if (arg_num == 3)
-		scene->camera.dir = get_coord_vec3(arg, true);
+		scene->camera.dir = get_coord_vec3(arg, false);
 	else if (arg_num == 4 && is_intable(arg))
 	{
 		scene->camera.fov = ft_atoi(arg);

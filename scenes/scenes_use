@@ -5,3 +5,10 @@ img4.rt -> everything with shadow
 img5.rt -> same scene from a diferent angle
 img6.rt -> same scene with front heading light to show shadows on back plane
 img7.rt -> nice scene with pilars
+img7.5.rt -> same but with a pink front facing light and smaller light ratio value
+
+mirror.rt -> a mirror plane, a mirror sphere and a normal sphere
+mirror2.rt -> the same, but every sphere is normal
+
+basic.rt -> just a simple sphere
+basic2.rt -> more spheres, and higher fov

@@ -6,11 +6,12 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 05:20:29 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 21:00:25 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/06 23:28:29 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "errors.h"
 #include "libft.h"
 
 static bool	understand_scene_line(t_scene *scene, char *line)
@@ -78,6 +79,10 @@ t_scene	*get_scene(char *file)
 	}
 	else
 		read_scene_file(scene, file_fd);
-	scene->is_valid = (scene->is_valid && scene->has_camera && scene->has_ambient);
+	if (scene->is_valid && (!scene->has_camera || !scene->has_ambient))
+	{
+		print_error("Missing either ambient or camera");
+		scene->is_valid = false;
+	}
 	return (scene);
 }

@@ -17,8 +17,4 @@
 # define EXPOSE 12
 # define DESTROY_NOTIFY 17
 
-# define M_KEYPRESS 1L << 0
-# define M_BUTTONPRESS 1L << 2
-# define M_EXPOSURE 1L << 15
-
 #endif

@@ -44,11 +44,11 @@ static void	cylinders_transform(t_cylinder *cl, t_transform t)
 	}
 	else if (t.type == 'r')
 		apply_rotation(&(cl->dir), to_rad(t.x), to_rad(t.y), to_rad(t.z));
-    cl->p_bot = vec3_mult_float(cl->dir, cl->height * (-0.5));
-    cl->p_top = vec3_mult_float(cl->dir, cl->height * 0.5);
-    cl->p_bot = vec3_add(cl->p_bot, cl->center);
-    cl->p_top = vec3_add(cl->p_top, cl->center);
-    cl->radius = cl->diameter / 2.f;
+	cl->p_bot = vec3_mult_float(cl->dir, cl->height * (-0.5));
+	cl->p_top = vec3_mult_float(cl->dir, cl->height * 0.5);
+	cl->p_bot = vec3_add(cl->p_bot, cl->center);
+	cl->p_top = vec3_add(cl->p_top, cl->center);
+	cl->radius = cl->diameter / 2.f;
 }
 
 static void	light_transform(t_light *l, t_transform t)
@@ -59,10 +59,10 @@ static void	light_transform(t_light *l, t_transform t)
 	l->vec.y += t.y;
 	l->vec.z += t.z;
 	if (!l->spherical)
-    {
+	{
 		l->vec = vec3_normalize(l->vec);
-        l->inv_dir = vec3_mult_float(l->vec, -1.f);
-    }
+		l->inv_dir = vec3_mult_float(l->vec, -1.f);
+	}
 }
 
 void	apply_transformation(t_lform select, t_transform transform)

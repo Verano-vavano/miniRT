@@ -54,7 +54,8 @@ t_color	cast_ray(t_window *window, t_ray ray, int ray_num)
 	last_form.addr = NULL;
 	hit.shade = NULL;
 	hit = trace(scene, ray, &last_form, true);
-	if (hit.t > (NEAR_CLIP * (ray_num == 0)) && hit.t < FAR_CLIP && last_form.addr != NULL)
+	if (hit.t > (NEAR_CLIP * (ray_num == 0))
+		&& hit.t < FAR_CLIP && last_form.addr != NULL)
 	{
 		if (hit.shade && hit.shade->reflect && ray_num < MAX_REFLECTION)
 			reflect_color(window, &hit, ray.dir, ray_num);

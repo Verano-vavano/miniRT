@@ -43,6 +43,19 @@ static bool	is_movement(int key, char k, t_window *window)
 	return (true);
 }
 
+static void	rescue_funk(int key, t_window *window)
+{
+	if (key == 'v')
+		window->transform.x = window->transform.temp;
+	else if (key == 'b')
+		window->transform.y = window->transform.temp;
+	else if (key == 'n')
+		window->transform.z = window->transform.temp;
+	window->transform.temp = 0;
+	printf("Current transformation : (%d, %d, %d)\n",
+		window->transform.x, window->transform.y, window->transform.z);
+}
+
 static bool	transfo_key_events(int key, t_window *window)
 {
 	if (key == 'r' || key == 't' || key == 'f')
@@ -52,16 +65,7 @@ static bool	transfo_key_events(int key, t_window *window)
 		window->transform.temp = 0;
 	}
 	else if (key == 'v' || key == 'b' || key == 'n')
-	{
-		if (key == 'v')
-			window->transform.x = window->transform.temp;
-		else if (key == 'b')
-			window->transform.y = window->transform.temp;
-		else if (key == 'n')
-			window->transform.z = window->transform.temp;
-		window->transform.temp = 0;
-		printf("Current transformation : (%d, %d, %d)\n", window->transform.x, window->transform.y, window->transform.z);
-	}
+		rescue_funk(key, window);
 	else if (key == SPACE)
 	{
 		printf("Transformation applied ! :)\n");
@@ -71,7 +75,7 @@ static bool	transfo_key_events(int key, t_window *window)
 	else if (key == 'i' && window->transform.type != 'f')
 	{
 		window->transform.temp *= -1;
-        printf("| (%d)\n", window->transform.temp);
+		printf("| (%d)\n", window->transform.temp);
 	}
 	else
 		return (false);
@@ -83,12 +87,12 @@ static void	transfo_add_val(t_window *window, int key)
 	short	n;
 
 	window->transform.temp *= 10;
-    if (window->keyboard == 'a')
-        n = get_eq(key);
-    else
-        n = key - '0';
-    printf("| %d (%d)\n", n, window->transform.temp);
-    window->transform.temp += n;
+	if (window->keyboard == 'a')
+		n = get_eq(key);
+	else
+		n = key - '0';
+	printf("| %d (%d)\n", n, window->transform.temp);
+	window->transform.temp += n;
 	if (window->transform.temp > 999)
 	{
 		printf("Too high value !\n");

@@ -88,13 +88,13 @@ void	render(t_scene *scene)
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
 			window->width, window->height, "Cyberpunk");
-    window->transform.type = 'f';
+	window->transform.type = 'f';
 	keyboard_conf(window);
 	lookat(window);
 	mlx_key_hook(window->window, key_event, window);
-	mlx_hook(window->window, DESTROY_NOTIFY, M_KEYPRESS, quit_game, window);
-	mlx_hook(window->window, BUTTON_PRESS, M_BUTTONPRESS, mousedown, window);
-	mlx_hook(window->window, EXPOSE, M_EXPOSURE, unminimize, window);
+	mlx_hook(window->window, DESTROY_NOTIFY, 1L << 0, quit_game, window);
+	mlx_hook(window->window, BUTTON_PRESS, 1L << 2, mousedown, window);
+	mlx_hook(window->window, EXPOSE, 1L << 15, unminimize, window);
 	render_scene(&window);
 	mlx_loop(window->mlx_ptr);
 	return ;

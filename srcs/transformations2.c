@@ -27,14 +27,14 @@ static void	cyl_size_modif(t_window *window, t_lform lf, int mod)
 	if (new >= 0 && new < INT_MAX)
 	{
 		if (window->height_mod)
-        {
+		{
 			cy->height = new;
-            cy->p_bot = vec3_mult_float(cy->dir, cy->height * (-0.5));
-            cy->p_top = vec3_mult_float(cy->dir, cy->height * 0.5);
-            cy->p_bot = vec3_add(cy->p_bot, cy->center);
-            cy->p_top = vec3_add(cy->p_top, cy->center);
-            cy->radius = cy->diameter / 2.f;
-        }
+			cy->p_bot = vec3_mult_float(cy->dir, cy->height * (-0.5));
+			cy->p_top = vec3_mult_float(cy->dir, cy->height * 0.5);
+			cy->p_bot = vec3_add(cy->p_bot, cy->center);
+			cy->p_top = vec3_add(cy->p_top, cy->center);
+			cy->radius = cy->diameter / 2.f;
+		}
 		else
 			cy->radius = new;
 	}

@@ -37,7 +37,6 @@
 // Defines if a plane creates a shadow or not as they are quite big
 // Only used in directional lights (spherical and ambient are always
 // subject to plane shadowing)
-# define PLANE_SHADOW false
-
+# define PLANE_SHADOW 0
 
 #endif

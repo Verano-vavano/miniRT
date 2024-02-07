@@ -29,7 +29,6 @@
 
 # define FLOAT_ERR 111111
 
-
 char		*get_next_line(int fd);
 
 int			ft_strcmp(const char *s1, const char *s2);

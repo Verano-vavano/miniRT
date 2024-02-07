@@ -1,8 +1,8 @@
-z : forward (z-axis +)
+z/w : forward (z-axis +)
 s : backwards (z-axis -)
-q : left (x-axis -)
+q/a : left (x-axis -)
 d : right (x_axis +)
-a : up (y-axis +)
+a/q : up (y-axis +)
 e : down (y-axis -)
 
 RMB + any of the above : rotate the camera

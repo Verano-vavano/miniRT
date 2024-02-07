@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:32:59 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/05 02:18:59 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 19:13:22 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	render(t_scene *scene)
 	window->aspect_ratio = (double) window->width / (double) window->height;
 	window->window = mlx_new_window(window->mlx_ptr,
 			window->width, window->height, "Cyberpunk");
+    window->transform.type = 'f';
 	keyboard_conf(window);
 	lookat(window);
 	mlx_key_hook(window->window, key_event, window);

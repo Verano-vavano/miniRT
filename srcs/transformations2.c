@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:24:41 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:58:53 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 19:32:46 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,24 @@
 static void	cyl_size_modif(t_window *window, t_lform lf, int mod)
 {
 	t_cylinder	*cy;
-	long		new;
+	float		new;
 
 	cy = (t_cylinder *) lf.addr;
 	if (window->height_mod)
-		new = cy->height + mod;
+		new = cy->height + (mod * cy->height / 2.f);
 	else
-		new = cy->radius + mod;
+		new = cy->radius + (mod * cy->radius / 2.f);
 	if (new >= 0 && new < INT_MAX)
 	{
 		if (window->height_mod)
+        {
 			cy->height = new;
+            cy->p_bot = vec3_mult_float(cy->dir, cy->height * (-0.5));
+            cy->p_top = vec3_mult_float(cy->dir, cy->height * 0.5);
+            cy->p_bot = vec3_add(cy->p_bot, cy->center);
+            cy->p_top = vec3_add(cy->p_top, cy->center);
+            cy->radius = cy->diameter / 2.f;
+        }
 		else
 			cy->radius = new;
 	}
@@ -43,7 +50,7 @@ void	size_modif(t_window *window, char key, t_lform lf)
 	if (lf.shape == 's')
 	{
 		sp = (t_sphere *) lf.addr;
-		new = sp->diameter + mod;
+		new = sp->diameter + (mod * sp->diameter / 2.f);
 		if (new >= 0 && new < INT_MAX)
 			sp->diameter += mod;
 	}
@@ -51,6 +58,7 @@ void	size_modif(t_window *window, char key, t_lform lf)
 		cyl_size_modif(window, lf, mod);
 	else
 		return ;
+	printf("Size modified\n");
 	render_scene(&window);
 }
 

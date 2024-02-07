@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/07 14:29:42 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 19:09:17 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph)
 	else
 		new_light = sc->lighting.last_light;
 	if (arg_num == 2)
-	{
 		new_light->vec = get_coord_vec3(arg, false);
-	}
 	else if (arg_num == 3)
 		new_light->lgt_ratio = little_atof(arg);
 	else if (arg_num == 4)

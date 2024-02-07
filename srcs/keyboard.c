@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:20 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 15:57:35 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 17:39:30 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	keyboard_conf(t_window *window)
 
 	fd = open("/etc/vconsole.conf", O_RDONLY);
 	if (fd == -1)
-		window->keyboard = 'a';
+		window->keyboard = 'q';
 	else
 		window->keyboard = get_kb(fd);
 }

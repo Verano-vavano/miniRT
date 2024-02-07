@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:40:01 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 15:19:19 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 18:24:38 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	mousedown(int button, int x, int y, t_window *window)
 
 	if (button == 3)
 	{
+		printf("Rotate mode toggled (%d)\n", window->rmb_pressed);
 		window->rmb_pressed ^= true;
 		return (0);
 	}
@@ -45,6 +46,6 @@ int	mousedown(int button, int x, int y, t_window *window)
 	calculate_ray(&ray, window, &coord, window->scene->camera.fov * M_PI / 180);
 	trace(window->scene, ray, &(window->last_selected), true);
 	if (window->last_selected.addr)
-		printf("%c\n", window->last_selected.shape);
+		printf("New form selected (%c)\n", window->last_selected.shape);
 	return (0);
 }

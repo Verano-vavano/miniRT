@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:10:08 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/06 20:28:39 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 17:57:11 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 // Furthest t-value where an object can appear
 # define FAR_CLIP 1500
 // Width and height of window
-# define WIDTH 1440
-# define HEIGHT 960
+# define WIDTH 720
+# define HEIGHT 480
 
 /* SHADING */
 
@@ -38,5 +38,6 @@
 // Only used in directional lights (spherical and ambient are always
 // subject to plane shadowing)
 # define PLANE_SHADOW false
+
 
 #endif

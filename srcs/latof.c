@@ -6,15 +6,13 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:45:39 by hdupire           #+#    #+#             */
-/*   Updated: 2024/01/27 02:36:03 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 15:40:33 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "errors.h"
 #include <math.h>
-
-#define FLOAT_ERR 111111
 
 static bool	float_check_arg(char *arg)
 {
@@ -32,15 +30,12 @@ static bool	float_check_arg(char *arg)
 		if (d_count > 5)
 			return (float_too_many_digits(*arg));
 	}
-	d_count = 0;
 	arg += (*arg == '.');
-	while (*arg && ++d_count)
+	while (*arg)
 	{
 		if (*arg < '0' || *arg > '9')
 			return (float_convert_err(*arg));
 		arg++;
-		if (d_count > 5)
-			return (float_too_many_digits(*arg));
 	}
 	return (true);
 }
@@ -56,7 +51,7 @@ static float	atof_convert(char *arg)
 	ret = 0;
 	dec = false;
 	decimal_point = ft_strchr_int(arg, '.');
-	while (arg[iter])
+	while (arg[iter] && iter - decimal_point < 5)
 	{
 		if (iter == decimal_point && !dec)
 		{
@@ -68,6 +63,23 @@ static float	atof_convert(char *arg)
 		iter++;
 	}
 	return (ret);
+}
+
+static char	*cut_useless(char *arg)
+{
+	size_t	n;
+	size_t	decimal_point;
+
+	while (*arg && (*arg == '-' || *arg == '+'))
+		arg++;
+	while (*arg && *arg == '0')
+		arg++;
+	n = ft_strlen(arg) - 1;
+	decimal_point = ft_strchr_int(arg, '.');
+	while (*arg && n > decimal_point && arg[n] == '0')
+		n--;
+	arg[n + 1] = '\0';
+	return (arg);
 }
 
 // little_atof does a simple conversion from a char* to a float.
@@ -83,13 +95,14 @@ float	little_atof(char *arg)
 {
 	short	neg;
 
-	if (!float_check_arg(arg))
-		return (FLOAT_ERR);
 	neg = 1;
 	while (*arg && (*arg == '+' || *arg == '-'))
 	{
 		neg *= (-1 * (*arg == '-') + 1 * (*arg == '+'));
 		arg++;
 	}
+	arg = cut_useless(arg);
+	if (!float_check_arg(arg))
+		return (FLOAT_ERR);
 	return (atof_convert(arg) * neg);
 }

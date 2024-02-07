@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:54:15 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 18:01:23 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:41:01 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	adder(t_scene *scene, char *line, bool *verif, enum e_scene_arg name)
 	short	ret;
 
 	if (verif && *verif)
-		return (already_set_err(name));
+		return (already_set_err('A' + name + 1));
 	arg = get_line_arg(line, &advancement);
 	arg_num = 1;
 	ret = true;

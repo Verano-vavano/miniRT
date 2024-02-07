@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 03:56:46 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/06 23:28:40 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 15:41:02 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	}
 	if (!scene->is_valid)
 	{
-		printf("The scene entered is invalid (see log above)\n");
+		printf("\nThe scene entered is invalid (see log above)\n");
 		free_scene(scene);
 		return (1);
 	}

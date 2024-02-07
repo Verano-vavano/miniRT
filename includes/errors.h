@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:09:49 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/06 23:27:16 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:27:31 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_error(char *error);
 
 bool	already_set_err(char set);
 bool	invalid_range_err(char *set, char *lb, char *ub);
-bool	too_many_args_err(char *set, char *req);
+bool	too_many_args_war(char *set, char *req);
 bool	malloc_err(char *set);
 
 bool	float_convert_err(char c);

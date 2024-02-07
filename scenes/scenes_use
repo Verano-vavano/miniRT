@@ -7,8 +7,9 @@ img6.rt -> same scene with front heading light to show shadows on back plane
 img7.rt -> nice scene with pilars
 img7.5.rt -> same but with a pink front facing light and smaller light ratio value
 
-mirror.rt -> a mirror plane, a mirror sphere and a normal sphere
-mirror2.rt -> the same, but every sphere is normal
+mirror.rt -> a plane, two spheres
+mirror2.rt -> the same but the plane is a mirror
+mirror3.rt -> the same but one of the spheres is a mirror
 
 basic.rt -> just a simple sphere
 basic2.rt -> more spheres, and higher fov

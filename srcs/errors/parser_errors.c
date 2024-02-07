@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_errs.c                                    :+:      :+:    :+:   */
+/*   parser_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:15:47 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/06 23:28:07 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:42:05 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	already_set_err(char set)
 {
+	write(2, "Error\n", 6);
 	write(2, "[", 1);
 	write(2, &set, 1);
 	write(2, "] ALREADY SET\n", 14);
@@ -22,6 +23,7 @@ bool	already_set_err(char set)
 
 bool	invalid_range_err(char *set, char *lb, char *ub)
 {
+	write(2, "Error\n", 6);
 	write(2, "[", 1);
 	write(2, set, ft_strlen(set));
 	write(2, "] BOUNDS ERROR (must be between ", 32);
@@ -32,11 +34,12 @@ bool	invalid_range_err(char *set, char *lb, char *ub)
 	return (false);
 }
 
-bool	too_many_args_err(char *set, char *req)
+bool	too_many_args_war(char *set, char *req)
 {
+	write(2, "Error\n", 6);
 	write(2, "[", 1);
 	write(2, set, ft_strlen(set));
-	write(2, "] TOO MANY ARGUMENTS (", 22);
+	write(2, "] WARNING : TOO MANY ARGUMENTS (", 32);
 	write(2, req, ft_strlen(req));
 	write(2, " required)\n", 11);
 	return (false);
@@ -44,6 +47,7 @@ bool	too_many_args_err(char *set, char *req)
 
 bool	malloc_err(char *set)
 {
+	write(2, "Error\n", 6);
 	write(2, "[", 1);
 	write(2, set, ft_strlen(set));
 	write(2, "] MEMORY ALLOCATION ERROR\n", 26);

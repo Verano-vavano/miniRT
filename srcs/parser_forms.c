@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:38:25 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 17:51:42 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:31:59 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	set_new_arg_sphere(t_scene *scene, char *arg, short arg_num)
 		return (check_last_sphere(scene));
 	}
 	else if (!set_shade(&(scene->last_sphere->shading), arg))
-		return (too_many_args_err("SPHERE", "3"));
+		too_many_args_war("SPHERE", "3");
 	return (true);
 }
 
@@ -77,7 +77,7 @@ bool	set_new_arg_plane(t_scene *scene, char *arg, short arg_num)
 		return (check_last_plane(scene));
 	}
 	else if (!set_shade(&(scene->last_plane->shading), arg))
-		return (too_many_args_err("PLANE", "3"));
+		too_many_args_war("PLANE", "3");
 	return (true);
 }
 
@@ -114,6 +114,6 @@ bool	set_new_arg_cyl(t_scene *scene, char *arg, short arg_num)
 		return (check_last_cyl(scene));
 	}
 	else if (!set_shade(&(scene->last_cyl->shading), arg))
-		return (too_many_args_err("CYLINDER", "5"));
+		too_many_args_war("CYLINDER", "5");
 	return (true);
 }

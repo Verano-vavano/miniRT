@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 00:18:52 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/06 20:09:52 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:29:42 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	set_arg_ambient(t_scene *scene, char *arg, short arg_num)
 		return (check_ambient(scene));
 	}
 	else if (arg_num == 4)
-		return (too_many_args_err("AMBIENT", "2"));
+		too_many_args_war("AMBIENT", "2");
 	return (true);
 }
 
@@ -44,7 +44,7 @@ bool	set_arg_camera(t_scene *scene, char *arg, short arg_num)
 		return (check_camera(scene));
 	}
 	else if (arg_num == 5)
-		return (too_many_args_err("CAMERA", "3"));
+		too_many_args_war("CAMERA", "3");
 	return (true);
 }
 
@@ -99,6 +99,6 @@ bool	set_new_arg_light(t_scene *sc, char *arg, short arg_num, bool sph)
 	else if (arg_num >= 5 && arg[0] == 'M')
 		sc->lighting.movable = new_light;
 	else if (arg_num >= 5)
-		return (too_many_args_err("LIGHT", "3"));
+		too_many_args_war("LIGHT", "3");
 	return (true);
 }

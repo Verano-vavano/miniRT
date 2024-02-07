@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 10:28:46 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/04 19:59:29 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:25:21 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_vec3	get_coord_vec3(char *arg, bool smallest)
 			return (ret);
 		}
 	}
-	ret.valid = (ret.x < 100000.f && ret.y < 100000.f && ret.z < 100000.f);
+	ret.valid = (ret.x < FLOAT_ERR && ret.y < FLOAT_ERR && ret.z < FLOAT_ERR);
 	free_char_etoile_etoile(xyz);
 	return (ret);
 }

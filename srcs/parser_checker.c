@@ -6,7 +6,7 @@
 /*   By: hdupire <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:36:09 by hdupire           #+#    #+#             */
-/*   Updated: 2024/02/03 03:09:19 by hdupire          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:33:52 by hdupire          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ bool	check_camera(t_scene *scene)
 {
 	if (scene->camera.vp.valid == false || scene->camera.dir.valid == false)
 		return (false);
-	else if (scene->camera.fov < 0 || scene->camera.fov > 180)
-		return (invalid_range_err("CAMERA", "0", "180"));
+	scene->camera.fov %= 180;
 	return (true);
 }
 
